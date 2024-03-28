@@ -44,7 +44,7 @@ class ApartmentTest extends TestCase
 			$this->assertFalse($apartment->getRent()==='1200');
 		}
 		
-		public function testIsEmpty(){
+		public function testIsEmpt*y(){
 			$apartment = new Apartment();
 			$this->assertEmpty($apartment->getCode());
 			$this->assertEmpty($apartment->getCity());
