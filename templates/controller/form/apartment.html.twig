@@ -1,0 +1,7 @@
+<fieldset class="section-form" id="apartment->add">
+  <legend>{{ page_name }} {{ type_form }}</legend>
+  {{ form_start(form_apartment) }}
+    {{ form_widget(form_apartment) }}
+    {% include'controller/form/utility/form_submit_required.html.twig'%}
+  {{ form_end(form_apartment) }}
+</fieldset>

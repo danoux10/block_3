@@ -39,18 +39,18 @@ class Apartment
     #[ORM\ManyToMany(targetEntity: Contract::class, mappedBy: 'apartment')]
     private Collection $contracts;
 
-    #[ORM\ManyToMany(targetEntity: tenant::class, inversedBy: 'apartments')]
-    private Collection $tenant;
+    #[ORM\ManyToMany(targetEntity: Tenant::class, inversedBy: 'apartments')]
+    private Collection $Tenant;
 
-    #[ORM\ManyToMany(targetEntity: owner::class, inversedBy: 'apartments')]
-    private Collection $owner;
+    #[ORM\ManyToMany(targetEntity: Owner::class, inversedBy: 'apartments')]
+    private Collection $Owner;
 
     public function __construct()
     {
         $this->inventories = new ArrayCollection();
         $this->contracts = new ArrayCollection();
-        $this->tenant = new ArrayCollection();
-        $this->owner = new ArrayCollection();
+        $this->Tenant = new ArrayCollection();
+        $this->Owner = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,49 +188,49 @@ class Apartment
     }
 
     /**
-     * @return Collection<int, tenant>
+     * @return Collection<int, Tenant>
      */
     public function getTenant(): Collection
     {
-        return $this->tenant;
+        return $this->Tenant;
     }
 
-    public function addTenant(tenant $tenant): static
+    public function addTenant(Tenant $Tenant): static
     {
-        if (!$this->tenant->contains($tenant)) {
-            $this->tenant->add($tenant);
+        if (!$this->Tenant->contains($Tenant)) {
+            $this->Tenant->add($Tenant);
         }
 
         return $this;
     }
 
-    public function removeTenant(tenant $tenant): static
+    public function removeTenant(Tenant $Tenant): static
     {
-        $this->tenant->removeElement($tenant);
+        $this->Tenant->removeElement($Tenant);
 
         return $this;
     }
 
     /**
-     * @return Collection<int, owner>
+     * @return Collection<int, Owner>
      */
     public function getOwner(): Collection
     {
-        return $this->owner;
+        return $this->Owner;
     }
 
-    public function addOwner(owner $owner): static
+    public function addOwner(Owner $Owner): static
     {
-        if (!$this->owner->contains($owner)) {
-            $this->owner->add($owner);
+        if (!$this->Owner->contains($Owner)) {
+            $this->Owner->add($Owner);
         }
 
         return $this;
     }
 
-    public function removeOwner(owner $owner): static
+    public function removeOwner(Owner $Owner): static
     {
-        $this->owner->removeElement($owner);
+        $this->Owner->removeElement($Owner);
 
         return $this;
     }

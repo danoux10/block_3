@@ -33,10 +33,10 @@ class Tenant
     #[ORM\Column(nullable: true)]
     private ?bool $apl = null;
 
-    #[ORM\ManyToMany(targetEntity: Contract::class, mappedBy: 'tenant')]
+    #[ORM\ManyToMany(targetEntity: Contract::class, mappedBy: 'Tenant')]
     private Collection $contracts;
 
-    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'tenant')]
+    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'Tenant')]
     private Collection $apartments;
 
     #[ORM\Column(length: 255)]

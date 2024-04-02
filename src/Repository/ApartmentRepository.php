@@ -20,6 +20,13 @@ class ApartmentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Apartment::class);
     }
+		
+		public function ApartmentDesc(){
+			return $this->createQueryBuilder('a')
+				->orderBy('a.id', 'DESC')
+				->getQuery()
+				->getResult();
+		}
 
     //    /**
     //     * @return Apartment[] Returns an array of Apartment objects

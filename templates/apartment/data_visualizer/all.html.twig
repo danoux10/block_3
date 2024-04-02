@@ -1,0 +1,26 @@
+<div class="table" id="apartment_table">
+  <div class="table-content thead">
+        <span class="ligne-content tr">
+            {% for head in heads %}
+              <p class="th">{{ head }}</p>
+            {% endfor %}
+        </span>
+  </div>
+  <div class="table-content tbody">
+    {% for apartment in data %}
+      <span class="ligne-content tr">
+                <p class="td">{{ apartment.code }}</p>
+                <p class="td">{{ apartment.city }}</p>
+                <p class="td">{{ apartment.adress }}</p>
+                <p class="td">{{ apartment.charge }}</p>
+                <p class="td">{{ apartment.guarantee }}</p>
+                <p class="td">{{ apartment.rent }}</p>
+                <a class="td" href="{{ path('app_apartment_selected',{'id':apartment.id}) }}">
+                    <span class="btn">
+                        sélect
+                    </span>
+                </a>
+            </span>
+    {% endfor %}
+  </div>
+</div>

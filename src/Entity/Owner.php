@@ -30,7 +30,7 @@ class Owner
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
-    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'owner')]
+    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'Owner')]
     private Collection $apartments;
 
     public function __construct()
