@@ -15,8 +15,8 @@ class Apartment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $code = null;
+    #[ORM\Column(length: 255)]
+    private ?string $code = null;
 
     #[ORM\Column(length: 255)]
     private ?string $city = null;
@@ -36,21 +36,21 @@ class Apartment
     #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'apartment')]
     private Collection $inventories;
 
-    #[ORM\ManyToMany(targetEntity: owner::class, inversedBy: 'apartments')]
-    private Collection $owner;
+    #[ORM\ManyToMany(targetEntity: Contract::class, mappedBy: 'apartment')]
+    private Collection $contracts;
 
     #[ORM\ManyToMany(targetEntity: tenant::class, inversedBy: 'apartments')]
     private Collection $tenant;
 
-    #[ORM\ManyToMany(targetEntity: Contract::class, mappedBy: 'apartment')]
-    private Collection $contracts;
+    #[ORM\ManyToMany(targetEntity: owner::class, inversedBy: 'apartments')]
+    private Collection $owner;
 
     public function __construct()
     {
         $this->inventories = new ArrayCollection();
-        $this->owner = new ArrayCollection();
-        $this->tenant = new ArrayCollection();
         $this->contracts = new ArrayCollection();
+        $this->tenant = new ArrayCollection();
+        $this->owner = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,12 +58,12 @@ class Apartment
         return $this->id;
     }
 
-    public function getCode(): ?int
+    public function getCode(): ?string
     {
         return $this->code;
     }
 
-    public function setCode(int $code): static
+    public function setCode(string $code): static
     {
         $this->code = $code;
 
@@ -161,25 +161,28 @@ class Apartment
     }
 
     /**
-     * @return Collection<int, owner>
+     * @return Collection<int, Contract>
      */
-    public function getOwner(): Collection
+    public function getContracts(): Collection
     {
-        return $this->owner;
+        return $this->contracts;
     }
 
-    public function addOwner(owner $owner): static
+    public function addContract(Contract $contract): static
     {
-        if (!$this->owner->contains($owner)) {
-            $this->owner->add($owner);
+        if (!$this->contracts->contains($contract)) {
+            $this->contracts->add($contract);
+            $contract->addApartment($this);
         }
 
         return $this;
     }
 
-    public function removeOwner(owner $owner): static
+    public function removeContract(Contract $contract): static
     {
-        $this->owner->removeElement($owner);
+        if ($this->contracts->removeElement($contract)) {
+            $contract->removeApartment($this);
+        }
 
         return $this;
     }
@@ -209,28 +212,25 @@ class Apartment
     }
 
     /**
-     * @return Collection<int, Contract>
+     * @return Collection<int, owner>
      */
-    public function getContracts(): Collection
+    public function getOwner(): Collection
     {
-        return $this->contracts;
+        return $this->owner;
     }
 
-    public function addContract(Contract $contract): static
+    public function addOwner(owner $owner): static
     {
-        if (!$this->contracts->contains($contract)) {
-            $this->contracts->add($contract);
-            $contract->addApartment($this);
+        if (!$this->owner->contains($owner)) {
+            $this->owner->add($owner);
         }
 
         return $this;
     }
 
-    public function removeContract(Contract $contract): static
+    public function removeOwner(owner $owner): static
     {
-        if ($this->contracts->removeElement($contract)) {
-            $contract->removeApartment($this);
-        }
+        $this->owner->removeElement($owner);
 
         return $this;
     }

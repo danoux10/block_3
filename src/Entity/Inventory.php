@@ -21,7 +21,6 @@ class Inventory
     private ?string $remark = null;
 
     #[ORM\ManyToOne(inversedBy: 'inventories')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?apartment $apartment = null;
 
     public function getId(): ?int

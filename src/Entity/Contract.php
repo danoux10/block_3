@@ -17,10 +17,10 @@ class Contract
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $start = null;
+    private ?\DateTimeInterface $start_at = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $end = null;
+    private ?\DateTimeInterface $end_at = null;
 
     #[ORM\ManyToMany(targetEntity: apartment::class, inversedBy: 'contracts')]
     private Collection $apartment;
@@ -47,26 +47,26 @@ class Contract
         return $this->id;
     }
 
-    public function getStart(): ?\DateTimeInterface
+    public function getStartAt(): ?\DateTimeInterface
     {
-        return $this->start;
+        return $this->start_at;
     }
 
-    public function setStart(\DateTimeInterface $start): static
+    public function setStartAt(\DateTimeInterface $start_at): static
     {
-        $this->start = $start;
+        $this->start_at = $start_at;
 
         return $this;
     }
 
-    public function getEnd(): ?\DateTimeInterface
+    public function getEndAt(): ?\DateTimeInterface
     {
-        return $this->end;
+        return $this->end_at;
     }
 
-    public function setEnd(\DateTimeInterface $end): static
+    public function setEndAt(\DateTimeInterface $end_at): static
     {
-        $this->end = $end;
+        $this->end_at = $end_at;
 
         return $this;
     }
