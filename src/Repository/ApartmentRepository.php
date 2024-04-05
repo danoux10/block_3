@@ -27,6 +27,7 @@ class ApartmentRepository extends ServiceEntityRepository
 				->getQuery()
 				->getResult();
 		}
+		
 
     //    /**
     //     * @return Apartment[] Returns an array of Apartment objects

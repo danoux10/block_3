@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\general;
 
-use App\Entity\apartment;
-use App\Entity\Contract;
-use App\Entity\tenant;
+use App\Entity\contract;
+use App\Entity\Receipt;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContractType extends AbstractType
+class ReceiptType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,15 +20,10 @@ class ContractType extends AbstractType
             ->add('end', null, [
                 'widget' => 'single_text',
             ])
-            ->add('apartment', EntityType::class, [
-                'class' => apartment::class,
+            ->add('sum')
+            ->add('contract', EntityType::class, [
+                'class' => contract::class,
                 'choice_label' => 'id',
-                'multiple' => true,
-            ])
-            ->add('tenant', EntityType::class, [
-                'class' => tenant::class,
-                'choice_label' => 'id',
-                'multiple' => true,
             ])
         ;
     }
@@ -37,7 +31,7 @@ class ContractType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Contract::class,
+            'data_class' => Receipt::class,
         ]);
     }
 }

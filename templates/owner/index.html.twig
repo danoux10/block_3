@@ -1,7 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ controller_name }}{% endblock %}
+{% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
+  <header class="page-header all">
+    <h2>Gestin {{ page_name }}</h2>
+  </header>
+  <main>
+    <section class="section-table" id="owner-table">
+      
+    </section>
+    <section class="section-table" id="owner-add">
 
+    </section>
+  </main>
 {% endblock %}

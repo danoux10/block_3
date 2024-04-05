@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Apartments;
 
-use App\Entity\apartment;
+use App\Entity\Apartment;
 use App\Entity\Inventory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InventoryType extends AbstractType
+class ApartmentInventoryType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

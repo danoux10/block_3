@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Owner;
+use App\Entity\Apartment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,7 +21,17 @@ class OwnerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Owner::class);
     }
-
+		
+		public function apartmentOwner(int $id, ?apartment $apartment = null){
+			$data = $this->createQueryBuilder('o')
+				->select('o', 'a')
+				->join('o.apartments', 'a')
+				->where('a.id = :id')
+				->setParameter('id', $id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
     //    /**
     //     * @return Owner[] Returns an array of Owner objects
     //     */

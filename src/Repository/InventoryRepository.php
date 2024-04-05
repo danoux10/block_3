@@ -20,6 +20,14 @@ class InventoryRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Inventory::class);
     }
+		
+		public function apartmentInventory($id){
+			return $this->createQueryBuilder('i')
+				->where('i.apartment = :id')
+				->setParameter('id',$id)
+				->getQuery()
+				->getResult();
+		}
 
     //    /**
     //     * @return Inventory[] Returns an array of Inventory objects

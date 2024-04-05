@@ -25,7 +25,7 @@ class ApartmentFixtures extends Fixture implements DependentFixtureInterface
 		$owners = $this->ownerRepository->findAll();
 		$inventories = $this->inventoryRepository->findAll();
 		$apartments = [];
-		for ($i = 0; $i < mt_rand(1, 100); $i++) {
+		for ($i = 0; $i < 50; $i++) {
 			$apartment = new Apartment();
 			$apartment
 				->setCode($faker->randomNumber(5, true))

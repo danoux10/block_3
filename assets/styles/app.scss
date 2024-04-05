@@ -1,38 +1,42 @@
-main{
+main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.section-table{
+.section-table {
   width: 50%;
 }
 
-.section-form{
+.section-form {
   width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.table{
+.table {
   border: 1px solid #393b44;
   padding: .5rem;
   width: 100%;
-  .table-content{
+
+  .table-content {
     display: flex;
     flex-direction: row;
-    width:100%;
-    gap:.2rem;
-    .ligne-content{
+    width: 100%;
+    gap: .2rem;
+
+    .ligne-content {
       display: flex;
       flex-direction: row;
-      width:100%;
-      gap:.2rem;
-      .th{
+      width: 100%;
+      gap: .2rem;
+
+      .th {
         font-weight: bold;
       }
-      .th,.td{
+
+      .th, .td {
         border: 1px solid #393b44;
         border-radius: 5px;
         padding: .5rem;
@@ -40,17 +44,20 @@ main{
       }
     }
   }
-  .thead{
+
+  .thead {
     padding-right: .5rem;
     margin-bottom: .3rem;
   }
-  .tbody{
+
+  .tbody {
     display: flex;
     flex-direction: column;
-    height:45rem;
+    height: 45rem;
     overflow: scroll;
-    .ligne-content{
-      &:nth-child(2n){
+
+    .ligne-content {
+      &:nth-child(2n) {
         margin: .2rem 0;
       }
     }
@@ -69,6 +76,49 @@ main{
               width: 10%;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+.article-selected{
+  display: flex;
+  flex-direction: row;
+}
+
+.apartment-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .apartment-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid red;
+
+    .data-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border: 1px solid lime;
+      flex-direction: column;
+      width: 100%;
+      .data-folder{
+        border: 1px solid lightblue;
+      }
+      .data-content {
+        display: flex;
+        flex-direction: row;
+        .data-name{
+          &:after{
+            content:':';
+            margin: 0 .5rem;
+          }
+        }
+        .inventory-remark{
+          width:50%;
         }
       }
     }

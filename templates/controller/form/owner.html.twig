@@ -1,0 +1,7 @@
+<fieldset class="section-form" id="apartment-owner">
+  <legend>Ajouter propriétaire</legend>
+  {{ form_start(form_owner) }}
+    {{ form_widget(form_owner) }}
+    {% include 'controller/form/utility/form_submit_not_required.html.twig' %}
+  {{ form_end(form_owner) }}
+</fieldset>

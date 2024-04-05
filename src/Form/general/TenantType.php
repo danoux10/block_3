@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\general;
 
 use App\Entity\Apartment;
-use App\Entity\Owner;
+use App\Entity\Contract;
+use App\Entity\Tenant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OwnerType extends AbstractType
+class TenantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -19,8 +20,15 @@ class OwnerType extends AbstractType
             ->add('email')
             ->add('adress')
             ->add('phone')
+            ->add('apl_value')
+            ->add('apl')
             ->add('apartments', EntityType::class, [
                 'class' => Apartment::class,
+                'choice_label' => 'id',
+                'multiple' => true,
+            ])
+            ->add('contracts', EntityType::class, [
+                'class' => Contract::class,
                 'choice_label' => 'id',
                 'multiple' => true,
             ])
@@ -30,7 +38,7 @@ class OwnerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Owner::class,
+            'data_class' => Tenant::class,
         ]);
     }
 }

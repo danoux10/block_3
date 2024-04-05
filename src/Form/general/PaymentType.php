@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\general;
 
 use App\Entity\contract;
 use App\Entity\Payment;

@@ -22,10 +22,10 @@ class Contract
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_at = null;
 
-    #[ORM\ManyToMany(targetEntity: apartment::class, inversedBy: 'contracts')]
+    #[ORM\ManyToMany(targetEntity: Apartment::class, inversedBy: 'contracts')]
     private Collection $apartment;
 
-    #[ORM\ManyToMany(targetEntity: tenant::class, inversedBy: 'contracts')]
+    #[ORM\ManyToMany(targetEntity: Tenant::class, inversedBy: 'contracts')]
     private Collection $tenant;
 
     #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract')]
