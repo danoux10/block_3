@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\general;
+namespace App\Form;
 
 use App\Entity\Apartment;
 use App\Entity\Contract;

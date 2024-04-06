@@ -116,4 +116,9 @@ main {
   width: 50%;
 }
 
+.folder {
+  display: flex;
+  flex-direction: row;
+}
+
 /*# sourceMappingURL=app.css.map */

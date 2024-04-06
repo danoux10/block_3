@@ -28,6 +28,16 @@ class ApartmentRepository extends ServiceEntityRepository
 				->getResult();
 		}
 		
+		public function ownerApartment(int $id){
+			$data = $this->createQueryBuilder('a')
+				->select('a', 'o')
+				->join('a.Owner', 'o')
+				->where('o.id = :id')
+				->setParameter('id', $id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
 
     //    /**
     //     * @return Apartment[] Returns an array of Apartment objects
