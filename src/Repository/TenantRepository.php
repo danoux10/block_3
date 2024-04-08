@@ -21,6 +21,13 @@ class TenantRepository extends ServiceEntityRepository
         parent::__construct($registry, Tenant::class);
     }
 		
+		
+		public function TenantDesc(){
+			return $this->createQueryBuilder('t')
+				->orderBy('t.id', 'DESC')
+				->getQuery()
+				->getResult();
+		}
     //    /**
     //     * @return Tenant[] Returns an array of Tenant objects
     //     */

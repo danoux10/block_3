@@ -4,11 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Apartment;
 
-use App\Entity\Inventory;
-use App\Entity\Owner;
-use App\Form\Apartments\ApartmentInventoryType;
 use App\Form\ApartmentType;
-use App\Form\Apartments\ApartmentOwnerType;
 
 use App\Repository\ApartmentRepository;
 use App\Repository\ContractRepository;

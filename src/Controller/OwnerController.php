@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Owner;
 use App\Form\owner\OwnerApartmentType;
-use App\Form\owner\OwnerType;
+use App\Form\OwnerType;
 use App\Repository\ApartmentRepository;
 use App\Repository\OwnerRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -63,7 +63,7 @@ class OwnerController extends AbstractController
 		//get data
 		$apartments = $apartmentRepository->ownerApartment($id);
 		//form
-		$owner_form = $this->createForm(OwnerApartmentType::class,$owner);
+		$owner_form = $this->createForm(OwnerType::class,$owner);
 		$owner_form->handleRequest($request);
 		if ($owner_form->isSubmitted()&&$owner_form->isValid()){
 			$entityManager->flush();

@@ -7,6 +7,9 @@ use App\Entity\Contract;
 use App\Entity\Tenant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,24 +18,43 @@ class TenantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('lastname')
-            ->add('email')
-            ->add('adress')
-            ->add('phone')
-            ->add('apl_value')
-            ->add('apl')
-            ->add('apartments', EntityType::class, [
-                'class' => Apartment::class,
-                'choice_label' => 'id',
-                'multiple' => true,
+            ->add('name',TextType::class,[
+							'label'=>'Nom',
+	            'attr'=>[
+								'placeholder' =>'Doe'
+	            ],
             ])
-            ->add('contracts', EntityType::class, [
-                'class' => Contract::class,
-                'choice_label' => 'id',
-                'multiple' => true,
+            ->add('lastname',TextType::class,[
+	            'label'=>'Prénom',
+	            'attr'=>[
+		            'placeholder' =>'John'
+	            ],
             ])
-        ;
+            ->add('email',EmailType::class,[
+	            'label'=>'Email',
+	            'attr'=>[
+		            'placeholder' =>'johnDoe@example.com'
+	            ],
+            ])
+            ->add('adress',TextType::class,[
+	            'label'=>'Adresse',
+	            'attr'=>[
+		            'placeholder' =>'8 rue des fleurs'
+	            ],
+            ])
+            ->add('phone',TextType::class,[
+	            'label'=>'Téléphone',
+	            'attr'=>[
+		            'placeholder' =>'0615243652'
+	            ],
+            ])
+            ->add('apl_value',TextType::class,[
+	            'label'=>'Valeur des Apl',
+	            'attr'=>[
+		            'placeholder' =>''
+	            ],
+            ])
+            ->add('apl', CheckboxType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

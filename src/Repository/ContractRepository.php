@@ -27,11 +27,21 @@ class ContractRepository extends ServiceEntityRepository
 		public function apartmentContract(int $id)
 		{
 			$data = $this->createQueryBuilder('c')
-				->addSelect('a','t')
+				->addSelect('a')
 				->join('c.apartment','a')
-				->join('c.tenant','t')
 				->where('a.id = :id')
 				->setParameter(':id', $id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
+		
+		public function tenantContract(int $id){
+			$data = $this->createQueryBuilder('c')
+				->addSelect('t')
+				->join('c.tenant','t')
+				->where('t.id = :id')
+				->setParameter(':id',$id)
 				->getQuery()
 				->getResult();
 			return $data;

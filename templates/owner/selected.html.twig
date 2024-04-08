@@ -3,12 +3,10 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <header class="page-header all">
-    <h2>Gestion {{ page_name }}</h2>
-  </header>
+  <h2>Gestion {{ page_name }}</h2>
   <section class="folder">
     {% include 'owner/data_visualizer/selected.html.twig' %}
     {% include 'owner/data_visualizer/apartment.html.twig' %}
   </section>
-    {% include 'controller/form/owner.html.twig' %}
+  {% include 'controller/form/owner.html.twig' %}
 {% endblock %}
