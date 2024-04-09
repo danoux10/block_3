@@ -23,18 +23,24 @@ class ContractRepository extends ServiceEntityRepository
         parent::__construct($registry, Contract::class);
     }
 
-//int $id
-		public function apartmentContract(int $id)
-		{
-			$data = $this->createQueryBuilder('c')
-				->addSelect('a')
-				->join('c.apartment','a')
-				->where('a.id = :id')
-				->setParameter(':id', $id)
+		public function ContractDesc(){
+			return $this->createQueryBuilder('c')
+				->orderBy('c.id', 'DESC')
 				->getQuery()
 				->getResult();
-			return $data;
 		}
+		
+//		public function apartmentContract(int $id)
+//		{
+//			$data = $this->createQueryBuilder('c')
+//				->addSelect('a')
+//				->join('c.apartment','a')
+//				->where('a.id = :id')
+//				->setParameter(':id', $id)
+//				->getQuery()
+//				->getResult();
+//			return $data;
+//		}
 		
 		public function tenantContract(int $id){
 			$data = $this->createQueryBuilder('c')
@@ -46,7 +52,7 @@ class ContractRepository extends ServiceEntityRepository
 				->getResult();
 			return $data;
 		}
-
+		
     //    /**
     //     * @return Contract[] Returns an array of Contract objects
     //     */

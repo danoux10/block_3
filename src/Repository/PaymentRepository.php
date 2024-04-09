@@ -20,7 +20,17 @@ class PaymentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Payment::class);
     }
-
+		
+		
+		
+		public function ContractPayment(int $id){
+			$data = $this->createQueryBuilder('p')
+				->where('p.Contract=:id')
+				->setParameter('id',$id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
     //    /**
     //     * @return Payment[] Returns an array of Payment objects
     //     */

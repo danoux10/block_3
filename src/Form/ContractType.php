@@ -15,20 +15,20 @@ class ContractType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('start', null, [
+            ->add('start_at', null, [
                 'widget' => 'single_text',
             ])
-            ->add('end', null, [
+            ->add('end_at', null, [
                 'widget' => 'single_text',
             ])
             ->add('apartment', EntityType::class, [
                 'class' => apartment::class,
-                'choice_label' => 'id',
+                'choice_label' => 'adress',
                 'multiple' => true,
             ])
             ->add('tenant', EntityType::class, [
                 'class' => tenant::class,
-                'choice_label' => 'id',
+                'choice_label' => 'email',
                 'multiple' => true,
             ])
         ;

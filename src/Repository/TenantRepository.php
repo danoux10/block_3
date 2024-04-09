@@ -28,6 +28,18 @@ class TenantRepository extends ServiceEntityRepository
 				->getQuery()
 				->getResult();
 		}
+		
+		public function ContractTenant(int $id){
+			$data = $this->createQueryBuilder('t')
+				->addSelect('c')
+				->join('t.contracts','c')
+				->where('c.id=:id')
+				->setParameter('id',$id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
+		
     //    /**
     //     * @return Tenant[] Returns an array of Tenant objects
     //     */

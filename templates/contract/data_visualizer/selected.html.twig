@@ -1,0 +1,27 @@
+<section>
+  <h3>Tenant Info</h3>
+  <div class="data-container">
+    <span class="data-content">
+    	<p class="data-name">début</p>
+    	<p>{{ contract.startAt | date('d/m/Y') }}</p>
+    </span>
+
+    <span class="data-content">
+    	<p class="data-name">fin</p>
+    	<p>{{ contract.endAt | date('d/m/Y') }}</p>
+    </span>
+
+{#    <span class="data-content">#}
+{#    	<p class="data-name">adresse appartement</p>#}
+{#    	<p>{{ apartment.adress }}</p>#}
+{#      <a href="{{ path('app_apartment_selected',{'id':apartment.id}) }}">see</a>#}
+{#    </span>#}
+
+{#    <span class="data-content">#}
+{#    	<p class="data-name">locataire email</p>#}
+{#    	<p>{{ tenant.email }}</p>#}
+{#      <a href="{{ path('app_tenant_selected',{'id':tenant.id}) }}">see</a>#}
+{#    </span>#}
+
+  </div>
+</section>

@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ controller_name }}{% endblock %}
+{% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-
+  <h2>Gestion {{page_name}}</h2>
+  <main>
+    <article>
+      {%include 'contract/data_visualizer/selected.html.twig' %}
+      {%include 'contract/data_visualizer/payment.html.twig' %}
+      {%include 'contract/data_visualizer/receipt.html.twig' %}
+    </article>
+    {% include 'controller/form/contrat.html.twig' %}
+  </main>
 {% endblock %}

@@ -30,7 +30,7 @@ class ApartmentRepository extends ServiceEntityRepository
 		
 		public function ownerApartment(int $id){
 			$data = $this->createQueryBuilder('a')
-				->select('a', 'o')
+				->addSelect( 'o')
 				->join('a.Owner', 'o')
 				->where('o.id = :id')
 				->setParameter('id', $id)
@@ -38,7 +38,18 @@ class ApartmentRepository extends ServiceEntityRepository
 				->getResult();
 			return $data;
 		}
-
+		
+		public function ContractApartment(int $id){
+			$data = $this->createQueryBuilder('a')
+				->addSelect('c')
+				->join('a.contracts','c')
+				->where('c.id= :id')
+				->setParameter('id',$id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
+		
     //    /**
     //     * @return Apartment[] Returns an array of Apartment objects
     //     */
