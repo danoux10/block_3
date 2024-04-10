@@ -3,8 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Contract;
-use App\Entity\Apartment;
-use App\Entity\Tenant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -23,36 +21,6 @@ class ContractRepository extends ServiceEntityRepository
         parent::__construct($registry, Contract::class);
     }
 
-		public function ContractDesc(){
-			return $this->createQueryBuilder('c')
-				->orderBy('c.id', 'DESC')
-				->getQuery()
-				->getResult();
-		}
-		
-//		public function apartmentContract(int $id)
-//		{
-//			$data = $this->createQueryBuilder('c')
-//				->addSelect('a')
-//				->join('c.apartment','a')
-//				->where('a.id = :id')
-//				->setParameter(':id', $id)
-//				->getQuery()
-//				->getResult();
-//			return $data;
-//		}
-		
-		public function tenantContract(int $id){
-			$data = $this->createQueryBuilder('c')
-				->addSelect('t')
-				->join('c.tenant','t')
-				->where('t.id = :id')
-				->setParameter(':id',$id)
-				->getQuery()
-				->getResult();
-			return $data;
-		}
-		
     //    /**
     //     * @return Contract[] Returns an array of Contract objects
     //     */

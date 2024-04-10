@@ -21,6 +21,7 @@ class Receipt
     private ?\DateTimeInterface $end_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'receipts')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?contract $contract = null;
 
     public function getId(): ?int

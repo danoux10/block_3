@@ -22,22 +22,28 @@ class Contract
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_at = null;
 
-    #[ORM\ManyToMany(targetEntity: Apartment::class, inversedBy: 'contracts')]
-    private Collection $apartment;
+    #[ORM\ManyToOne(inversedBy: 'contracts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?apartment $apartment = null;
 
-    #[ORM\ManyToMany(targetEntity: Tenant::class, inversedBy: 'contracts')]
-    private Collection $tenant;
+    #[ORM\ManyToOne(inversedBy: 'contracts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?tenant $tenant = null;
 
+    /**
+     * @var Collection<int, Payment>
+     */
     #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract')]
     private Collection $payments;
 
+    /**
+     * @var Collection<int, Receipt>
+     */
     #[ORM\OneToMany(targetEntity: Receipt::class, mappedBy: 'contract')]
     private Collection $receipts;
 
     public function __construct()
     {
-        $this->apartment = new ArrayCollection();
-        $this->tenant = new ArrayCollection();
         $this->payments = new ArrayCollection();
         $this->receipts = new ArrayCollection();
     }
@@ -71,50 +77,26 @@ class Contract
         return $this;
     }
 
-    /**
-     * @return Collection<int, apartment>
-     */
-    public function getApartment(): Collection
+    public function getApartment(): ?apartment
     {
         return $this->apartment;
     }
 
-    public function addApartment(apartment $apartment): static
+    public function setApartment(?apartment $apartment): static
     {
-        if (!$this->apartment->contains($apartment)) {
-            $this->apartment->add($apartment);
-        }
+        $this->apartment = $apartment;
 
         return $this;
     }
 
-    public function removeApartment(apartment $apartment): static
-    {
-        $this->apartment->removeElement($apartment);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, tenant>
-     */
-    public function getTenant(): Collection
+    public function getTenant(): ?tenant
     {
         return $this->tenant;
     }
 
-    public function addTenant(tenant $tenant): static
+    public function setTenant(?tenant $tenant): static
     {
-        if (!$this->tenant->contains($tenant)) {
-            $this->tenant->add($tenant);
-        }
-
-        return $this;
-    }
-
-    public function removeTenant(tenant $tenant): static
-    {
-        $this->tenant->removeElement($tenant);
+        $this->tenant = $tenant;
 
         return $this;
     }

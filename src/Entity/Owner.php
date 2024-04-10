@@ -25,12 +25,15 @@ class Owner
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adress = null;
+    private ?string $address = null;
 
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
-    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'Owner')]
+    /**
+     * @var Collection<int, Apartment>
+     */
+    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'owner')]
     private Collection $apartments;
 
     public function __construct()
@@ -79,14 +82,14 @@ class Owner
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): static
+    public function setAddress(string $address): static
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }

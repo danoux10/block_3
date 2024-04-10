@@ -25,27 +25,26 @@ class Tenant
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adress = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $apl_value = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?bool $apl = null;
-
-    #[ORM\ManyToMany(targetEntity: Contract::class, mappedBy: 'tenant')]
-    private Collection $contracts;
-
-    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'tenant')]
-    private Collection $apartments;
+    private ?string $address = null;
 
     #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $apl_value = null;
+
+    #[ORM\Column]
+    private ?bool $apl = null;
+
+    /**
+     * @var Collection<int, Contract>
+     */
+    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'tenant', orphanRemoval: true)]
+    private Collection $contracts;
+
     public function __construct()
     {
         $this->contracts = new ArrayCollection();
-        $this->apartments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,14 +88,26 @@ class Tenant
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): static
+    public function setAddress(string $address): static
     {
-        $this->adress = $adress;
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
 
         return $this;
     }
@@ -118,7 +129,7 @@ class Tenant
         return $this->apl;
     }
 
-    public function setApl(?bool $apl): static
+    public function setApl(bool $apl): static
     {
         $this->apl = $apl;
 
@@ -137,7 +148,7 @@ class Tenant
     {
         if (!$this->contracts->contains($contract)) {
             $this->contracts->add($contract);
-            $contract->addTenant($this);
+            $contract->setTenant($this);
         }
 
         return $this;
@@ -146,47 +157,11 @@ class Tenant
     public function removeContract(Contract $contract): static
     {
         if ($this->contracts->removeElement($contract)) {
-            $contract->removeTenant($this);
+            // set the owning side to null (unless already changed)
+            if ($contract->getTenant() === $this) {
+                $contract->setTenant(null);
+            }
         }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Apartment>
-     */
-    public function getApartments(): Collection
-    {
-        return $this->apartments;
-    }
-
-    public function addApartment(Apartment $apartment): static
-    {
-        if (!$this->apartments->contains($apartment)) {
-            $this->apartments->add($apartment);
-            $apartment->addTenant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeApartment(Apartment $apartment): static
-    {
-        if ($this->apartments->removeElement($apartment)) {
-            $apartment->removeTenant($this);
-        }
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): static
-    {
-        $this->phone = $phone;
 
         return $this;
     }
