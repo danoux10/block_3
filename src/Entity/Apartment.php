@@ -40,15 +40,15 @@ class Apartment
     private Collection $owner;
 
     /**
-     * @var Collection<int, inventory>
+     * @var Collection<int, Inventory>
      */
-    #[ORM\OneToMany(targetEntity: inventory::class, mappedBy: 'apartment', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'apartment')]
     private Collection $inventories;
 
     /**
      * @var Collection<int, Contract>
      */
-    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'apartment', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'apartment')]
     private Collection $contracts;
 
     public function __construct()
@@ -160,14 +160,14 @@ class Apartment
     }
 
     /**
-     * @return Collection<int, inventory>
+     * @return Collection<int, Inventory>
      */
     public function getInventories(): Collection
     {
         return $this->inventories;
     }
 
-    public function addInventory(inventory $inventory): static
+    public function addInventory(Inventory $inventory): static
     {
         if (!$this->inventories->contains($inventory)) {
             $this->inventories->add($inventory);
@@ -177,7 +177,7 @@ class Apartment
         return $this;
     }
 
-    public function removeInventory(inventory $inventory): static
+    public function removeInventory(Inventory $inventory): static
     {
         if ($this->inventories->removeElement($inventory)) {
             // set the owning side to null (unless already changed)

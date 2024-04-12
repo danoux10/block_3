@@ -39,13 +39,14 @@ class Tenant
     /**
      * @var Collection<int, Contract>
      */
-    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'tenant', orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'tenant')]
     private Collection $contracts;
 
     public function __construct()
     {
         $this->contracts = new ArrayCollection();
     }
+		
 
     public function getId(): ?int
     {

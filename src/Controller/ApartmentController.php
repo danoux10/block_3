@@ -30,7 +30,7 @@ class ApartmentController extends AbstractController
 		$tableHead = [
 			'code postal',
 			'ville',
-			'adresse',
+			'addresse',
 			'charge',
 			'garantie',
 			'loyer',

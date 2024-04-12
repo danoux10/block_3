@@ -23,13 +23,11 @@ class ContractType extends AbstractType
             ])
             ->add('apartment', EntityType::class, [
                 'class' => apartment::class,
-                'choice_label' => 'adress',
-                'multiple' => true,
+                'choice_label' => 'id',
             ])
             ->add('tenant', EntityType::class, [
                 'class' => tenant::class,
-                'choice_label' => 'email',
-                'multiple' => true,
+                'choice_label' => 'id',
             ])
         ;
     }

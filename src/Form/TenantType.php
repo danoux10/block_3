@@ -36,8 +36,8 @@ class TenantType extends AbstractType
 		            'placeholder' =>'johnDoe@example.com'
 	            ],
             ])
-            ->add('adress',TextType::class,[
-	            'label'=>'Adresse',
+            ->add('address',TextType::class,[
+	            'label'=>'Addresse',
 	            'attr'=>[
 		            'placeholder' =>'8 rue des fleurs'
 	            ],

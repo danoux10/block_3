@@ -12,7 +12,7 @@ class TenantTest extends TestCase
 		$tenant
 			->setName('doe')
 			->setLastName('john')
-			->setAdress('7 rue des paquerette')
+			->setAddress('7 rue des paquerette')
 			->setEmail('john.doe@example.com')
 			->setPhone('0615244425')
 			->setAplValue('bc-44')
@@ -20,7 +20,7 @@ class TenantTest extends TestCase
 		
 		$this->assertTrue($tenant->getName()=='doe');
 		$this->assertTrue($tenant->getLastname()=='john');
-		$this->assertTrue($tenant->getAdress()=='7 rue des paquerette');
+		$this->assertTrue($tenant->getAddress()=='7 rue des paquerette');
 		$this->assertTrue($tenant->getEmail()=='john.doe@example.com');
 		$this->assertTrue($tenant->getPhone()=='0615244425');
 		$this->assertTrue($tenant->getAplValue()=='bc-44');
@@ -31,7 +31,7 @@ class TenantTest extends TestCase
 		$tenant
 			->setName('doe')
 			->setLastName('john')
-			->setAdress('7 rue des paquerette')
+			->setAddress('7 rue des paquerette')
 			->setEmail('john.doe@example.com')
 			->setPhone('0615244425')
 			->setAplValue('bc-44')
@@ -39,7 +39,7 @@ class TenantTest extends TestCase
 		
 		$this->assertFalse($tenant->getName()==='barbe');
 		$this->assertFalse($tenant->getLastname()==='didier');
-		$this->assertFalse($tenant->getAdress()==='7 rue des fleurs');
+		$this->assertFalse($tenant->getAddress()==='7 rue des fleurs');
 		$this->assertFalse($tenant->getEmail()==='didier.barbe@example.com');
 		$this->assertFalse($tenant->getPhone()==='0620153541');
 		$this->assertFalse($tenant->getAplValue()==='bd-55');
@@ -49,7 +49,7 @@ class TenantTest extends TestCase
 		$tenant = new Tenant();
 		$this->assertEmpty($tenant->getName());
 		$this->assertEmpty($tenant->getLastname());
-		$this->assertEmpty($tenant->getAdress());
+		$this->assertEmpty($tenant->getAddress());
 		$this->assertEmpty($tenant->getEmail());
 		$this->assertEmpty($tenant->getPhone());
 		$this->assertEmpty($tenant->getAplValue());

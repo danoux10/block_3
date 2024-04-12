@@ -21,13 +21,12 @@ class Contract
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_at = null;
+		
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?apartment $apartment = null;
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?tenant $tenant = null;
 
     /**
@@ -36,18 +35,11 @@ class Contract
     #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract')]
     private Collection $payments;
 
-    /**
-     * @var Collection<int, Receipt>
-     */
-    #[ORM\OneToMany(targetEntity: Receipt::class, mappedBy: 'contract')]
-    private Collection $receipts;
-
     public function __construct()
     {
         $this->payments = new ArrayCollection();
-        $this->receipts = new ArrayCollection();
     }
-
+		
     public function getId(): ?int
     {
         return $this->id;
@@ -76,7 +68,7 @@ class Contract
 
         return $this;
     }
-
+		
     public function getApartment(): ?apartment
     {
         return $this->apartment;
@@ -125,36 +117,6 @@ class Contract
             // set the owning side to null (unless already changed)
             if ($payment->getContract() === $this) {
                 $payment->setContract(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Receipt>
-     */
-    public function getReceipts(): Collection
-    {
-        return $this->receipts;
-    }
-
-    public function addReceipt(Receipt $receipt): static
-    {
-        if (!$this->receipts->contains($receipt)) {
-            $this->receipts->add($receipt);
-            $receipt->setContract($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReceipt(Receipt $receipt): static
-    {
-        if ($this->receipts->removeElement($receipt)) {
-            // set the owning side to null (unless already changed)
-            if ($receipt->getContract() === $this) {
-                $receipt->setContract(null);
             }
         }
 

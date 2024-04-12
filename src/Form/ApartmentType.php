@@ -26,8 +26,8 @@ class ApartmentType extends AbstractType
 								'placeholder' => 'Troyes',
 	            ],
             ],)
-            ->add('adress',TextType::class,[
-							'label'=>'Adresse',
+            ->add('address',TextType::class,[
+							'label'=>'Addresse',
 	            'attr'=>[
 								'placeholder'=>'8 rue des coquelicot',
 	            ]

@@ -32,8 +32,8 @@ class OwnerType extends AbstractType
 		            'placeholder' =>'johnDoe@exemple.com',
 	            ],
             ])
-            ->add('adress', TextType::class,[
-	            'label'=>'Adresse',
+            ->add('address', TextType::class,[
+	            'label'=>'Addresse',
 	            'attr'=>[
 		            'placeholder' =>'8 rue des citrouilles',
 	            ],
