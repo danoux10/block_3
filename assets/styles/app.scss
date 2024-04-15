@@ -64,7 +64,7 @@ main {
   }
 }
 
-#apartment-table {
+#Apartment-table {
   .table-content {
     .ligne-content {
       .th, .td {
@@ -87,12 +87,12 @@ main {
   flex-direction: row;
 }
 
-.apartment-container {
+.Apartment-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 
-  .apartment-data {
+  .Apartment-data {
     display: flex;
     flex-direction: column;
     align-items: center;

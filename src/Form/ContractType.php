@@ -2,9 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\apartment;
+use App\Entity\Apartment;
 use App\Entity\Contract;
-use App\Entity\tenant;
+use App\Entity\Tenant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,12 +21,12 @@ class ContractType extends AbstractType
             ->add('end_at', null, [
                 'widget' => 'single_text',
             ])
-            ->add('apartment', EntityType::class, [
-                'class' => apartment::class,
+            ->add('Apartment', EntityType::class, [
+                'class' => Apartment::class,
                 'choice_label' => 'id',
             ])
-            ->add('tenant', EntityType::class, [
-                'class' => tenant::class,
+            ->add('Tenant', EntityType::class, [
+                'class' => Tenant::class,
                 'choice_label' => 'id',
             ])
         ;

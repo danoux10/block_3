@@ -28,7 +28,7 @@ class ApartmentRepository extends ServiceEntityRepository
 				->getResult();
 		}
 		
-		public function ownerApartment(int $id){
+		public function OwnerApartment(int $id){
 			$data = $this->createQueryBuilder('a')
 				->addSelect( 'o')
 				->join('a.Owner', 'o')

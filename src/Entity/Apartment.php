@@ -34,26 +34,26 @@ class Apartment
     private ?float $rent = null;
 
     /**
-     * @var Collection<int, owner>
+     * @var Collection<int, Owner>
      */
-    #[ORM\ManyToMany(targetEntity: owner::class, inversedBy: 'apartments')]
-    private Collection $owner;
+    #[ORM\ManyToMany(targetEntity: Owner::class, inversedBy: 'Apartments')]
+    private Collection $Owner;
 
     /**
      * @var Collection<int, Inventory>
      */
-    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'apartment')]
+    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'Apartment')]
     private Collection $inventories;
 
     /**
      * @var Collection<int, Contract>
      */
-    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'apartment')]
+    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'Apartment')]
     private Collection $contracts;
 
     public function __construct()
     {
-        $this->owner = new ArrayCollection();
+        $this->Owner = new ArrayCollection();
         $this->inventories = new ArrayCollection();
         $this->contracts = new ArrayCollection();
     }
@@ -136,25 +136,25 @@ class Apartment
     }
 
     /**
-     * @return Collection<int, owner>
+     * @return Collection<int, Owner>
      */
     public function getOwner(): Collection
     {
-        return $this->owner;
+        return $this->Owner;
     }
 
-    public function addOwner(owner $owner): static
+    public function addOwner(Owner $Owner): static
     {
-        if (!$this->owner->contains($owner)) {
-            $this->owner->add($owner);
+        if (!$this->Owner->contains($Owner)) {
+            $this->Owner->add($Owner);
         }
 
         return $this;
     }
 
-    public function removeOwner(owner $owner): static
+    public function removeOwner(Owner $Owner): static
     {
-        $this->owner->removeElement($owner);
+        $this->Owner->removeElement($Owner);
 
         return $this;
     }

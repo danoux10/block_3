@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Owner;
-use App\Form\owner\OwnerApartmentType;
+use App\Form\Owner\OwnerApartmentType;
 use App\Form\OwnerType;
 use App\Repository\ApartmentRepository;
 use App\Repository\OwnerRepository;
@@ -17,13 +17,13 @@ class OwnerController extends AbstractController
 {
 	#[Route('/owner', name: 'app_owner', methods: ['GET', 'POST'])]
 	public function index(
-		OwnerRepository        $ownerRepository,
+		OwnerRepository        $OwnerRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request
 	): Response
 	{
-		$data = $ownerRepository->findAll();//delete
-//		$data = $ownerRepository->OwnerDesc();
+		$data = $OwnerRepository->findAll();//delete
+//		$data = $OwnerRepository->OwnerDesc();
 		$tableHead = [
 			'nom',
 			'prénom',
@@ -32,11 +32,11 @@ class OwnerController extends AbstractController
 			'addresse',
 			'select'
 		];
-		$owner = new Owner();
-		$formOwner = $this->createForm(OwnerType::class, $owner);
+		$Owner = new Owner();
+		$formOwner = $this->createForm(OwnerType::class, $Owner);
 		$formOwner->handleRequest($request);
 		if ($formOwner->isSubmitted() && $formOwner->isValid()) {
-			$entityManager->persist($owner);
+			$entityManager->persist($Owner);
 			$entityManager->flush();
 			return $this->redirectToRoute('app_owner', [], Response::HTTP_SEE_OTHER);
 		}
@@ -46,7 +46,7 @@ class OwnerController extends AbstractController
 			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
-			'form_owner' => $formOwner,
+			'form_Owner' => $formOwner,
 		]);
 	}
 	
@@ -54,29 +54,28 @@ class OwnerController extends AbstractController
 	public function view(
 		$id,
 		Owner $owner,
-		OwnerRepository        $ownerRepository,
-		ApartmentRepository $apartmentRepository,
+		ApartmentRepository $ApartmentRepository,
 		EntityManagerInterface $entityManager,
-		Request                $request
+		Request $request
 	): Response
 	{
 		//get data
-		$apartments = $apartmentRepository->ownerApartment($id);
+		$apartments = $ApartmentRepository->OwnerApartment($id);
 		//form
-		$owner_form = $this->createForm(OwnerType::class,$owner);
+		$owner_form = $this->createForm(OwnerType::class, $owner);
 		$owner_form->handleRequest($request);
-		if ($owner_form->isSubmitted()&&$owner_form->isValid()){
+		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
 			$entityManager->flush();
-			return $this->redirectToRoute('app_owner_selected',['id'=>$id],Response::HTTP_SEE_OTHER);
+			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
 		}
 		
 		return $this->render('owner/selected.html.twig', [
 			'page_name' => 'propriétaire',
 			'type_form' => 'modifier',
 			'form_method' => 'modifier',
-			'form_owner' => $owner_form,
-			'owner'=>$owner,
-			'apartments'=>$apartments,
+			'form_Owner' => $owner_form,
+			'owner' => $owner,
+			'apartments' => $apartments,
 		]);
 	}
 }

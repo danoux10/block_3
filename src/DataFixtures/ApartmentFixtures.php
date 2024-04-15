@@ -14,36 +14,36 @@ use Faker\Factory;
 class ApartmentFixtures extends Fixture implements DependentFixtureInterface
 {
 	public function __construct(
-		private OwnerRepository $ownerRepository,
+		private OwnerRepository $OwnerRepository,
 		private InventoryRepository $inventoryRepository,
 		private ContractRepository $contractRepository,
 	){}
 	public function load(ObjectManager $manager): void
 	{
 		$faker = Factory::create('fr_FR');
-		$apartments = [];
-		$owners = $this->ownerRepository->findAll();
+		$Apartments = [];
+		$Owners = $this->OwnerRepository->findAll();
 		$inventories = $this->inventoryRepository->findAll();
 		$contracts = $this->contractRepository->findAll();
 		
 		for ($i = 0; $i < 50; $i++) {
-			$apartment = new Apartment();
-			$apartment
+			$Apartment = new Apartment();
+			$Apartment
 				->setCode($faker->randomNumber(5, true))
 				->setCity($faker->city())
 				->setAddress($faker->streetAddress())
 				->setCharge($faker->randomFloat(2, 50, 200))
 				->setGuarantee($faker->randomFloat(2, 100, 500))
 				->setRent($faker->randomFloat(2, 500, 2000));
-			$apartments[] = $apartment;
-			$manager->persist($apartment);
+			$Apartments[] = $Apartment;
+			$manager->persist($Apartment);
 		}
 
-		foreach ($owners as $owner){
+		foreach ($Owners as $Owner){
 			for($i=0;$i<mt_rand(1,3);$i++){
-				$owner
+				$Owner
 					->addApartment(
-						$apartments[mt_rand(0,count($apartments)-1)]
+						$Apartments[mt_rand(0,count($Apartments)-1)]
 					);
 			}
 		}
@@ -51,14 +51,14 @@ class ApartmentFixtures extends Fixture implements DependentFixtureInterface
 		foreach ($inventories as $inventory) {
 			$inventory
 				->setApartment(
-					$apartments[mt_rand(0, count($apartments) - 1)]
+					$Apartments[mt_rand(0, count($Apartments) - 1)]
 				);
 		}
 		
 		foreach ($contracts as $contract){
 			$contract
 				->setApartment(
-					$apartments[mt_rand(0,count($apartments)-1)]
+					$Apartments[mt_rand(0,count($Apartments)-1)]
 				);
 		}
 		

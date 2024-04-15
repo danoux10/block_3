@@ -9,8 +9,8 @@ class ApartmentTest extends TestCase
 {
 	
     public function testIsTrue(){
-	    $apartment = new Apartment();
-			$apartment
+	    $Apartment = new Apartment();
+			$Apartment
 				->setCode('10000')
 				->setCity('Troyes')
 				->setAddress('7 rue des coquelicos')
@@ -18,17 +18,17 @@ class ApartmentTest extends TestCase
 				->setGuarantee('150')
 				->setRent('1200');
 			
-			$this->assertTrue($apartment->getCode()=='10000');
-			$this->assertTrue($apartment->getCity()=='Troyes');
-			$this->assertTrue($apartment->getAddress()=='7 rue des coquelicos');
-			$this->assertTrue($apartment->getCharge()=='102.50');
-			$this->assertTrue($apartment->getGuarantee()=='150');
-			$this->assertTrue($apartment->getRent()=='1200');
+			$this->assertTrue($Apartment->getCode()=='10000');
+			$this->assertTrue($Apartment->getCity()=='Troyes');
+			$this->assertTrue($Apartment->getAddress()=='7 rue des coquelicos');
+			$this->assertTrue($Apartment->getCharge()=='102.50');
+			$this->assertTrue($Apartment->getGuarantee()=='150');
+			$this->assertTrue($Apartment->getRent()=='1200');
     }
 		
 		public function testIsFalse(){
-			$apartment = new Apartment();
-			$apartment
+			$Apartment = new Apartment();
+			$Apartment
 				->setCode('1270')
 				->setCity('lusigny sur barse')
 				->setAddress('7 rue de la cruée')
@@ -36,21 +36,21 @@ class ApartmentTest extends TestCase
 				->setGuarantee('160')
 				->setRent('1500');
 			
-			$this->assertFalse($apartment->getCode()==='10000');
-			$this->assertFalse($apartment->getCity()==='Troyes');
-			$this->assertFalse($apartment->getAddress()==='7 rue des coquelicos');
-			$this->assertFalse($apartment->getCharge()==='102.50');
-			$this->assertFalse($apartment->getGuarantee()==='150');
-			$this->assertFalse($apartment->getRent()==='1200');
+			$this->assertFalse($Apartment->getCode()==='10000');
+			$this->assertFalse($Apartment->getCity()==='Troyes');
+			$this->assertFalse($Apartment->getAddress()==='7 rue des coquelicos');
+			$this->assertFalse($Apartment->getCharge()==='102.50');
+			$this->assertFalse($Apartment->getGuarantee()==='150');
+			$this->assertFalse($Apartment->getRent()==='1200');
 		}
 		
 		public function testIsEmpt*y(){
-			$apartment = new Apartment();
-			$this->assertEmpty($apartment->getCode());
-			$this->assertEmpty($apartment->getCity());
-			$this->assertEmpty($apartment->getAddress());
-			$this->assertEmpty($apartment->getCharge());
-			$this->assertEmpty($apartment->getGuarantee());
-			$this->assertEmpty($apartment->getRent());
+			$Apartment = new Apartment();
+			$this->assertEmpty($Apartment->getCode());
+			$this->assertEmpty($Apartment->getCity());
+			$this->assertEmpty($Apartment->getAddress());
+			$this->assertEmpty($Apartment->getCharge());
+			$this->assertEmpty($Apartment->getGuarantee());
+			$this->assertEmpty($Apartment->getRent());
 		}
 }

@@ -56,11 +56,11 @@ class ContractController extends AbstractController
 		Contract $contract,
 		PaymentRepository $paymentRepository,
 		ReceiptRepository $receiptRepository,
-//		ApartmentRepository $apartmentRepository,
+//		ApartmentRepository $ApartmentRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request,
 	):Response{
-//		$apartment = $apartmentRepository->ContractApartment($id);
+//		$Apartment = $ApartmentRepository->ContractApartment($id);
 		$payments = $paymentRepository->ContractPayment($id);
 		$receipts = $receiptRepository->ContractReceipt($id);
 		$formContract = $this->createForm(ContractType::class, $contract);

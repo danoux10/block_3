@@ -6,15 +6,15 @@
   <h2>Gestion {{ page_name }}</h2>
   <main>
     <article class="article-selected">
-      <section class="apartment-container">
+      <section class="Apartment-container">
         {% include 'apartment/data_visualizer/selected.html.twig' %}
         {% include 'apartment/data_visualizer/inventory.html.twig' %}
       </section>
-      <section class="apartment-container">
+      <section class="Apartment-container">
         {% include 'apartment/data_visualizer/owner.html.twig' %}
-{#        {% include 'apartment/data_visualizer/contract.html.twig' %}#}
+        {% include 'Apartment/data_visualizer/contract.html.twig' %}
       </section>
     </article>
-    {%include 'controller/form/payment.html.twig'%}
+    {%include 'controller/form/apartment.html.twig'%}
   </main>
 {% endblock %}

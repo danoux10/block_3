@@ -39,7 +39,7 @@ class Tenant
     /**
      * @var Collection<int, Contract>
      */
-    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'tenant')]
+    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'Tenant')]
     private Collection $contracts;
 
     public function __construct()

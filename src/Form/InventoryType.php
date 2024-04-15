@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\apartment;
+use App\Entity\Apartment;
 use App\Entity\Inventory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,8 +18,8 @@ class InventoryType extends AbstractType
                 'widget' => 'single_text',
             ])
             ->add('remark')
-            ->add('apartment', EntityType::class, [
-                'class' => apartment::class,
+            ->add('Apartment', EntityType::class, [
+                'class' => Apartment::class,
                 'choice_label' => 'id',
             ])
         ;

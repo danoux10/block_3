@@ -21,12 +21,12 @@ class ApartmentController extends AbstractController
 {
 	#[Route('/', name: 'app_apartment', methods: ['GET', 'POST'])]
 	public function index(
-		ApartmentRepository    $apartmentRepository,
+		ApartmentRepository    $ApartmentRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request): Response
 	{
-		$data = $apartmentRepository->findAll();//Delete
-//		$data = $apartmentRepository->ApartmentDesc();
+		$data = $ApartmentRepository->findAll();//Delete
+//		$data = $ApartmentRepository->ApartmentDesc();
 		$tableHead = [
 			'code postal',
 			'ville',
@@ -35,11 +35,11 @@ class ApartmentController extends AbstractController
 			'garantie',
 			'loyer',
 			'select'];
-		$apartment = new Apartment();
-		$formApartment = $this->createForm(ApartmentType::class, $apartment);
+		$Apartment = new Apartment();
+		$formApartment = $this->createForm(ApartmentType::class, $Apartment);
 		$formApartment->handleRequest($request);
 		if ($formApartment->isSubmitted() && $formApartment->isValid()) {
-			$entityManager->persist($apartment);
+			$entityManager->persist($Apartment);
 			$entityManager->flush();
 			return $this->redirectToRoute('app_apartment', [], Response::HTTP_SEE_OTHER);
 		}
@@ -49,7 +49,7 @@ class ApartmentController extends AbstractController
 			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
-			'form_apartment' => $formApartment,
+			'form_Apartment' => $formApartment,
 		]);
 	}
 	
@@ -65,9 +65,19 @@ class ApartmentController extends AbstractController
 	): Response
 	{
 		//get data
-		$inventories = $inventoryRepository->apartmentInventory($id);
-		$owners = $ownerRepository->apartmentOwner($id);
-		$contracts = $contractRepository->apartmentContract($id);
+		$inventories = $inventoryRepository->ApartmentInventory($id);
+		$owners = $ownerRepository->ApartmentOwner($id);
+		$contracts = $contractRepository->ApartmentContract($id);
+		$contractData = [];
+		foreach ($contracts as $contract){
+			$tenant = $contract->getTenant();
+			$email = $tenant->getEmail();
+			$contractData[] =
+				[
+					'contract'=>$contract,
+					'email'=>$email,
+				];
+		}
 		//forms
 		$apartment_form = $this->createForm(ApartmentType::class, $apartment);
 		$apartment_form->handleRequest($request);
@@ -81,11 +91,11 @@ class ApartmentController extends AbstractController
 			'apartment' => $apartment,
 			'inventories' => $inventories,
 			'owners'=>$owners,
-			'contracts'=>$contracts,
+			'contracts'=>$contractData,
 			//form
 			'form_method' => 'update',
 			'type_form' => 'Mise à jours',
-			'form_apartment' => $apartment_form,
+			'form_Apartment' => $apartment_form,
 		]);
 	}
 }

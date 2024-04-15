@@ -1,4 +1,4 @@
-<section class="apartment-data">
+<section class="Apartment-data">
   <h3>Contract Info</h3>
 {#  <nav>#}
 {#    <button type="button" class="btn btn-add btn-form-add" data-section="appartement-delete">#}
@@ -11,22 +11,26 @@
 {#    </button>#}
 {#  </nav>#}
   <div class="data-container">
-    {% for contract in contracts %}
+    {% for data in contracts %}
       <section class="data-folder">
         <div>
+          <p>{{ data.contract.id }}</p>
           <span class="data-content">
             <p class="data-name">début</p>
-            <p>{{ contract.startAt | date('d/m/Y') }}</p>
+            <p>{{ data.contract.startAt | date('d/m/Y') }}</p>
           </span>
 
           <span class="data-content">
             <p class="data-name">fin</p>
-            <p>{{ contract.endAt | date('d/m/y') }}</p>
+            <p>{{ data.contract.endAt | date('d/m/y') }}</p>
+          </span>
+
+          <span class="data-content">
+            <p class="data-name">tenant</p>
+            <p>{{ data.email }}</p>
           </span>
         </div>
-        <div>
-          <a href="{{ path('',{'id':contract.id})}}">See</a>
-        </div>
+
       </section>
     {% endfor %}
   </div>

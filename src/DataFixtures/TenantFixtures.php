@@ -20,28 +20,28 @@ class TenantFixtures extends Fixture
 	public function load(ObjectManager $manager): void
 	{
 		$faker = Factory::create('fr_FR');
-		$tenants = [];
+		$Tenants = [];
 		$contracts = $this->contractRepository->findAll();
 		for ($i = 0; $i < 15; $i++) {
-			$tenant = new Tenant();
-			$tenant
+			$Tenant = new Tenant();
+			$Tenant
 				->setName($faker->firstName())
 				->setLastname($faker->lastName())
 				->setAddress($faker->address())
 				->setEmail($faker->email())
 				->setPhone($faker->phoneNumber())
 				->setApl($faker->boolean());
-			if ($tenant->isApl()) {
-				$tenant->setAplValue($faker->bothify('????-####'));
+			if ($Tenant->isApl()) {
+				$Tenant->setAplValue($faker->bothify('????-####'));
 			}
-			$tenants[]=$tenant;
-			$manager->persist($tenant);
+			$Tenants[]=$Tenant;
+			$manager->persist($Tenant);
 		}
 		
 		foreach ($contracts as $contract){
 			$contract
 				->setTenant(
-					$tenants[mt_rand(0,count($tenants)-1)]
+					$Tenants[mt_rand(0,count($Tenants)-1)]
 				);
 		}
 		

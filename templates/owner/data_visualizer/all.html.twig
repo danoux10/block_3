@@ -1,4 +1,4 @@
-<div class="table" id="owner_table">
+<div class="table" id="Owner_table">
   <div class="table-content thead">
         <span class="ligne-content tr">
             {% for head in heads %}
@@ -7,14 +7,14 @@
         </span>
   </div>
   <div class="table-content tbody">
-    {% for owner in data %}
+    {% for Owner in data %}
       <span class="ligne-content tr">
-                <p class="td">{{ owner.name }}</p>
-                <p class="td">{{ owner.lastname }}</p>
-                <p class="td">{{ owner.email }}</p>
-                <p class="td">{{ owner.address }}</p>
-                <p class="td">{{ owner.phone }}</p>
-                <a class="td" href="{{ path('app_owner_selected',{'id':owner.id}) }}">
+                <p class="td">{{ Owner.name }}</p>
+                <p class="td">{{ Owner.lastname }}</p>
+                <p class="td">{{ Owner.email }}</p>
+                <p class="td">{{ Owner.address }}</p>
+                <p class="td">{{ Owner.phone }}</p>
+                <a class="td" href="{{ path('app_owner_selected',{'id':Owner.id}) }}">
                     <span class="btn">
                         sélect
                     </span>

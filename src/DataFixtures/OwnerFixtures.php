@@ -13,14 +13,14 @@ class OwnerFixtures extends Fixture
 	{
 		$faker = Factory::create('fr_FR');
 		for($i=0;$i<25;$i++){
-			$owner = new Owner();
-			$owner
+			$Owner = new Owner();
+			$Owner
 				->setName($faker->firstName())
 				->setLastname($faker->lastName())
 				->setEmail($faker->email())
 				->setAddress($faker->Address())
 				->setPhone($faker->phoneNumber());
-			$manager->persist($owner);
+			$manager->persist($Owner);
 		}
 		$manager->flush();
 	}

@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Contract;
+use App\Entity\Apartment;
+use App\Entity\Tenant;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -16,33 +18,63 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ContractRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
-    {
-        parent::__construct($registry, Contract::class);
-    }
+	public function __construct(ManagerRegistry $registry)
+	{
+		parent::__construct($registry, Contract::class);
+	}
+	
+	public function ContractDesc(){
+		return $this->createQueryBuilder('c')
+			->orderBy('c.id', 'DESC')
+			->getQuery()
+			->getResult();
+	}
 
-    //    /**
-    //     * @return Contract[] Returns an array of Contract objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Contract
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+		public function ApartmentContract(int $id)
+		{
+			$data = $this->createQueryBuilder('c')
+				->addSelect('t')
+				->join('c.Tenant','t')
+				->where('c.Apartment = :id')
+				->setParameter(':id', $id)
+				->getQuery()
+				->getResult();
+			return $data;
+		}
+	
+	public function TenantContract(int $id){
+		$data = $this->createQueryBuilder('c')
+			->addSelect('a')
+			->join('c.Apartment','a')
+			->where('c.Tenant = :id')
+			->setParameter(':id',$id)
+			->getQuery()
+			->getResult();
+		return $data;
+	}
+	
+	//    /**
+	//     * @return Contract[] Returns an array of Contract objects
+	//     */
+	//    public function findByExampleField($value): array
+	//    {
+	//        return $this->createQueryBuilder('c')
+	//            ->andWhere('c.exampleField = :val')
+	//            ->setParameter('val', $value)
+	//            ->orderBy('c.id', 'ASC')
+	//            ->setMaxResults(10)
+	//            ->getQuery()
+	//            ->getResult()
+	//        ;
+	//    }
+	
+	//    public function findOneBySomeField($value): ?Contract
+	//    {
+	//        return $this->createQueryBuilder('c')
+	//            ->andWhere('c.exampleField = :val')
+	//            ->setParameter('val', $value)
+	//            ->getQuery()
+	//            ->getOneOrNullResult()
+	//        ;
+	//    }
 }

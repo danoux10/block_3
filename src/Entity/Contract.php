@@ -24,10 +24,10 @@ class Contract
 		
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    private ?apartment $apartment = null;
+    private ?Apartment $Apartment = null;
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    private ?tenant $tenant = null;
+    private ?Tenant $Tenant = null;
 
     /**
      * @var Collection<int, Payment>
@@ -69,26 +69,26 @@ class Contract
         return $this;
     }
 		
-    public function getApartment(): ?apartment
+    public function getApartment(): ?Apartment
     {
-        return $this->apartment;
+        return $this->Apartment;
     }
 
-    public function setApartment(?apartment $apartment): static
+    public function setApartment(?Apartment $Apartment): static
     {
-        $this->apartment = $apartment;
+        $this->Apartment = $Apartment;
 
         return $this;
     }
 
-    public function getTenant(): ?tenant
+    public function getTenant(): ?Tenant
     {
-        return $this->tenant;
+        return $this->Tenant;
     }
 
-    public function setTenant(?tenant $tenant): static
+    public function setTenant(?Tenant $Tenant): static
     {
-        $this->tenant = $tenant;
+        $this->Tenant = $Tenant;
 
         return $this;
     }
