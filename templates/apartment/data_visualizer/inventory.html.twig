@@ -24,6 +24,12 @@
             <p class="inventory-remark">{{ inventory.remark }}</p>
           </span>
         </div>
+
+        <form method="post" action="{{ path('app_deleted_inventory', {'id': inventory.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+          <input type="hidden" name="_token" value="{{ csrf_token('deleteInventory' ~ inventory.id) }}">
+          <button class="btn btn-delete">Delete</button>
+        </form>
+
       </section>
     {% endfor %}
   </div>

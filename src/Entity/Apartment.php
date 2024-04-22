@@ -36,19 +36,19 @@ class Apartment
     /**
      * @var Collection<int, Owner>
      */
-    #[ORM\ManyToMany(targetEntity: Owner::class, inversedBy: 'Apartments')]
+    #[ORM\ManyToMany(targetEntity: Owner::class, inversedBy: 'Apartments', orphanRemoval: true)]
     private Collection $Owner;
 
     /**
      * @var Collection<int, Inventory>
      */
-    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'Apartment')]
+    #[ORM\OneToMany(targetEntity: Inventory::class, mappedBy: 'Apartment', orphanRemoval: true)]
     private Collection $inventories;
 
     /**
      * @var Collection<int, Contract>
      */
-    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'Apartment')]
+    #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'Apartment', orphanRemoval: true)]
     private Collection $contracts;
 
     public function __construct()

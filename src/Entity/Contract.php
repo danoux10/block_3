@@ -32,7 +32,7 @@ class Contract
     /**
      * @var Collection<int, Payment>
      */
-    #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract')]
+    #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract', orphanRemoval: true)]
     private Collection $payments;
 
     public function __construct()

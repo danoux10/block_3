@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Apartment;
 use App\Entity\Contract;
 use App\Entity\Inventory;
-
 use App\Entity\Owner;
+
 use App\Form\ApartOwnerType;
 use App\Form\ContractType;
 use App\Form\InventoryType;
@@ -138,3 +138,4 @@ class ApartmentController extends AbstractController
 		]);
 	}
 }
+
