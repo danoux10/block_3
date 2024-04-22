@@ -9,18 +9,18 @@
   <div class="table-content tbody">
     {% for Apartment in data %}
       <span class="ligne-content tr">
-                <p class="td">{{ Apartment.code }}</p>
-                <p class="td">{{ Apartment.city }}</p>
-                <p class="td">{{ Apartment.address }}</p>
-                <p class="td">{{ Apartment.charge }}</p>
-                <p class="td">{{ Apartment.guarantee }}</p>
-                <p class="td">{{ Apartment.rent }}</p>
-                <a class="td" href="{{ path('app_apartment_selected',{'id':Apartment.id}) }}">
-                    <span class="btn">
-                        sélect
-                    </span>
-                </a>
-            </span>
+        <p class="td">{{ Apartment.code }}</p>
+        <p class="td">{{ Apartment.city }}</p>
+        <p class="td">{{ Apartment.address }}</p>
+        <p class="td">{{ Apartment.charge }}</p>
+        <p class="td">{{ Apartment.guarantee }}</p>
+        <p class="td">{{ Apartment.rent }}</p>
+        <a class="td" href="{{ path('app_apartment_selected',{'id':Apartment.id}) }}">
+          <span class="btn">
+            sélect
+          </span>
+        </a>
+      </span>
     {% endfor %}
   </div>
 </div>

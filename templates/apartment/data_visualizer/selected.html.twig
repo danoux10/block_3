@@ -44,5 +44,9 @@
       <p class="data-name">loyer</p>
       <p>{{ apartment.rent }}€</p>
     </span>
+    <span class="data-content">
+      <p class="data-name">somme</p>
+      <p>{{ (apartment.charge + apartment.rent)| number_format(2,'.','') }}</p>
+    </span>
   </div>
 </section>

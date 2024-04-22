@@ -14,30 +14,30 @@
     {% for apartment in apartments %}
       <section class="data-folder">
         <div>
+{#          <span class="data-content">#}
+{#            <p class="data-name">Code postal</p>#}
+{#            <p>{{ apartment.code }}</p>#}
+{#          </span>#}
+{#          <span class="data-content">#}
+{#            <p class="data-name">ville</p>#}
+{#            <p>{{ apartment.city }}</p>#}
+{#          </span>#}
           <span class="data-content">
-            <p class="data-name">Code postal</p>
-            <p>{{ apartment.code }}</p>
-          </span>
-          <span class="data-content">
-            <p class="data-name">ville</p>
-            <p>{{ apartment.city }}</p>
-          </span>
-          <span class="data-content">
-            <p class="data-name">addresse</p>
+            <p class="data-name">adresse</p>
             <p>{{ apartment.address }}</p>
           </span>
-          <span class="data-content">
-            <p class="data-name">garantie</p>
-            <p>{{ apartment.guarantee }}€</p>
-          </span>
-          <span class="data-content">
-            <p class="data-name">charge</p>
-            <p>{{ apartment.charge }}€</p>
-          </span>
-          <span class="data-content">
-            <p class="data-name">loyer</p>
-            <p>{{ apartment.rent }}€</p>
-          </span>
+{#          <span class="data-content">#}
+{#            <p class="data-name">garantie</p>#}
+{#            <p>{{ apartment.guarantee }}€</p>#}
+{#          </span>#}
+{#          <span class="data-content">#}
+{#            <p class="data-name">charge</p>#}
+{#            <p>{{ apartment.charge }}€</p>#}
+{#          </span>#}
+{#          <span class="data-content">#}
+{#            <p class="data-name">loyer</p>#}
+{#            <p>{{ apartment.rent }}€</p>#}
+{#          </span>#}
         </div>
         <div>
           <a href="{{ path('app_apartment_selected',{'id':apartment.id}) }}">See</a>

@@ -82,7 +82,7 @@ main {
   }
 }
 
-.article-selected{
+.article-selected {
   display: flex;
   flex-direction: row;
 }
@@ -105,26 +105,20 @@ main {
       border: 1px solid lime;
       flex-direction: column;
       width: 100%;
-      .data-folder{
+
+      .data-folder {
         border: 1px solid lightblue;
       }
-      .data-content {
-        display: flex;
-        flex-direction: row;
-        .data-name{
-          &:after{
-            content:':';
-            margin: 0 .5rem;
-          }
-        }
-        .inventory-remark{
-          width:50%;
-        }
+
+      .inventory-remark {
+        width: 50%;
       }
     }
   }
 }
-.folder{
+
+}
+.folder {
   display: flex;
   flex-direction: row;
 }

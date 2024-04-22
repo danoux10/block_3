@@ -3,39 +3,33 @@
 namespace App\Form;
 
 use App\Entity\Apartment;
-use App\Entity\Contract;
-use App\Entity\Tenant;
+use App\Entity\Inventory;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContractType extends AbstractType
+class InventoryType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options): void
 	{
 		$builder
-			->add('start_at', null, [
+			->add('created_at', DateType::class, [
 				'widget' => 'single_text',
 			])
-			->add('end_at', null, [
-				'widget' => 'single_text',
-			])
+			->add('remark')
 			->add('Apartment', EntityType::class, [
 				'class' => Apartment::class,
-				'choice_label' => 'id',
+				'choice_label' => 'address',
 				'data' => $options['apartment'],
-			])
-			->add('Tenant', EntityType::class, [
-				'class' => Tenant::class,
-				'choice_label' => 'id',
 			]);
 	}
 	
 	public function configureOptions(OptionsResolver $resolver): void
 	{
 		$resolver->setDefaults([
-			'data_class' => Contract::class,
+			'data_class' => Inventory::class,
 			'apartment' => null,
 		]);
 	}

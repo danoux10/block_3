@@ -3,7 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Apartment;
+use App\Entity\Contract;
+use App\Entity\Inventory;
 
+use App\Entity\Owner;
+use App\Form\ApartOwnerType;
+use App\Form\ContractType;
+use App\Form\InventoryType;
 use App\Form\ApartmentType;
 
 use App\Repository\ApartmentRepository;
@@ -49,7 +55,7 @@ class ApartmentController extends AbstractController
 			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
-			'form_Apartment' => $formApartment,
+			'form_apartment' => $formApartment,
 		]);
 	}
 	
@@ -69,33 +75,66 @@ class ApartmentController extends AbstractController
 		$owners = $ownerRepository->ApartmentOwner($id);
 		$contracts = $contractRepository->ApartmentContract($id);
 		$contractData = [];
-		foreach ($contracts as $contract){
+		foreach ($contracts as $contract) {
 			$tenant = $contract->getTenant();
 			$email = $tenant->getEmail();
 			$contractData[] =
 				[
-					'contract'=>$contract,
-					'email'=>$email,
+					'contract' => $contract,
+					'email' => $email,
 				];
 		}
+		
+		
 		//forms
 		$apartment_form = $this->createForm(ApartmentType::class, $apartment);
 		$apartment_form->handleRequest($request);
 		if ($apartment_form->isSubmitted() && $apartment_form->isValid()) {
 			$entityManager->flush();
-			return $this->redirectToRoute('app_apartment_selected', ['id'=>$id], Response::HTTP_SEE_OTHER);
+			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
 		}
+		
+		$inventory = new Inventory();
+		$inventory_form = $this->createForm(InventoryType::class);
+		$inventory_form->handleRequest($request);
+		if ($inventory_form->isSubmitted() && $inventory_form->isValid()) {
+			$entityManager->persist($inventory);
+			$entityManager->flush();
+			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
+		}
+		
+		$contract = new Contract();
+		$contract_form = $this->createForm(ContractType::class, $contract);
+		$contract_form->handleRequest($request);
+		if ($contract_form->isSubmitted() && $contract_form->isValid()) {
+			$entityManager->persist($contract);
+			$entityManager->flush();
+			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
+		}
+		
+		$owner_form = $this->createForm(ApartOwnerType::class, $apartment);
+		$owner_form->handleRequest($request);
+		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
+			$entityManager->persist($apartment);
+			$entityManager->flush();
+			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
+		}
+		
 		return $this->render('apartment/selected.html.twig', [
 			'page_name' => 'Appartement',
 			//data
 			'apartment' => $apartment,
 			'inventories' => $inventories,
-			'owners'=>$owners,
-			'contracts'=>$contractData,
+			'owners' => $owners,
+			'contracts' => $contractData,
 			//form
 			'form_method' => 'update',
 			'type_form' => 'Mise à jours',
-			'form_Apartment' => $apartment_form,
+			
+			'form_apartment' => $apartment_form,
+			'form_contract' => $contract_form,
+			'form_inventory' => $inventory_form,
+			'form_owner' => $owner_form
 		]);
 	}
 }
