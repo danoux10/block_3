@@ -23,12 +23,13 @@ class ContractType extends AbstractType
 			])
 			->add('Apartment', EntityType::class, [
 				'class' => Apartment::class,
-				'choice_label' => 'id',
+				'choice_label' => 'address',
 				'data' => $options['apartment'],
 			])
 			->add('Tenant', EntityType::class, [
 				'class' => Tenant::class,
-				'choice_label' => 'id',
+				'choice_label' => 'email',
+				'data' => $options['tenant'],
 			]);
 	}
 	
@@ -37,6 +38,7 @@ class ContractType extends AbstractType
 		$resolver->setDefaults([
 			'data_class' => Contract::class,
 			'apartment' => null,
+			'tenant'=> null,
 		]);
 	}
 }

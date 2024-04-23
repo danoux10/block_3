@@ -95,7 +95,7 @@ class ApartmentController extends AbstractController
 		}
 		
 		$inventory = new Inventory();
-		$inventory_form = $this->createForm(InventoryType::class);
+		$inventory_form = $this->createForm(InventoryType::class, $inventory, ['apartment'=>$apartment]);
 		$inventory_form->handleRequest($request);
 		if ($inventory_form->isSubmitted() && $inventory_form->isValid()) {
 			$entityManager->persist($inventory);
@@ -104,7 +104,7 @@ class ApartmentController extends AbstractController
 		}
 		
 		$contract = new Contract();
-		$contract_form = $this->createForm(ContractType::class, $contract);
+		$contract_form = $this->createForm(ContractType::class, $contract, ['apartment' => $apartment]);
 		$contract_form->handleRequest($request);
 		if ($contract_form->isSubmitted() && $contract_form->isValid()) {
 			$entityManager->persist($contract);

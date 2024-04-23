@@ -19,9 +19,11 @@ class InventoryType extends AbstractType
 				'widget' => 'single_text',
 			])
 			->add('remark')
+		
 			->add('Apartment', EntityType::class, [
 				'class' => Apartment::class,
 				'choice_label' => 'address',
+				'data'=>$options['apartment'],
 			]);
 	}
 	
@@ -29,6 +31,7 @@ class InventoryType extends AbstractType
 	{
 		$resolver->setDefaults([
 			'data_class' => Inventory::class,
+			'apartment' => null,
 		]);
 	}
 }
