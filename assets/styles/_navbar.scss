@@ -1,0 +1,128 @@
+#navbar {
+  background: $accent;
+  border-right: 2px solid $dark;
+  border-radius: 0 10px 10px 0;
+  padding: 0 .5rem;
+  width: 15rem; //open
+  height: 100vh; //full height
+  position: absolute;
+  z-index: 10;
+  transition: all ease .5s;
+  @include flex(column, none, none);
+  fill: $dark; //svg color
+  color: $dark;
+
+  h1, .label {
+    overflow: hidden;
+    transition: width ease .5s;
+  }
+
+  #nav-button {
+    cursor: pointer;
+    padding: 0 .5rem;
+    @include flex(row, space-between, center);
+
+    &:hover {
+      h1 {
+        text-shadow: 2px 2px 2px $light;
+      }
+
+      .icon-content {
+        svg {
+          filter: drop-shadow(2px 2px 1px $light);
+        }
+      }
+    }
+
+    h1 {
+      font-size: xxx-large;
+      transition: text-shadow ease .5s;
+    }
+
+    .icon-content {
+      transition: all ease .5s;
+      @include square(2rem);
+
+      svg {
+        transition: all ease .5s;
+      }
+    }
+  }
+
+  nav {
+    padding-top: .5rem;
+    height: 100%;
+    @include flex(column, center, center);
+    gap: 5rem;
+
+    a {
+      font-size: x-large;
+      transition: width ease .5s;
+      @include flex(row, space-between, center);
+      gap: .5rem;
+
+      &.btn-nav {
+        padding: .5rem;
+        width: 12rem;
+        @include border(2px, $dark, 10px);
+
+        &:hover {
+          box-shadow: 4px 4px 2px $light;
+
+          .label {
+            text-shadow: 2px 2px 2px $light;
+          }
+
+          svg {
+            filter: drop-shadow(2px 2px 1px $light);
+          }
+        }
+      }
+
+      .label {
+        width: 100%;
+        text-align: center;
+
+        &:first-letter {
+          text-transform: uppercase;
+        }
+      }
+
+      .icon-content {
+        @include square(3rem);
+        @include flex(row, center, center);
+
+        svg {
+          @include square(100%);
+        }
+      }
+    }
+  }
+
+  //navbar closed
+  &.close {
+    width: 3.2rem;
+    background: rgba($accent, .5);
+
+    #nav-button {
+      h1 {
+        width: 0;
+      }
+
+      .icon-content {
+        transform: rotate(180deg);
+      }
+    }
+
+    nav {
+      a {
+        gap: 0;
+        width: 2rem;
+
+        .label {
+          width: 0;
+        }
+      }
+    }
+  }
+}

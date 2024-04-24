@@ -9,6 +9,7 @@ use App\Entity\Owner;
 
 use App\Form\ApartOwnerType;
 use App\Form\ContractType;
+use App\Form\FindByCityType;
 use App\Form\InventoryType;
 use App\Form\ApartmentType;
 
@@ -18,6 +19,7 @@ use App\Repository\InventoryRepository;
 use App\Repository\OwnerRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,13 +29,10 @@ class ApartmentController extends AbstractController
 {
 	#[Route('/', name: 'app_apartment', methods: ['GET', 'POST'])]
 	public function index(
-		ApartmentRepository    $ApartmentRepository,
+		ApartmentRepository    $apartmentRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request): Response
 	{
-		$data = $ApartmentRepository->findAll();//Delete
-//		$data = $ApartmentRepository->ApartmentDesc();
-		
 		$tableHead = [
 			'id',
 			'code postal',
@@ -43,11 +42,13 @@ class ApartmentController extends AbstractController
 			'garantie',
 			'loyer',
 			'select'];
-		$Apartment = new Apartment();
-		$formApartment = $this->createForm(ApartmentType::class, $Apartment);
+		$data = $apartmentRepository->findAll();//Delete
+//		$data = $apartmentRepository->ApartmentDesc();
+		$apartment = new Apartment();
+		$formApartment = $this->createForm(ApartmentType::class, $apartment);
 		$formApartment->handleRequest($request);
 		if ($formApartment->isSubmitted() && $formApartment->isValid()) {
-			$entityManager->persist($Apartment);
+			$entityManager->persist($apartment);
 			$entityManager->flush();
 			return $this->redirectToRoute('app_apartment', [], Response::HTTP_SEE_OTHER);
 		}
