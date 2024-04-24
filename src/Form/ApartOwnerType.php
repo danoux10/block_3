@@ -11,21 +11,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ApartOwnerType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
-    {
-        $builder
-            ->add('Owner', EntityType::class, [
-                'class' => Owner::class,
-                'choice_label' => 'email',
-                'multiple' => true,
-            ])
-        ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Apartment::class,
-        ]);
-    }
+	public function buildForm(FormBuilderInterface $builder, array $options): void
+	{
+		$builder
+			->add('Owner', EntityType::class, [
+				'class' => Owner::class,
+				'choice_label' => 'email',
+				'multiple' => true,
+				'expanded'=>true,
+			]);
+	}
+	
+	public function configureOptions(OptionsResolver $resolver): void
+	{
+		$resolver->setDefaults([
+			'data_class' => Apartment::class,
+		]);
+	}
 }

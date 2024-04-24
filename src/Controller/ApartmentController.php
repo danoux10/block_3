@@ -33,7 +33,9 @@ class ApartmentController extends AbstractController
 	{
 		$data = $ApartmentRepository->findAll();//Delete
 //		$data = $ApartmentRepository->ApartmentDesc();
+		
 		$tableHead = [
+			'id',
 			'code postal',
 			'ville',
 			'addresse',
