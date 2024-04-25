@@ -3,8 +3,8 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <header class="page-header all">
-    <h2>Gestion {{ page_name }}</h2>
+{#  <header class="page-header all">#}
+{#    <h2>Gestion {{ page_name }}</h2>#}
 {#    <button type="button" class="btn btn-add btn-form" data-section="appartement-add">#}
 {#			<span class="icon-content">#}
 {#				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">#}
@@ -13,11 +13,11 @@
 {#			</span>#}
 {#      Ajouter {{ page_name }}#}
 {#    </button>#}
-  </header>
+{#  </header>#}
   <main>
-{#    <section class="section-table" id="Apartment-table">#}
-{#      {% include 'Apartment/data_visualizer/all.html.twig' %}#}
-{#    </section>#}
+    <article class="table-content">
+      {% include 'Apartment/data_visualizer/all.html.twig' %}
+    </article>
 {#    <section class="section-form" id="Apartment-add">#}
 {#      {% include 'controller/form/Apartment.html.twig' %}#}
 {#    </section>#}

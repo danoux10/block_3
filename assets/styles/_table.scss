@@ -1,0 +1,69 @@
+.table-content{
+  padding: .5rem;
+  @include flex(row,center,center);
+  .table{
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid $dark;
+    border-radius:10px 0 0 0;
+    box-shadow: 7px 7px 10px $medium;
+    .ligne-content{
+      width: 100%;
+      @include flex(row,none,none);
+      gap: .2rem;
+      .th,.td{
+        padding: .5rem;
+        @include flex(row,center,center);
+        @include border(1px,$dark,5px);
+      }
+    }
+    .table-head{
+      padding-right: .5rem;
+      margin-bottom: .3rem;
+      .th{
+        font-weight: bold;
+        background: $accent;
+        color: $light;
+      }
+    }
+    .table-body{
+      height:54rem;//Edit
+      overflow:auto;
+      @include flex(column,none,none);
+      @include customScrollbar($light, $dark, .5rem);
+      a{
+        .btn{
+          padding: .5rem;
+          border-radius: 10px;
+          background: $accent;
+          color: $light;
+          transition: all ease .5s;
+        }
+        &:hover{
+          .btn{
+            background: rgba($accent,.5);
+            color: $dark;
+            box-shadow: 2px 2px 2px $accent;
+            border: 1px solid $accent;
+          }
+        }
+      }
+    }
+  }
+}
+
+#apartment-table {
+  .ligne-content {
+    .th, .td {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          @if $i ==2 or $i==3 {
+            width: 20%;
+          } @else {
+            width: 10%;
+          }
+        }
+      }
+    }
+  }
+}

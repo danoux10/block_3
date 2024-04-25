@@ -34,7 +34,7 @@ class ApartmentController extends AbstractController
 		Request                $request): Response
 	{
 		$tableHead = [
-			'id',
+//			'id',
 			'code postal',
 			'ville',
 			'addresse',

@@ -20,3 +20,16 @@
     border-radius : $radius;
   }
 }
+
+@mixin customScrollbar($bar,$thumb,$size) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: 0;
+    background: $bar;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb;
+    border-radius:10px;
+  }
+}
