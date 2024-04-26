@@ -33,3 +33,19 @@
     border-radius:10px;
   }
 }
+
+@mixin button($bg,$opacity,$color) {
+  @if ($opacity == 1) {
+    background: $bg;
+  }
+  @if ($opacity == .5) {
+    background: rgba($bg, .5);
+  }
+  color: $color;
+  svg {
+    fill: $color;
+  }
+  &:hover {
+    box-shadow: 2px 2px 4px $bg;
+  }
+}

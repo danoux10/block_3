@@ -1,0 +1,4 @@
+.page-header{
+  width: 50%;
+  @include flex(row,space-around,center);
+}

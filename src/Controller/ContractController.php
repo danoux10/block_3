@@ -78,7 +78,6 @@ class ContractController extends AbstractController
 			'page_name'=>'contract',
 			'contract'=>$contract,
 			'payments'=>$payments,
-			'receipts'=>$receipts,
 			
 			'type_form' =>'Update',
 			'form_method' => 'update',

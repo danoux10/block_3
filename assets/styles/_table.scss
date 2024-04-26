@@ -33,7 +33,7 @@
     }
 
     .table-body {
-      height: 54rem; //Edit
+      height: 49.5rem;
       overflow: scroll;
       @include flex(column, none, none);
       @include customScrollbar($light, $dark, .5rem);

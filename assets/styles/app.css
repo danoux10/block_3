@@ -33,6 +33,59 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  font-family: "Dancing Script", cursive;
+}
+
+h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: x-large;
+}
+
+.btn {
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all ease 0.5s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #393b44;
+  border-radius: 10px;
+}
+.btn .icon-content {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.btn .icon-content svg {
+  width: 100%;
+  height: 100%;
+}
+.btn:hover {
+  border-color: #f1f3f8;
+}
+
+.btn-add {
+  background: rgba(46, 139, 87, 0.5);
+  color: #393b44;
+}
+.btn-add svg {
+  fill: #393b44;
+}
+.btn-add:hover {
+  box-shadow: 2px 2px 4px #2E8B57;
+}
+.btn-add.active {
+  background: #2E8B57;
+  color: #f1f3f8;
+}
+.btn-add.active svg {
+  fill: #f1f3f8;
+}
+.btn-add.active:hover {
+  box-shadow: 2px 2px 4px #2E8B57;
+}
+
 #navbar {
   background: #2185D5;
   border-right: 2px solid #393b44;
@@ -148,6 +201,14 @@ a {
   width: 0;
 }
 
+.page-header {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .table-content {
   padding: 0.5rem;
   display: flex;
@@ -187,7 +248,7 @@ a {
   color: #f1f3f8;
 }
 .table-content .table .table-body {
-  height: 54rem;
+  height: 49.5rem;
   overflow: scroll;
   display: flex;
   flex-direction: column;
