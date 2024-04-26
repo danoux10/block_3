@@ -23,6 +23,15 @@ class ContractRepository extends ServiceEntityRepository
 		parent::__construct($registry, Contract::class);
 	}
 	
+	public function findAllJoin(){
+		return $this->createQueryBuilder('c')
+			->addSelect('a','t')
+			->join('c.Apartment','a')
+			->join('c.Tenant','t')
+			->getQuery()
+			->getResult();
+	}
+	
 	public function ContractDesc(){
 		return $this->createQueryBuilder('c')
 			->orderBy('c.id', 'DESC')

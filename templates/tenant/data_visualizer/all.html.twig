@@ -1,14 +1,14 @@
-<div class="table" id="tenant_table">
-  <div class="table-content thead">
-        <span class="ligne-content tr">
+<div class="table" id="tenant-table">
+  <div class="table-head">
+        <span class="ligne-content">
             {% for head in heads %}
               <p class="th">{{ head }}</p>
             {% endfor %}
         </span>
   </div>
-  <div class="table-content tbody">
+  <div class="table-body">
     {% for tenant in data %}
-      <span class="ligne-content tr">
+      <span class="ligne-content">
                 <p class="td">{{ tenant.name }}</p>
                 <p class="td">{{ tenant.lastname }}</p>
                 <p class="td">{{ tenant.email }}</p>

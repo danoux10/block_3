@@ -42,7 +42,7 @@ class TenantController extends AbstractController
 			return $this->redirectToRoute('app_tenant', [], Response::HTTP_SEE_OTHER);
 		}
 		return $this->render('tenant/index.html.twig', [
-			'page_name' => 'propriétaire',
+			'page_name' => 'locataire',
 			'type_form' => 'Ajouter',
 			'form_method' => 'add',
 			'heads' => $tableHead,

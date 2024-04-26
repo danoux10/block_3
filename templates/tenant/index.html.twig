@@ -3,15 +3,15 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <header class="page-header all">
-    <h2>Gestion {{ page_name }}</h2>
-  </header>
+{#  <header class="page-header all">#}
+{#    <h2>Gestion {{ page_name }}</h2>#}
+{#  </header>#}
   <main>
-    <section class="section-table" id="Tenant-table">
+    <article class="table-content">
       {% include 'Tenant/data_visualizer/all.html.twig'%}
-    </section>
-    <section class="section-form" id="Tenant-add">
-      {%include 'controller/form/Tenant.html.twig' %}
-    </section>
+    </article>
+{#    <section class="section-form" id="Tenant-add">#}
+{#      {%include 'controller/form/Tenant.html.twig' %}#}
+{#    </section>#}
   </main>
 {% endblock %}

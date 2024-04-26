@@ -25,11 +25,15 @@ class ContractController extends AbstractController
 		Request                $request,
 	): Response
 	{
-		$data = $contractRepository->findAll();//delete
+//		$data = $contractRepository->findAll();//delete
 //		$data = $contractRepository->ContractDesc();
+		$data = $contractRepository->findAllJoin();
 		$tableHead = [
 			'début',
 			'fin',
+			'Appartement ville',
+			'Appartement Adresse',
+			'Locataire Email',
 			'select'
 		];
 		$contract = new Contract();
@@ -48,6 +52,7 @@ class ContractController extends AbstractController
 			'heads'=>$tableHead,
 			'data'=>$data,
 			'form_contract'=>$formContract,
+//			dd($data)
 		]);
 	}
 	#[Route('/contract/{id}/edit', name: 'app_contract_selected',methods:['GET','POST'])]
@@ -55,14 +60,14 @@ class ContractController extends AbstractController
 		$id,
 		Contract $contract,
 		PaymentRepository $paymentRepository,
-		ReceiptRepository $receiptRepository,
+//		ReceiptRepository $receiptRepository,
 //		ApartmentRepository $ApartmentRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request,
 	):Response{
 //		$Apartment = $ApartmentRepository->ContractApartment($id);
 		$payments = $paymentRepository->ContractPayment($id);
-		$receipts = $receiptRepository->ContractReceipt($id);
+//		$receipts = $receiptRepository->ContractReceipt($id);
 		$formContract = $this->createForm(ContractType::class, $contract);
 		$formContract->handleRequest($request);
 		if ($formContract->isSubmitted() && $formContract->isValid()) {
