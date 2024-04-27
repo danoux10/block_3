@@ -15,37 +15,37 @@ class ApartmentType extends AbstractType
     {
         $builder
             ->add('code', NumberType::class,[
-							'label'=>'Code postal',
+							'label'=>'code postal',
 	            'attr'=>[
 								'placeholder' => '10000',
 	            ],
             ])
             ->add('city', TextType::class,[
-							'label'=>'Ville',
+							'label'=>'ville',
 	            'attr'=>[
 								'placeholder' => 'Troyes',
 	            ],
             ],)
             ->add('address',TextType::class,[
-							'label'=>'Addresse',
+							'label'=>'adresse',
 	            'attr'=>[
 								'placeholder'=>'8 rue des coquelicot',
 	            ]
             ],)
             ->add('guarantee', TextType::class,[
-							'label'=>'Garantie',
+							'label'=>'garantie',
 	            'attr'=>[
 								'placeholder'=>'120.20',
 	            ],
             ],)
             ->add('charge',TextType::class,[
-	            'label'=>'Charge',
+	            'label'=>'charge',
 	            'attr'=>[
 		            'placeholder'=>'1200.20',
 	            ],
             ],)
             ->add('rent',TextType::class,[
-	            'label'=>'Loyer',
+	            'label'=>'loyer',
 	            'attr'=>[
 		            'placeholder'=>'3000',
 	            ],

@@ -47,7 +47,7 @@ class TenantController extends AbstractController
 			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
-			'form_Tenant' => $formTenant,
+			'form_tenant' => $formTenant,
 		]);
 	}
 	

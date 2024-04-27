@@ -86,6 +86,36 @@ h2 {
   box-shadow: 2px 2px 4px #2E8B57;
 }
 
+.btn-close {
+  cursor: pointer;
+  width: 2rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  transition: all ease 0.5s;
+}
+.btn-close:hover {
+  fill: #c0c0c0;
+}
+
+.btn-submit {
+  background: #2E8B57;
+  color: #f1f3f8;
+  fill: #f1f3f8;
+}
+.btn-submit:hover {
+  box-shadow: 2px 2px 4px #2E8B57;
+}
+
+.btn-cancel {
+  background: #B8860B;
+  color: #f1f3f8;
+  fill: #f1f3f8;
+}
+.btn-cancel:hover {
+  box-shadow: 2px 2px 4px #B8860B;
+}
+
 #navbar {
   background: #2185D5;
   border-right: 2px solid #393b44;
@@ -207,6 +237,94 @@ h2 {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+}
+
+.canvas-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 40rem;
+  background: #f1f3f8;
+  border-left: 2px solid #393b44;
+  border-radius: 10px 0 0 10px;
+  transition: width ease 0.5s;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.canvas-form form {
+  width: 80%;
+  height: 50%;
+  transition: width ease 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.canvas-form form.hidden {
+  width: 0;
+  overflow: hidden;
+}
+.canvas-form form .field-content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.canvas-form form .field-content .form-element {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.canvas-form form .field-content .form-element .label {
+  width: 30%;
+}
+.canvas-form form .field-content .form-element .label:first-letter {
+  text-transform: uppercase;
+}
+.canvas-form form .field-content .form-element .label:after {
+  content: ":";
+}
+.canvas-form form .field-content .form-element .label .required:after {
+  content: "*";
+  color: red;
+  font-size: 20px;
+}
+.canvas-form form .field-content .form-element .label label {
+  cursor: pointer;
+}
+.canvas-form form .field-content .form-element .input {
+  width: 60%;
+}
+.canvas-form form .field-content .form-element .input input {
+  width: 90%;
+  padding: 0.4rem;
+  border: 1px solid #393b44;
+  border-radius: 5px;
+}
+.canvas-form form .message-required {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
+.canvas-form form .message-required .red {
+  color: red;
+}
+.canvas-form form .button-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.canvas-form.close {
+  width: 0;
+  overflow: hidden;
 }
 
 .table-content {

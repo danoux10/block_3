@@ -1,7 +1,51 @@
-<fieldset class="section-form" id="Owner-{{ form_method }}">
-  <legend>Ajouter propriétaire</legend>
-  {{ form_start(form_Owner) }}
-    {{ form_widget(form_Owner) }}
-    {% include 'controller/form/utility/form_submit_required.html.twig' %}
-  {{ form_end(form_Owner) }}
-</fieldset>
+{{ form_start(form_owner) }}
+<h3>Ajouter {{ page_name }}</h3>
+<div class="field-content">
+    <span class="form-element">
+      <span class="label required">
+        {{ (form_label(form_owner.name)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.name) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.lastname)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.lastname) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.email)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.email) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.phone)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.phone) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.address)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.address) }}
+      </span>
+    </span>
+</div>
+
+{% include'controller/form/utility/form_submit_required.html.twig' %} 
+{{ form_end(form_owner) }}

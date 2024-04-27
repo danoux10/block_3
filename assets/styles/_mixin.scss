@@ -49,3 +49,12 @@
     box-shadow: 2px 2px 4px $bg;
   }
 }
+
+@mixin formButton($background,$color){
+  background: $background;
+  color: $color;
+  fill:$color;
+  &:hover{
+    box-shadow: 2px 2px 4px $background;
+  }
+}

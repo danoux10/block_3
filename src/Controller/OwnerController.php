@@ -29,7 +29,7 @@ class OwnerController extends AbstractController
 			'prénom',
 			'email',
 			'téléphone',
-			'addresse',
+			'adresse',
 			'select'
 		];
 		$Owner = new Owner();
@@ -46,7 +46,7 @@ class OwnerController extends AbstractController
 			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
-			'form_Owner' => $formOwner,
+			'form_owner' => $formOwner,
 		]);
 	}
 	
