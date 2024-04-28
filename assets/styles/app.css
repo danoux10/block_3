@@ -255,8 +255,7 @@ h2 {
   align-items: center;
 }
 .canvas-form form {
-  width: 80%;
-  height: 50%;
+  width: 90%;
   transition: width ease 0.5s;
   display: flex;
   flex-direction: column;
@@ -275,13 +274,14 @@ h2 {
 }
 .canvas-form form .field-content .form-element {
   padding: 0.5rem;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 .canvas-form form .field-content .form-element .label {
-  width: 30%;
+  width: 40%;
 }
 .canvas-form form .field-content .form-element .label:first-letter {
   text-transform: uppercase;
@@ -299,12 +299,18 @@ h2 {
 }
 .canvas-form form .field-content .form-element .input {
   width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 .canvas-form form .field-content .form-element .input input {
   width: 90%;
   padding: 0.4rem;
   border: 1px solid #393b44;
   border-radius: 5px;
+}
+.canvas-form form .field-content .form-element .input select {
+  width: 90%;
 }
 .canvas-form form .message-required {
   display: flex;

@@ -9,3 +9,4 @@ import './styles/app.css';
 
 //script animation
 import './script/navbar'
+import './script/openCanvas'

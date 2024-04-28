@@ -55,7 +55,6 @@ class ApartmentController extends AbstractController
 		return $this->render('apartment/index.html.twig', [
 			'page_name' => 'Appartement',
 			'type_form' => 'Ajouter',
-			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
 			'form_apartment' => $formApartment,

@@ -48,7 +48,6 @@ class ContractController extends AbstractController
 		return $this->render('contract/index.html.twig', [
 			'page_name' => 'contract',
 			'type_form' =>'Ajouter',
-			'form_method' => 'add',
 			'heads'=>$tableHead,
 			'data'=>$data,
 			'form_contract'=>$formContract,
@@ -80,7 +79,6 @@ class ContractController extends AbstractController
 			'payments'=>$payments,
 			
 			'type_form' =>'Update',
-			'form_method' => 'update',
 			'form_contract'=>$formContract,
 		]);
 	}

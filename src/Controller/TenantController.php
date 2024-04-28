@@ -44,7 +44,6 @@ class TenantController extends AbstractController
 		return $this->render('tenant/index.html.twig', [
 			'page_name' => 'locataire',
 			'type_form' => 'Ajouter',
-			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
 			'form_tenant' => $formTenant,
@@ -85,7 +84,6 @@ class TenantController extends AbstractController
 		return $this->render('tenant/selected.html.twig', [
 			'page_name' => 'propriétaire',
 			'type_form' => 'modifier',
-			'form_method' => 'modifier',
 			'form_Tenant' => $tenant_form,
 			'tenant'=>$tenant,
 			'contracts'=>$contractsData,

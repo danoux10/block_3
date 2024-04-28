@@ -10,8 +10,7 @@
   transition: width ease .5s;
   @include flex(row,center,center);
   form{
-    width: 80%;
-    height: 50%;
+    width: 90%;
     transition: width ease .5s;
     @include flex(column,space-around,center);
     &.hidden{
@@ -23,9 +22,10 @@
       @include flex(column,space-around,none);
       .form-element{
         padding: .5rem;
+        width: 100%;
         @include flex(row, space-between,center);
         .label{
-          width: 30%;
+          width: 40%;
           &:first-letter{
             text-transform: uppercase;
           }
@@ -45,10 +45,14 @@
         }
         .input{
           width: 60%;
+          @include flex(row,flex-end,none);
           input{
             width: 90%;
             padding: .4rem;
             @include border(1px,$dark,5px);
+          }
+          select{
+            width: 90%;
           }
         }
       }

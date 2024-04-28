@@ -16,17 +16,21 @@ class ContractType extends AbstractType
 	{
 		$builder
 			->add('start_at', null, [
+				'label'=>'début',
 				'widget' => 'single_text',
 			])
 			->add('end_at', null, [
+				'label'=>'fin',
 				'widget' => 'single_text',
 			])
 			->add('Apartment', EntityType::class, [
+				'label'=>'appartement adresse',
 				'class' => Apartment::class,
 				'choice_label' => 'address',
 				'data' => $options['apartment'],
 			])
 			->add('Tenant', EntityType::class, [
+				'label'=>'locataire',
 				'class' => Tenant::class,
 				'choice_label' => 'email',
 				'data' => $options['tenant'],

@@ -43,7 +43,6 @@ class OwnerController extends AbstractController
 		return $this->render('owner/index.html.twig', [
 			'page_name' => 'propriétaire',
 			'type_form' => 'Ajouter',
-			'form_method' => 'add',
 			'heads' => $tableHead,
 			'data' => $data,
 			'form_owner' => $formOwner,
@@ -71,8 +70,7 @@ class OwnerController extends AbstractController
 		
 		return $this->render('owner/selected.html.twig', [
 			'page_name' => 'propriétaire',
-			'type_form' => 'modifier',
-			'form_method' => 'modifier',
+			'type_form' => 'Modifier',
 			'form_Owner' => $owner_form,
 			'owner' => $owner,
 			'apartments' => $apartments,
