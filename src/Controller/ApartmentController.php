@@ -76,17 +76,6 @@ class ApartmentController extends AbstractController
 		$inventories = $inventoryRepository->ApartmentInventory($id);
 		$owners = $ownerRepository->ApartmentOwner($id);
 		$contracts = $contractRepository->ApartmentContract($id);
-		$contractData = [];
-		foreach ($contracts as $contract) {
-			$tenant = $contract->getTenant();
-			$email = $tenant->getEmail();
-			$contractData[] =
-				[
-					'contract' => $contract,
-					'email' => $email,
-				];
-		}
-		
 		
 		//forms
 		$apartment_form = $this->createForm(ApartmentType::class, $apartment);
@@ -128,7 +117,7 @@ class ApartmentController extends AbstractController
 			'apartment' => $apartment,
 			'inventories' => $inventories,
 			'owners' => $owners,
-			'contracts' => $contractData,
+			'contracts' => $contracts,
 			//form
 			'form_method' => 'update',
 			'type_form' => 'Mise à jours',

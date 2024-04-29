@@ -23,6 +23,13 @@
   }
 }
 
+.btn-update{
+  @include button($cancel,.5,$dark);
+  &.active{
+    @include button($cancel,1,$light);
+  }
+}
+
 .btn-close{
   cursor: pointer;
   width: 2rem;

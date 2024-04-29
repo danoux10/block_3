@@ -11,6 +11,11 @@ html{
   background: none;
 }
 
+body {
+  background: $light;
+  color: $dark;
+}
+
 main{
   width: 95.5%;
   height:99vh;

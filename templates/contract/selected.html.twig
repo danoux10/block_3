@@ -5,11 +5,15 @@
 {% block body %}
   <h2>Gestion {{page_name}}</h2>
   <main>
-    <article>
-      {%include 'contract/data_visualizer/apartment.html.twig' %}
-      {%include 'contract/data_visualizer/payment.html.twig' %}
-      {%include 'contract/data_visualizer/receipt.html.twig' %}
-    </article>
-    {% include 'controller/form/contrat.html.twig' %}
+    <header class="page-header">
+      <h2>Gestion {{ page_name }}</h2>
+
+    </header>
+{#    <article>#}
+{#      {%include 'contract/data_visualizer/_apartment.html.twig' %}#}
+{#      {%include 'contract/data_visualizer/payment.html.twig' %}#}
+{#      {%include 'contract/data_visualizer/receipt.html.twig' %}#}
+{#    </article>#}
+{#    {% include 'controller/form/_contrat.html.twig' %}#}
   </main>
 {% endblock %}

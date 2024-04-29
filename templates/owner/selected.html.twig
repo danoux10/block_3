@@ -3,10 +3,15 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <h2>Gestion {{ page_name }}</h2>
-  <section class="folder">
-    {% include 'owner/data_visualizer/apartment.html.twig' %}
-{#    {% include 'owner/data_visualizer/selected.html.twig' %}#}
-  </section>
-  {% include 'controller/form/owner.html.twig' %}
+  <main>
+    <header class="page-header">
+      <h2>Gestion {{ page_name }}</h2>
+
+    </header>
+{#    <section class="folder">#}
+{#      {% include 'owner/data_visualizer/_apartment.html.twig' %}#}
+{#      #}{#    {% include 'owner/data_visualizer/_selected.html.twig' %}#}
+{#    </section>#}
+{#    {% include 'controller/form/_owner.html.twig' %}#}
+  </main>
 {% endblock %}

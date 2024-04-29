@@ -3,11 +3,14 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <h2>Gestion {{page_name}}</h2>
   <main>
-    <article>
-      {%include 'tenant/data_visualizer/contract.html.twig' %}
-    </article>
-    {% include 'controller/form/tenant.html.twig' %}
+    <header class="page-header">
+      <h2>Gestion {{ page_name }}</h2>
+
+    </header>
+{#    <article>#}
+{#      {%include 'tenant/data_visualizer/_contract.html.twig' %}#}
+{#    </article>#}
+{#    {% include 'controller/form/_tenant.html.twig' %}#}
   </main>
 {% endblock %}

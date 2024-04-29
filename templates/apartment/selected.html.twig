@@ -3,21 +3,79 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <h2>Gestion {{ page_name }}</h2>
   <main>
-    <article class="article-selected">
-      <section class="Apartment-container">
-        {% include 'apartment/data_visualizer/selected.html.twig' %}
-        {% include 'apartment/data_visualizer/inventory.html.twig' %}
-      </section>
-      <section class="Apartment-container">
-        {% include 'apartment/data_visualizer/owner.html.twig' %}
-        {% include 'Apartment/data_visualizer/contract.html.twig' %}
-      </section>
+    <header class="page-header">
+      <h2>Gestion {{ page_name }}</h2>
+
+      <nav class="dropdown">
+        <div class="btn btn-dropdown">
+          <p>voir formulaire</p>
+          <span class="icon-content">
+					  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+						  <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+					  </svg>
+				  </span>
+        </div>
+        <div class="dropdown-menu close">
+          {% include 'controller/button-form/update/_apartment.html.twig' %}
+          {% include 'controller/button-form/add/_owner.html.twig' %}
+          {% include 'controller/button-form/add/_inventory.html.twig' %}
+          {% include 'controller/button-form/add/_contract.html.twig' %}
+        </div>
+      </nav>
+    </header>
+
+    <article class="view--data">
+      <article class="data-container">
+        <section class="info">
+          <section class="flex-container">
+            {#            {% include 'apartment/data_visualizer/_selected.html.twig' %} #}
+          </section>
+          <div class="container owners-container">
+            <h4>Propriétaires</h4>
+            <section class="grid-container">
+              {#              {% include 'apartment/data_visualizer/_owner.html.twig' %} #}
+            </section>
+          </div>
+        </section>
+
+        <article class="dua-container">
+          <nav class="dual-nav">
+            <button type="button" class="btn btn-dual">état des lieux</button>
+            <button type="button" class="btn btn-dual">contract</button>
+          </nav>
+
+          <section class="container inventory-container">
+            <h4>état des lieux</h4>
+            <div class="dua-grid">
+              {#              {% include 'apartment/data_visualizer/_inventory.html.twig' %} #}
+            </div>
+          </section>
+
+          <section class="container contract-container">
+            <h4>contract</h4>
+            <div class="dua-grid">
+              {#              {% include 'Apartment/data_visualizer/_contract.html.twig' %} #}
+            </div>
+          </section>
+        </article>
+      </article>
     </article>
-    {%include 'controller/form/apartment.html.twig'%}
-    {%include 'controller/form/inventory.html.twig'%}
-    {%include 'controller/form/apartOwner.html.twig'%}
-    {%include 'controller/form/contrat.html.twig'%}
+
+    <section class="canvas-form close">
+      <button type="button" class="btn-close">
+			<span class="icon-content">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+					<path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+				</svg>
+			</span>
+      </button>
+
+{#      {% include 'controller/form/_apartment.html.twig' %}#}
+{#      {% include 'controller/form/_apartOwner.html.twig' %}#}
+{#      {% include 'controller/form/_inventory.html.twig' %}#}
+{#      {% include 'controller/form/_contrat.html.twig' %}#}
+    </section>
+
   </main>
 {% endblock %}

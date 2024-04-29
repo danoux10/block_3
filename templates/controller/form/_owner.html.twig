@@ -1,5 +1,5 @@
 {{ form_start(form_owner,{'attr':{'id':'owner'}}) }}
-<h3>Ajouter {{ page_name }}</h3>
+<h3>Ajouter Propriétaire</h3>
 <div class="field-content">
     <span class="form-element">
       <span class="label required">
@@ -47,5 +47,5 @@
     </span>
 </div>
 
-{% include'controller/form/utility/form_submit_required.html.twig' %} 
+{% include'controller/form/utility/_form_submit_required.html.twig' %}
 {{ form_end(form_owner) }}
