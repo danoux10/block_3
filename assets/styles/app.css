@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Dancing+Script:wght@400..700&display=swap");
 html {
@@ -45,6 +46,10 @@ h1 {
 h2 {
   font-family: "Dancing Script", cursive;
   font-size: x-large;
+}
+
+h4 {
+  text-transform: capitalize;
 }
 
 .btn {
@@ -140,6 +145,24 @@ h2 {
 }
 .btn-cancel:hover {
   box-shadow: 2px 2px 4px #B8860B;
+}
+
+.btn-delete {
+  background: #8C2E35;
+  color: #f1f3f8;
+  fill: #f1f3f8;
+}
+.btn-delete:hover {
+  box-shadow: 2px 2px 4px #8C2E35;
+}
+
+.btn-view {
+  background: #2185D5;
+  color: #f1f3f8;
+  fill: #f1f3f8;
+}
+.btn-view:hover {
+  box-shadow: 2px 2px 4px #2185D5;
 }
 
 #navbar {
@@ -560,6 +583,207 @@ h2 {
 .dropdown .dropdown-menu.close {
   height: 0;
   padding: 0;
+}
+
+.view-data {
+  height: 95%;
+  display: flex;
+  flex-direction: row;
+}
+.view-data .data-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.view-data .data-container .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.view-data .data-container .flex-container {
+  width: 100%;
+  height: 10rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.view-data .data-container .flex-container .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.view-data .data-container .dua-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
+  overflow: auto;
+}
+.view-data .data-container .dua-grid::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0;
+  background: #f1f3f8;
+}
+.view-data .data-container .dua-grid::-webkit-scrollbar-thumb {
+  background: #393b44;
+  border-radius: 10px;
+}
+.view-data .data-container .owners-container {
+  height: 80%;
+}
+.view-data .data-container .owners-container .dua-grid {
+  padding: 0.5rem;
+}
+.view-data .data-container .owners-container .dua-grid .card {
+  width: 20rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.view-data .data-container .owners-container .dua-grid .card .card-info {
+  width: 85%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.view-data .data-container .owners-container .dua-grid .card .card-info .card-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.view-data .data-container .owners-container .dua-grid .card .card-info .column {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.view-data .data-container .owners-container .dua-grid .card .button-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.view-data .data-container .inventory-container .dua-grid .card .card-info {
+  margin-right: 0.5rem;
+}
+.view-data .data-container .inventory-container .dua-grid .card .card-info .column {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.view-data .data-container .inventory-container .dua-grid .card .card-info .column .inventory-remark {
+  height: 5rem;
+  overflow: auto;
+}
+.view-data .data-container .inventory-container .dua-grid .card .card-info .column .inventory-remark::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0;
+  background: #f1f3f8;
+}
+.view-data .data-container .inventory-container .dua-grid .card .card-info .column .inventory-remark::-webkit-scrollbar-thumb {
+  background: #393b44;
+  border-radius: 10px;
+}
+.view-data .data-container .contract-container .card .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.view-data .data-container .card {
+  padding: 0.5rem;
+  border: 1px solid #393b44;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.view-data .data-container .info-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.view-data .data-container .info-element .name-data {
+  text-transform: capitalize;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.view-data .data-container .info-element .name-data:after {
+  content: ":";
+  font-weight: bold;
+  margin: 0 0.1rem;
+}
+.view-data .data-container .info-element .name-data .icon-content {
+  width: 16px;
+  height: 16px;
+}
+.view-data .data-container .info-element .name-data .icon-content svg {
+  width: 100%;
+  height: 100%;
+}
+.view-data .data-container .info-element .euro:after {
+  content: "€";
+  margin-left: 0.1rem;
+}
+.view-data .dua-container {
+  padding-right: 0.5rem;
+}
+.view-data .dua-container .dual-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+}
+.view-data .dua-container .dual-nav .btn-dual {
+  width: 50%;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 1px solid #393b44;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  text-transform: capitalize;
+  transition: all ease 0.5s;
+}
+.view-data .dua-container .dual-nav .btn-dual:hover {
+  background: rgba(33, 133, 213, 0.5);
+}
+.view-data .dua-container .dual-nav .btn-dual.active {
+  background: #2185D5;
+  color: #f1f3f8;
+}
+.view-data .dua-container .dual-content {
+  position: relative;
+  margin-top: 0.5rem;
+  height: 95%;
+}
+.view-data .dua-container .dual-content .container {
+  overflow: hidden;
+  height: 100%;
+  transition: height ease 0.5s;
+}
+.view-data .dua-container .dual-content .container.close {
+  height: 0;
+}
+.view-data .dua-container .dual-content .container .dua-grid {
+  padding: 0.5rem;
+  overflow: auto;
+}
+.view-data .dua-container .dual-content .container .dua-grid::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0;
+  background: #f1f3f8;
+}
+.view-data .dua-container .dual-content .container .dua-grid::-webkit-scrollbar-thumb {
+  background: #393b44;
+  border-radius: 10px;
 }
 
 /*# sourceMappingURL=app.css.map */

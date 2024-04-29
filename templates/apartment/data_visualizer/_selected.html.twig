@@ -29,21 +29,21 @@
 
 <div class="row">
   <div class="column">
-    <span class='info-element'>
-      <p class='name-data'>garantie</p>
-      <p class='euro'>{{ apartment.guarantee }}</p>
+    <span class="info-element">
+      <p class="name-data">garantie</p>
+      <p class="euro">{{ apartment.guarantee }}</p>
     </span>
-    <span class='info-element'>
-      <p class='name-data'>charge</p>
-      <p class='euro'>{{ apartment.charge }}</p>
+    <span class="info-element">
+      <p class="name-data">charge</p>
+      <p class="euro">{{ apartment.charge }}</p>
     </span>
-    <span class='info-element'>
-      <p class='name-data'>loyer</p>
-      <p class='euro'>{{ apartment.rent }}</p>
+    <span class="info-element">
+      <p class="name-data">loyer</p>
+      <p class="euro">{{ apartment.rent }}</p>
     </span>
   </div>
   <span class="info-element">
     <p class="name-data">somme</p>
-    <p>{{ (apartment.charge+apartment.rent+0.08) |number_format(2,'.','') }}</p>
+    <p class="euro">{{ (apartment.charge+apartment.rent+0.08) |number_format(2,'.','') }}</p>
   </span>
 </div>

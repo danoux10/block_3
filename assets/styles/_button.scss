@@ -49,3 +49,11 @@
 .btn-cancel{
   @include formButton($cancel,$light);
 }
+
+.btn-delete{
+  @include formButton($delete,$light);
+}
+
+.btn-view{
+  @include formButton($accent,$light);
+}

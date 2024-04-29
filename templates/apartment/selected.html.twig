@@ -25,40 +25,41 @@
       </nav>
     </header>
 
-    <article class="view--data">
+    <article class="view-data">
       <article class="data-container">
-        <section class="info">
+        <div class="container apartment-container">
           <section class="flex-container">
-            {#            {% include 'apartment/data_visualizer/_selected.html.twig' %} #}
+            {% include 'apartment/data_visualizer/_selected.html.twig' %}
           </section>
-          <div class="container owners-container">
-            <h4>Propriétaires</h4>
-            <section class="grid-container">
-              {#              {% include 'apartment/data_visualizer/_owner.html.twig' %} #}
-            </section>
-          </div>
-        </section>
+        </div>
+        <div class="container owners-container">
+          <h4>Propriétaires</h4>
+          <section class="dua-grid">
+            {% include 'apartment/data_visualizer/_owner.html.twig' %}
+          </section>
+        </div>
+      </article>
 
-        <article class="dua-container">
-          <nav class="dual-nav">
-            <button type="button" class="btn btn-dual">état des lieux</button>
-            <button type="button" class="btn btn-dual">contract</button>
-          </nav>
-
-          <section class="container inventory-container">
+      <article class="data-container dua-container">
+        <nav class="dual-nav">
+          <button type="button" class="btn-dual active">état des lieux</button>
+          <button type="button" class="btn-dual">contract</button>
+        </nav>
+        <section class="dual-content">
+          <div class="container inventory-container dual">
             <h4>état des lieux</h4>
             <div class="dua-grid">
-              {#              {% include 'apartment/data_visualizer/_inventory.html.twig' %} #}
+              {% include 'apartment/data_visualizer/_inventory.html.twig' %}
             </div>
-          </section>
+          </div>
 
-          <section class="container contract-container">
+          <div class="container contract-container dual close">
             <h4>contract</h4>
             <div class="dua-grid">
-              {#              {% include 'Apartment/data_visualizer/_contract.html.twig' %} #}
+              {% include 'Apartment/data_visualizer/_contract.html.twig' %}
             </div>
-          </section>
-        </article>
+          </div>
+        </section>
       </article>
     </article>
 
@@ -71,10 +72,10 @@
 			</span>
       </button>
 
-{#      {% include 'controller/form/_apartment.html.twig' %}#}
-{#      {% include 'controller/form/_apartOwner.html.twig' %}#}
-{#      {% include 'controller/form/_inventory.html.twig' %}#}
-{#      {% include 'controller/form/_contrat.html.twig' %}#}
+      {#      {% include 'controller/form/_apartment.html.twig' %} #}
+      {#      {% include 'controller/form/_apartOwner.html.twig' %} #}
+      {#      {% include 'controller/form/_inventory.html.twig' %} #}
+      {#      {% include 'controller/form/_contrat.html.twig' %} #}
     </section>
 
   </main>

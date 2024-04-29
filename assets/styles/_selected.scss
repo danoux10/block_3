@@ -1,24 +1,30 @@
-.dropdown{
+.dropdown {
   position: relative;
-  .btn-dropdown{
-    background: rgba($accent,.5);
+
+  .btn-dropdown {
+    background: rgba($accent, .5);
     width: 100%;
-    @include flex(row,space-around,center);
-    &:hover{
-      box-shadow:2px 2px 4px $accent;
+    @include flex(row, space-around, center);
+
+    &:hover {
+      box-shadow: 2px 2px 4px $accent;
     }
-    &.active{
+
+    &.active {
       background: $accent;
-      .icon-content{
+
+      .icon-content {
         transform: rotate(180deg);
       }
     }
-    p{
-      font-size:large;
+
+    p {
+      font-size: large;
     }
   }
-  .dropdown-menu{
-    width:100%;
+
+  .dropdown-menu {
+    width: 100%;
     height: 13rem;
     padding: .5rem;
     position: absolute;
@@ -26,11 +32,182 @@
     overflow: hidden;
     border-radius: 10px;
     transition: height ease .5s;
-    @include flex(column,none,center);
+    @include flex(column, none, center);
     gap: .5rem;
-    &.close{
+
+    &.close {
       height: 0;
       padding: 0;
+    }
+  }
+}
+
+.view-data {
+  height: 95%;
+  @include flex(row, none, none);
+
+  .data-container {
+    width: 50%;
+    @include flex(column, none, none);
+
+    .container {
+      @include flex(column, none, center);
+      gap: .5rem;
+    }
+
+    .flex-container {
+      width: 100%;
+      height: 10rem;
+      margin-bottom: .5rem;
+      @include flex(column, space-around, none);
+
+      .row {
+        @include flex(row, space-around, none);
+      }
+    }
+
+    .dua-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      gap: 1rem;
+      overflow: auto;
+      @include customScrollbar($light, $dark, .2rem);
+    }
+
+    .owners-container {
+      height: 80%;
+      .dua-grid {
+        padding: .5rem;
+        .card {
+          width: 20rem;
+          height: 10rem;
+          @include flex(row, space-between, center);
+
+          .card-info {
+            width: 85%;
+            height: 70%;
+            @include flex(column, space-around, none);
+
+            .card-element {
+              @include flex(row, space-around, center);
+            }
+
+            .column {
+              height: 80%;
+              @include flex(column, none, none);
+            }
+          }
+
+          .button-content {
+            height: 100%;
+            @include flex(column, space-around, none);
+          }
+        }
+      }
+    }
+    .inventory-container{
+      .dua-grid{
+        .card{
+          .card-info{
+            margin-right: .5rem;
+            .column{
+              margin-top: .5rem;
+              @include flex(column,none,center);
+              .inventory-remark{
+                height: 5rem;
+                overflow:auto;
+                @include customScrollbar($light, $dark, .2rem);
+              }
+            }
+          }
+        }
+      }
+    }
+    .contract-container{
+      .card{
+        .column{
+          @include flex(column,none,center);
+        }
+      }
+    }
+    .card {
+      padding: .5rem;
+      @include border(1px, $dark, 10px);
+      @include flex(row,space-around,center);
+    }
+
+    .info-element {
+      @include flex(row, center, center);
+
+      .name-data {
+        text-transform: capitalize;
+        @include flex(row, center, center);
+
+        &:after {
+          content: ':';
+          font-weight: bold;
+          margin: 0 .1rem;
+        }
+
+        .icon-content {
+          @include square(16px);
+
+          svg {
+            @include square(100%);
+          }
+        }
+      }
+
+      .euro {
+        &:after {
+          content: "€";
+          margin-left: .1rem;
+        }
+      }
+    }
+  }
+
+  .dua-container{
+    padding-right: .5rem;
+    .dual-nav{
+      @include flex(row,none,none);
+      gap: .2rem;
+      .btn-dual{
+        width: 50%;
+        padding: .5rem;
+        cursor: pointer;
+        border:1px solid $dark;
+        border-bottom: none;
+        border-radius: 10px 10px 0 0;
+        text-transform: capitalize;
+        transition: all ease .5s;
+        &:hover{
+          background: rgba($accent,.5);
+        }
+        &.active{
+          background: $accent;
+          color: $light;
+        }
+      }
+    }
+    .dual-content{
+      position: relative;
+      margin-top: .5rem;
+      height: 95%;
+      .container{
+        overflow: hidden;
+        height: 100%;
+        transition: height ease .5s;
+        &.close{
+          height:0;
+        }
+        .dua-grid{
+          padding: .5rem;
+          overflow: auto;
+          @include customScrollbar($light, $dark, .2rem);
+        }
+      }
     }
   }
 }

@@ -11,3 +11,4 @@ import './styles/app.css';
 import './script/navbar'
 import './script/openCanvas'
 import './script/dropdown'
+import './script/toggleMenu'

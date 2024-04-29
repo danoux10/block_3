@@ -2,17 +2,17 @@
   <div class="card">
     <div class="card-info">
       <span class="info-element">
-        <p class="data-name">début</p>
+        <p class="name-data">début</p>
         <p>{{ contract.startAt | date('d/m/Y') }}</p>
       </span>
 
       <span class="info-element">
-        <p class="data-name">fin</p>
+        <p class="name-data">fin</p>
         <p>{{ contract.endAt | date('d/m/y') }}</p>
       </span>
 
-      <span class="info-element">
-        <p class="data-name">locataire email</p>
+      <span class="info-element column">
+        <p class="name-data">locataire email</p>
         <p>{{ contract.Tenant.email }}</p>
       </span>
     </div>
