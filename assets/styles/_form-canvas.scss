@@ -51,8 +51,71 @@
             padding: .4rem;
             @include border(1px,$dark,5px);
           }
+          textarea{
+            width: 90%;
+            height: 5rem;
+            padding: .5rem;
+            @include border(1px,$dark,10px);
+          }
           select{
             width: 90%;
+          }
+        }
+        .select{
+          width: 55%;
+          @include flex(column,none,none);
+          &.close{
+            .select-btn{
+              @include border(1px,$dark,10px);
+            }
+            .select-content{
+              div{
+                padding: 0;
+                height: 0;
+                overflow: hidden;
+              }
+            }
+          }
+          .select-btn{
+            width: 100%;
+            border: 1px solid $dark;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            @include flex(row,space-around,center);
+            .icon-content{
+              width: 1rem;
+              svg{
+                @include square(100%);
+              }
+            }
+          }
+          .select-content{
+            position: relative;
+            div{
+              width: 94%;
+              height: 20rem;
+              position: absolute;
+              border: 1px solid $dark;
+              border-top: none;
+              padding: .5rem;
+              background: $light;
+              overflow:auto;
+              transition: height ease .5s;
+              @include flex(column,none,center);
+              @include customScrollbar($light, $dark, .4rem);
+              label{
+                width: 100%;
+                padding: .5rem;
+                cursor: pointer;
+              }
+              input[type="checkbox"] {
+                display: none;
+                &:checked + label {
+                  background-color: $accent;
+                  color: $light;
+                }
+              }
+            }
           }
         }
       }
@@ -64,7 +127,6 @@
         color: red;
       }
     }
-
     .button-content{
       width: 100%;
       @include flex(row,space-around,center);

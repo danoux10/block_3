@@ -1,7 +1,28 @@
-<fieldset class="section-form" id="inventory->{{ form_method }}">
-  <legend>{{ page_name }} {{ type_form }}</legend>
-  {{ form_start(form_inventory) }}
-    {{ form_widget(form_inventory) }}
-    {% include'controller/form/utility/_form_submit_required.html.twig' %}
-  {{ form_end(form_inventory) }}
-</fieldset>
+{{ form_start(form_inventory,{'attr':{'id':'inventory','class':'hidden'}}) }}
+  <h3>Ajouter Etat des lieux</h3>
+
+  <div class="field-content">
+    <span class="form-element">
+      <span class="label required">
+        {{ (form_label(form_inventory.created_at)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_inventory.created_at) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_inventory.remark)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_inventory.remark) }}
+      </span>
+    </span>
+
+    <span style="display: none">
+      {{ form_widget(form_inventory.Apartment) }}
+    </span>
+  </div>
+  {% include'controller/form/utility/_form_submit_required.html.twig' %}
+{{ form_end(form_inventory) }}

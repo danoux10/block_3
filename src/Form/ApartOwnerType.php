@@ -15,6 +15,7 @@ class ApartOwnerType extends AbstractType
 	{
 		$builder
 			->add('Owner', EntityType::class, [
+				'label'=>'propriétaire',
 				'class' => Owner::class,
 				'choice_label' => 'email',
 				'multiple' => true,

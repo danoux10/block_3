@@ -6,6 +6,13 @@ buttonFormAll.forEach(buttonAll =>{
   buttonAll.addEventListener('click', ()=>{
     const sectionId = buttonAll.dataset.section;
 
+    buttonFormAll.forEach(otherButton =>{
+      if(otherButton!== buttonAll){
+        otherButton.classList.remove('active');
+        document.getElementById(otherButton.dataset.section).classList.add('hidden');
+      }
+    })
+
     if(!buttonAll.classList.contains('active')){
       buttonAll.classList.add('active');
       document.getElementById(sectionId).classList.remove('hidden');

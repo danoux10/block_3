@@ -358,8 +358,84 @@ h4 {
   border: 1px solid #393b44;
   border-radius: 5px;
 }
+.canvas-form form .field-content .form-element .input textarea {
+  width: 90%;
+  height: 5rem;
+  padding: 0.5rem;
+  border: 1px solid #393b44;
+  border-radius: 10px;
+}
 .canvas-form form .field-content .form-element .input select {
   width: 90%;
+}
+.canvas-form form .field-content .form-element .select {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+.canvas-form form .field-content .form-element .select.close .select-btn {
+  border: 1px solid #393b44;
+  border-radius: 10px;
+}
+.canvas-form form .field-content .form-element .select.close .select-content div {
+  padding: 0;
+  height: 0;
+  overflow: hidden;
+}
+.canvas-form form .field-content .form-element .select .select-btn {
+  width: 100%;
+  border: 1px solid #393b44;
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.canvas-form form .field-content .form-element .select .select-btn .icon-content {
+  width: 1rem;
+}
+.canvas-form form .field-content .form-element .select .select-btn .icon-content svg {
+  width: 100%;
+  height: 100%;
+}
+.canvas-form form .field-content .form-element .select .select-content {
+  position: relative;
+}
+.canvas-form form .field-content .form-element .select .select-content div {
+  width: 94%;
+  height: 20rem;
+  position: absolute;
+  border: 1px solid #393b44;
+  border-top: none;
+  padding: 0.5rem;
+  background: #f1f3f8;
+  overflow: auto;
+  transition: height ease 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.canvas-form form .field-content .form-element .select .select-content div::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0;
+  background: #f1f3f8;
+}
+.canvas-form form .field-content .form-element .select .select-content div::-webkit-scrollbar-thumb {
+  background: #393b44;
+  border-radius: 10px;
+}
+.canvas-form form .field-content .form-element .select .select-content div label {
+  width: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.canvas-form form .field-content .form-element .select .select-content div input[type=checkbox] {
+  display: none;
+}
+.canvas-form form .field-content .form-element .select .select-content div input[type=checkbox]:checked + label {
+  background-color: #2185D5;
+  color: #f1f3f8;
 }
 .canvas-form form .message-required {
   display: flex;
