@@ -51,6 +51,15 @@ class Apartment
     #[ORM\OneToMany(targetEntity: Contract::class, mappedBy: 'Apartment', orphanRemoval: true)]
     private Collection $contracts;
 
+    #[ORM\Column]
+    private ?float $water = null;
+
+    #[ORM\Column]
+    private ?float $electricity = null;
+
+    #[ORM\Column]
+    private ?float $gas = null;
+
     public function __construct()
     {
         $this->Owner = new ArrayCollection();
@@ -215,6 +224,42 @@ class Apartment
                 $contract->setApartment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWater(): ?float
+    {
+        return $this->water;
+    }
+
+    public function setWater(float $water): static
+    {
+        $this->water = $water;
+
+        return $this;
+    }
+
+    public function getElectricity(): ?float
+    {
+        return $this->electricity;
+    }
+
+    public function setElectricity(float $electricity): static
+    {
+        $this->electricity = $electricity;
+
+        return $this;
+    }
+
+    public function getGas(): ?float
+    {
+        return $this->gas;
+    }
+
+    public function setGas(float $gas): static
+    {
+        $this->gas = $gas;
 
         return $this;
     }

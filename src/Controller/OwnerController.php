@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Owner;
-use App\Form\Owner\OwnerApartmentType;
 use App\Form\OwnerType;
+use App\Form\OwnerApartType;
 use App\Repository\ApartmentRepository;
 use App\Repository\OwnerRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -68,10 +68,18 @@ class OwnerController extends AbstractController
 			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
 		}
 		
+		$apartment_form = $this->createForm(ownerApartType::class,$owner);
+		$apartment_form->handleRequest($request);
+		if ($apartment_form->isSubmitted() && $apartment_form->isValid()) {
+			$entityManager->persist($owner);
+			$entityManager->flush();
+			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
+		}
 		return $this->render('owner/selected.html.twig', [
 			'page_name' => 'propriétaire',
 			'type_form' => 'Modifier',
-			'form_Owner' => $owner_form,
+			'form_owner' => $owner_form,
+			'form_apart'=>$apartment_form,
 			'owner' => $owner,
 			'apartments' => $apartments,
 		]);

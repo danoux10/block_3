@@ -61,21 +61,10 @@ class TenantController extends AbstractController
 	): Response
 	{
 		//get data
+		$contracts = $contractRepository->TenantContract($id);
 		//form
 		$tenant_form = $this->createForm(TenantType::class,$tenant);
 		$tenant_form->handleRequest($request);
-		$contracts = $contractRepository->TenantContract($id);
-		$contractsData =[];
-		foreach ($contracts as $contract){
-			$apartment = $contract->getApartment();
-			$address = $apartment->getAddress();
-			$city = $apartment->getCity();
-			$contractsData[]=[
-				'contract' => $contract,
-				'address' => $address,
-				'city' => $city,
-			];
-		}
 		if ($tenant_form->isSubmitted()&&$tenant_form->isValid()){
 			$entityManager->flush();
 			return $this->redirectToRoute('app_tenant_selected',['id'=>$id],Response::HTTP_SEE_OTHER);
@@ -86,7 +75,7 @@ class TenantController extends AbstractController
 			'type_form' => 'modifier',
 			'form_Tenant' => $tenant_form,
 			'tenant'=>$tenant,
-			'contracts'=>$contractsData,
+			'contracts'=>$contracts,
 		]);
 	}
 }

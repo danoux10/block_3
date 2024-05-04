@@ -59,14 +59,15 @@ class ContractController extends AbstractController
 		$id,
 		Contract $contract,
 		PaymentRepository $paymentRepository,
+		ApartmentRepository $ApartmentRepository,
 //		ReceiptRepository $receiptRepository,
-//		ApartmentRepository $ApartmentRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request,
 	):Response{
-//		$Apartment = $ApartmentRepository->ContractApartment($id);
-		$payments = $paymentRepository->ContractPayment($id);
+		$apartment = $ApartmentRepository->ContractApartment($id);
+//		$payments = $paymentRepository->ContractPayment($id);
 //		$receipts = $receiptRepository->ContractReceipt($id);
+		
 		$formContract = $this->createForm(ContractType::class, $contract);
 		$formContract->handleRequest($request);
 		if ($formContract->isSubmitted() && $formContract->isValid()) {
@@ -76,10 +77,11 @@ class ContractController extends AbstractController
 		return $this->render('contract/selected.html.twig',[
 			'page_name'=>'contract',
 			'contract'=>$contract,
-			'payments'=>$payments,
-			
+//			'payments'=>$payments,
 			'type_form' =>'Update',
+			'apartment'=>$apartment,
 			'form_contract'=>$formContract,
+//			dd($apartment),
 		]);
 	}
 }

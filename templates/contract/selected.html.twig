@@ -3,17 +3,46 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <h2>Gestion {{page_name}}</h2>
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
-
+      {% include 'controller/button-form/update/_contract.html.twig' %}
     </header>
-{#    <article>#}
-{#      {%include 'contract/data_visualizer/_apartment.html.twig' %}#}
-{#      {%include 'contract/data_visualizer/payment.html.twig' %}#}
-{#      {%include 'contract/data_visualizer/receipt.html.twig' %}#}
-{#    </article>#}
-{#    {% include 'controller/form/_contrat.html.twig' %}#}
+
+    <article class="view-data">
+      <article class="data-container">
+        <section class="flex-container">
+          {% include 'contract/data_visualizer/_selected.html.twig' %}
+        </section>
+        <section class="flex-container">
+          <h4>Appartment</h4>
+          {% include'contract/data_visualizer/_apartment.html.twig' %}
+        </section>
+        <section class="flex-container">
+          <h4>Locataire</h4>
+          {% include'contract/data_visualizer/_tenant.html.twig' %}
+        </section>
+      </article>
+
+      <article class="data-container">
+        <section class="flex-container">
+          <h4>Paiements</h4>
+        </section>
+        <section class="flex-container">
+          <h4>Quittance</h4>
+        </section>
+      </article>
+    </article>
+
+    <section class="canvas-form close">
+      <button type="button" class="btn-close">
+        <span class="icon-content">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+          </svg>
+        </span>
+      </button>
+      {% include 'controller/form/_contrat.html.twig' %}
+    </section>
   </main>
 {% endblock %}

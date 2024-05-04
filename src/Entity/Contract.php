@@ -35,9 +35,13 @@ class Contract
     #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract', orphanRemoval: true)]
     private Collection $payments;
 
+    #[ORM\OneToMany(targetEntity: Receipt::class, mappedBy: 'contract', orphanRemoval: true)]
+    private Collection $receipts;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
+        $this->receipts = new ArrayCollection();
     }
 		
     public function getId(): ?int
@@ -117,6 +121,36 @@ class Contract
             // set the owning side to null (unless already changed)
             if ($payment->getContract() === $this) {
                 $payment->setContract(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Receipt>
+     */
+    public function getReceipts(): Collection
+    {
+        return $this->receipts;
+    }
+
+    public function addReceipt(Receipt $receipt): static
+    {
+        if (!$this->receipts->contains($receipt)) {
+            $this->receipts->add($receipt);
+            $receipt->setContract($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceipt(Receipt $receipt): static
+    {
+        if ($this->receipts->removeElement($receipt)) {
+            // set the owning side to null (unless already changed)
+            if ($receipt->getContract() === $this) {
+                $receipt->setContract(null);
             }
         }
 
