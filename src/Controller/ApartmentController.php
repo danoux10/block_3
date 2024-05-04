@@ -9,7 +9,7 @@ use App\Entity\Owner;
 
 use App\Form\ApartOwnerType;
 use App\Form\ContractType;
-use App\Form\FindByCityType;
+use App\Form\TestType;
 use App\Form\InventoryType;
 use App\Form\ApartmentType;
 
@@ -45,11 +45,13 @@ class ApartmentController extends AbstractController
 		$data = $apartmentRepository->findAll();//Delete
 //		$data = $apartmentRepository->ApartmentDesc();
 		$apartment = new Apartment();
-		$formApartment = $this->createForm(ApartmentType::class, $apartment);
+		$formApartment = $this->createForm(TestType::class, $apartment);
 		$formApartment->handleRequest($request);
 		if ($formApartment->isSubmitted() && $formApartment->isValid()) {
 			$entityManager->persist($apartment);
+			$apartment->calculateTotalCharge();
 			$entityManager->flush();
+//			dd($apartment);
 			return $this->redirectToRoute('app_apartment', [], Response::HTTP_SEE_OTHER);
 		}
 		return $this->render('apartment/index.html.twig', [

@@ -1,60 +1,61 @@
 {{ form_start(form_apartment,{'attr':{'id':'apartment','class':'hidden'}}) }}
-  <h3>{{ type_form }} {{ page_name }}</h3>
+{#  <h3>{{ type_form }} {{ page_name }}</h3>#}
 
-  <div class="field-content">
-    <span class="form-element">
-      <span class="label required">
-        {{ (form_label(form_apartment.code)) }}
-      </span>
-      <span class="input">
-        {{ form_widget(form_apartment.code) }}
-      </span>
-    </span>
+{#  <div class="field-content">#}
+{#    <span class="form-element">#}
+{#      <span class="label required">#}
+{#        {{ (form_label(form_apartment.code)) }}#}
+{#      </span>#}
+{#      <span class="input">#}
+{#        {{ form_widget(form_apartment.code) }}#}
+{#      </span>#}
+{#    </span>#}
 
-    <span class="form-element">
-      <span class="label">
-        {{ (form_label(form_apartment.city)) }}
-      </span>
-      <span class="input">
-        {{ form_widget(form_apartment.city) }}
-      </span>
-    </span>
+{#    <span class="form-element">#}
+{#      <span class="label">#}
+{#        {{ (form_label(form_apartment.city)) }}#}
+{#      </span>#}
+{#      <span class="input">#}
+{#        {{ form_widget(form_apartment.city) }}#}
+{#      </span>#}
+{#    </span>#}
 
-    <span class="form-element">
-      <span class="label">
-        {{ (form_label(form_apartment.address)) }}
-      </span>
-      <span class="input">
-        {{ form_widget(form_apartment.address) }}
-      </span>
-    </span>
+{#    <span class="form-element">#}
+{#      <span class="label">#}
+{#        {{ (form_label(form_apartment.address)) }}#}
+{#      </span>#}
+{#      <span class="input">#}
+{#        {{ form_widget(form_apartment.address) }}#}
+{#      </span>#}
+{#    </span>#}
 
-    <span class="form-element">
-      <span class="label">
-        {{ (form_label(form_apartment.guarantee)) }}
-      </span>
-      <span class="input">
-        {{ form_widget(form_apartment.guarantee) }}
-      </span>
-    </span>
+{#    <span class="form-element">#}
+{#      <span class="label">#}
+{#        {{ (form_label(form_apartment.guarantee)) }}#}
+{#      </span>#}
+{#      <span class="input">#}
+{#        {{ form_widget(form_apartment.guarantee) }}#}
+{#      </span>#}
+{#    </span>#}
 
-    <span class="form-element">
-      <span class="label">
-        {{ (form_label(form_apartment.charge)) }}
-      </span>
-      <span class="input">
-        {{ form_widget(form_apartment.charge) }}
-      </span>
-    </span>
+{#    <span class="form-element">#}
+{#      <span class="label">#}
+{#        {{ (form_label(form_apartment.charge)) }}#}
+{#      </span>#}
+{#      <span class="input">#}
+{#        {{ form_widget(form_apartment.charge) }}#}
+{#      </span>#}
+{#    </span>#}
 
-    <span class="form-element">
-      <span class="label">
-        {{ (form_label(form_apartment.rent)) }}
-      </span>
-      <span class="input">
-        {{ form_widget(form_apartment.rent) }}
-      </span>
-    </span>
-  </div>
+{#    <span class="form-element">#}
+{#      <span class="label">#}
+{#        {{ (form_label(form_apartment.rent)) }}#}
+{#      </span>#}
+{#      <span class="input">#}
+{#        {{ form_widget(form_apartment.rent) }}#}
+{#      </span>#}
+{#    </span>#}
+{#  </div>#}
+  {{ form_widget(form_apartment) }}
   {% include'controller/form/utility/_form_submit_required.html.twig' %}
 {{ form_end(form_apartment) }}
