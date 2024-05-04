@@ -1,31 +1,7 @@
-const buttonFormAll = document.querySelectorAll('.btn-form');
 const canvasForm = document.querySelector('.canvas-form');
 const closeBtn = document.querySelector('.btn-close')
-
-buttonFormAll.forEach(buttonAll =>{
-  buttonAll.addEventListener('click', ()=>{
-    const sectionId = buttonAll.dataset.section;
-
-    buttonFormAll.forEach(otherButton =>{
-      if(otherButton!== buttonAll){
-        otherButton.classList.remove('active');
-        document.getElementById(otherButton.dataset.section).classList.add('hidden');
-      }
-    })
-
-    if(!buttonAll.classList.contains('active')){
-      buttonAll.classList.add('active');
-      document.getElementById(sectionId).classList.remove('hidden');
-      canvasForm.classList.remove('close');
-
-    }else{
-      buttonAll.classList.remove('active');
-      document.getElementById(sectionId).classList.add('hidden');
-      canvasForm.classList.add('close');
-    }
-  })
-})
-
+const formContainer = document.getElementById('form-container');
+// const mainPage = document.querySelector('main');
 function closeCanvas(){
   document.querySelector('.canvas-form form').classList.add('hidden');
   canvasForm.classList.add('close');
@@ -33,5 +9,47 @@ function closeCanvas(){
     button.classList.remove('active');
   })
 }
-
+// mainPage.addEventListener('click',closeCanvas)
 closeBtn.addEventListener('click',closeCanvas)
+
+const linkCanvas = Array.from(document.getElementsByClassName('open-canvas'));
+function openCanvas(event){
+  event.preventDefault();
+  let href = event.srcElement.href;
+  let ajax = new XMLHttpRequest();
+  ajax.open('GET',href);
+  ajax.send();
+  ajax.onreadystatechange = function(){
+    // console.log(ajax.response);
+    formContainer.innerHTML = ajax.response;
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form=>{
+      form.addEventListener('submit',formSubmit);
+    })
+  }
+  // console.log(href);
+}
+linkCanvas.forEach(linkCanva=>{
+  linkCanva.addEventListener('click',openCanvas);
+})
+
+function formSubmit(event){
+  event.preventDefault();
+  let action = event.target.getAttribute('action');
+  let ajax = new XMLHttpRequest();
+  let data = new FormData(this);
+  ajax.open('POST',action);
+  ajax.send(data);
+  ajax.onreadystatechange = function(){
+    console.log(ajax.response);
+    const elements = JSON.parse(this.responseText).elements;
+    console.log(elements);
+    elements.forEach(element=>{
+      const id = element.id;
+      const view = element.view;
+      console.log(view)
+      const container = document.getElementById(id);
+      container.innerHTML = view;
+    })
+  }
+}

@@ -4,7 +4,7 @@
  * This file will be included onto the page via the importmap() Twig function,
  * which should already be in your base.html.twig.
  */
-import './styles/app.scss';
+// import './styles/app.scss';
 import './styles/app.css';
 
 //script animation
@@ -13,3 +13,5 @@ import './script/openCanvas'
 import './script/dropdown'
 import './script/toggleMenu'
 import './script/select'
+
+

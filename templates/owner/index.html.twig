@@ -7,7 +7,7 @@
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
-      {% include 'controller/button-form/add/_owner.html.twig' %}
+      {% include 'controller/button-form/add/owner.html.twig' %}
     </header>
     <article class="table-content">
       {%include 'owner/data_visualizer/_all.html.twig' %}
@@ -20,7 +20,7 @@
 				</svg>
 			</span>
       </button>
-      {%include 'controller/form/_owner.html.twig' %}
+      {%include 'controller/form/owner.html.twig' %}
     </section>
   </main>
 {% endblock %}

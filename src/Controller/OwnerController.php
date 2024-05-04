@@ -9,6 +9,7 @@ use App\Repository\ApartmentRepository;
 use App\Repository\OwnerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -49,7 +50,7 @@ class OwnerController extends AbstractController
 		]);
 	}
 	
-	#[Route('/owner/{id}/edit', name: 'app_owner_selected', methods: ['GET', 'POST'])]
+	#[Route('/owner/{id}', name: 'app_owner_selected', methods: ['GET'])]
 	public function view(
 		$id,
 		Owner $owner,
@@ -61,27 +62,62 @@ class OwnerController extends AbstractController
 		//get data
 		$apartments = $ApartmentRepository->OwnerApartment($id);
 		//form
-		$owner_form = $this->createForm(OwnerType::class, $owner);
-		$owner_form->handleRequest($request);
-		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
-			$entityManager->flush();
-			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
-		}
-		
-		$apartment_form = $this->createForm(ownerApartType::class,$owner);
-		$apartment_form->handleRequest($request);
-		if ($apartment_form->isSubmitted() && $apartment_form->isValid()) {
-			$entityManager->persist($owner);
-			$entityManager->flush();
-			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
-		}
+//		$apartment_form = $this->createForm(ownerApartType::class,$owner);
+//		$apartment_form->handleRequest($request);
+//		if ($apartment_form->isSubmitted() && $apartment_form->isValid()) {
+//			$entityManager->persist($owner);
+//			$entityManager->flush();
+//			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
+//		}
 		return $this->render('owner/selected.html.twig', [
 			'page_name' => 'propriétaire',
-			'type_form' => 'Modifier',
-			'form_owner' => $owner_form,
-			'form_apart'=>$apartment_form,
+//			'form_apart'=>$apartment_form,
 			'owner' => $owner,
 			'apartments' => $apartments,
 		]);
+	}
+	
+	#[Route('/owner/{id}/edit', name: 'app_owner_get', methods: ['GET'])]
+	public function getEdit(
+		$id,
+		Owner $owner,
+		Request $request
+	): Response
+	{
+		$owner_form = $this->createForm(OwnerType::class, $owner,[
+			'action'=>"/owner/$id/edit",
+		]);
+		$owner_form->handleRequest($request);
+		return $this->render('controller/form/owner.html.twig', [
+			'form_owner' => $owner_form,
+		]);
+	}
+	#[Route('/owner/{id}/edit', name: 'app_owner_post', methods: ['POST'])]
+	public function postEdit(
+		$id,
+		Owner $owner,
+		EntityManagerInterface $entityManager,
+		Request $request
+	): JsonResponse
+	{
+		$owner_form = $this->createForm(OwnerType::class, $owner,[
+			'action'=>'/owner/{id}/edit',
+		]);
+		$owner_form->handleRequest($request);
+		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
+			$entityManager->flush();
+//			return $this->redirectToRoute('app_owner_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
+			return $this->json([
+				'status' =>'success',
+				'message' => 'Mis a jours ok',
+				'elements'=>[
+					[
+						'id'=>'owner-selected',
+						'view'=>$this->render('owner/data_visualizer/_selected.html.twig',['owner'=>$owner])->getContent(),
+					],
+				],
+			]);
+		}
+		
 	}
 }

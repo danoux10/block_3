@@ -15,8 +15,11 @@
 					  </svg>
 				  </span>
         </div>
-        <div class="dropdown-menu close">
-          {% include 'controller/button-form/update/_owner.html.twig' %}
+        <div class="dropdown-menu">
+{#          {% include 'controller/button-form/update/owner.html.twig' %}#}
+          <a href="{{ path('app_owner_get',{'id':owner.id}) }}" class="open-canvas">
+            Modifier Propriétaires
+          </a>
           <form method="post" action="{{ path('app_deleted_owner', {'id': owner.id}) }}"
                 onsubmit="return confirm('Are you sure you want to delete this item?');">
             <input type="hidden" name="_token" value="{{ csrf_token('deleteOwner' ~ owner.id) }}">
@@ -29,14 +32,14 @@
               supprimer
             </button>
           </form>
-          {% include 'controller/button-form/add/_apartment.html.twig' %}
+{#          {% include 'controller/button-form/add/_apartment.html.twig' %}#}
         </div>
       </nav>
     </header>
 
     <article class="view-data">
       <article class="data-container">
-        <div class="flex-container">
+        <div class="flex-container" id="owner-selected">
           {% include 'owner/data_visualizer/_selected.html.twig' %}
         </div>
       </article>
@@ -44,7 +47,7 @@
         <div class="container apartment-container">
           <h4>Appartements</h4>
           <section class="dua-grid">
-            {% include 'owner/data_visualizer/_apartment.html.twig' %}
+{#            {% include 'owner/data_visualizer/_apartment.html.twig' %}#}
           </section>
         </div>
       </article>
@@ -58,9 +61,8 @@
           </svg>
         </span>
       </button>
-
-      {% include 'controller/form/_owner.html.twig' %}
-      {% include 'controller/form/_ownerApart.html.twig' %}
+      <div id="form-container"></div>
+{#      {% include 'controller/form/_ownerApart.html.twig' %}#}
     </section>
   </main>
 {% endblock %}
