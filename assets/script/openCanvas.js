@@ -1,38 +1,32 @@
 const canvasForm = document.querySelector('.canvas-form');
 const closeBtn = document.querySelector('.btn-close')
 const formContainer = document.getElementById('form-container');
-// const mainPage = document.querySelector('main');
+
 function closeCanvas(){
-  document.querySelector('.canvas-form form').classList.add('hidden');
   canvasForm.classList.add('close');
-  buttonFormAll.forEach(button=>{
-    button.classList.remove('active');
-  })
 }
-// mainPage.addEventListener('click',closeCanvas)
-closeBtn.addEventListener('click',closeCanvas)
+function openCanvas(){
+  canvasForm.classList.remove('close');
+}
 
 const linkCanvas = Array.from(document.getElementsByClassName('open-canvas'));
-function openCanvas(event){
+function showForm(event){
   event.preventDefault();
+  openCanvas();
   let href = event.srcElement.href;
+  // console.log(href);
   let ajax = new XMLHttpRequest();
   ajax.open('GET',href);
   ajax.send();
   ajax.onreadystatechange = function(){
-    // console.log(ajax.response);
+    console.log(ajax.response);
     formContainer.innerHTML = ajax.response;
     const forms = document.querySelectorAll('form');
     forms.forEach(form=>{
       form.addEventListener('submit',formSubmit);
     })
   }
-  // console.log(href);
 }
-linkCanvas.forEach(linkCanva=>{
-  linkCanva.addEventListener('click',openCanvas);
-})
-
 function formSubmit(event){
   event.preventDefault();
   let action = event.target.getAttribute('action');
@@ -41,15 +35,24 @@ function formSubmit(event){
   ajax.open('POST',action);
   ajax.send(data);
   ajax.onreadystatechange = function(){
-    console.log(ajax.response);
     const elements = JSON.parse(this.responseText).elements;
-    console.log(elements);
+    const status = JSON.parse(this.responseText).status;
+    console.log(status);
     elements.forEach(element=>{
       const id = element.id;
+      console.log(id)//delete
       const view = element.view;
-      console.log(view)
+      console.log(view)//delete
       const container = document.getElementById(id);
       container.innerHTML = view;
+      closeCanvas();
     })
   }
 }
+
+linkCanvas.forEach(linkCanva=>{
+  linkCanva.addEventListener('click',showForm);
+})
+
+
+closeBtn.addEventListener('click',closeCanvas)

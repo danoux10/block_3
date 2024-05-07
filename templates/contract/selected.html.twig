@@ -6,21 +6,20 @@
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
-      {% include 'controller/button-form/update/_contract.html.twig' %}
     </header>
 
     <article class="view-data">
       <article class="data-container">
         <section class="flex-container">
-          {% include 'contract/data_visualizer/_selected.html.twig' %}
+          {% include 'controller/data-visualizer/contract/_selected.html.twig' %}
         </section>
         <section class="flex-container">
           <h4>Appartment</h4>
-          {% include'contract/data_visualizer/_apartment.html.twig' %}
+          {% include'controller/data-visualizer/apartment/_selected.html.twig' %}
         </section>
         <section class="flex-container">
           <h4>Locataire</h4>
-          {% include'contract/data_visualizer/_tenant.html.twig' %}
+          {% include'controller/data-visualizer/tenant/_selected.html.twig' %}
         </section>
       </article>
 
@@ -34,15 +33,6 @@
       </article>
     </article>
 
-    <section class="canvas-form close">
-      <button type="button" class="btn-close">
-        <span class="icon-content">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
-          </svg>
-        </span>
-      </button>
-      {% include 'controller/form/_contrat.html.twig' %}
-    </section>
+    {% include 'controller/form/_canvas.html.twig' %}
   </main>
 {% endblock %}

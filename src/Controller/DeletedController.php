@@ -41,32 +41,4 @@ class DeletedController extends AbstractController
 	    }
 	    return $this->redirectToRoute('app_apartment', [], Response::HTTP_SEE_OTHER);
     }
-		
-		#[Route('/{id}/deleted/owner', name: 'app_deleted_owner', methods: ['POST'])]
-    public function deleteOwner(
-			Request $request,
-	    Owner $owner,
-	    EntityManagerInterface $entityManager
-    ): Response
-    {
-	    if ($this->isCsrfTokenValid('deleteOwner'.$owner->getId(), $request->request->get('_token'))) {
-		    $entityManager->remove($owner);
-		    $entityManager->flush();
-	    }
-	    return $this->redirectToRoute('app_owner', [], Response::HTTP_SEE_OTHER);
-    }
-		
-		#[Route('/{id}/deleted/tenant', name: 'app_deleted_tenant', methods: ['POST'])]
-    public function deleteTenant(
-			Request $request,
-	    Tenant $tenant,
-	    EntityManagerInterface $entityManager
-    ): Response
-    {
-	    if ($this->isCsrfTokenValid('deleteTenant'.$tenant->getId(), $request->request->get('_token'))) {
-		    $entityManager->remove($tenant);
-		    $entityManager->flush();
-	    }
-	    return $this->redirectToRoute('app_tenant', [], Response::HTTP_SEE_OTHER);
-    }
 }

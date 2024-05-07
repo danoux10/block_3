@@ -3,134 +3,137 @@
   top: 0;
   right: 0;
   height:100vh;
-  //width: 40rem;//
-  width: 50rem;
+  width: 40rem;
   background: $light;
   border-left:2px solid $dark;
   border-radius:10px 0 0 10px;
   transition: width ease .5s;
   @include flex(row,center,center);
-  form{
-    width: 90%;
-    transition: width ease .5s;
-    @include flex(column,space-around,center);
-    &.hidden{
-      width: 0;
-      overflow: hidden;
-    }
-    .field-content{
-      width: 80%;
-      @include flex(column,space-around,none);
-      .form-element{
-        padding: .5rem;
-        width: 100%;
-        @include flex(row, space-between,center);
-        .label{
-          width: 40%;
-          &:first-letter{
-            text-transform: uppercase;
-          }
-          &:after{
-            content : ':';
-          }
-          .required{
+  #form-container{
+    width: 100%;
+    form{
+      width: 90%;
+      transition: width ease .5s;
+      @include flex(column,space-around,center);
+      &.hidden{
+        width: 0;
+        overflow: hidden;
+      }
+      .field-content{
+        width: 80%;
+        @include flex(column,space-around,none);
+        .form-element{
+          padding: .5rem;
+          width: 100%;
+          @include flex(row, space-between,center);
+          .label{
+            width: 40%;
+            &:first-letter{
+              text-transform: uppercase;
+            }
             &:after{
-              content: '*';
-              color: red;
-              font-size:20px;
+              content : ':';
+            }
+            .required{
+              &:after{
+                content: '*';
+                color: red;
+                font-size:20px;
+              }
+            }
+            label{
+              cursor: pointer;
             }
           }
-          label{
-            cursor: pointer;
-          }
-        }
-        .input{
-          width: 60%;
-          @include flex(row,flex-end,none);
-          input{
-            width: 90%;
-            padding: .4rem;
-            @include border(1px,$dark,5px);
-          }
-          textarea{
-            width: 90%;
-            height: 5rem;
-            padding: .5rem;
-            @include border(1px,$dark,10px);
-          }
-          select{
-            width: 90%;
-          }
-        }
-        .select{
-          width: 55%;
-          @include flex(column,none,none);
-          &.close{
-            .select-btn{
+          .input{
+            width: 60%;
+            @include flex(row,flex-end,none);
+            input{
+              width: 90%;
+              padding: .4rem;
+              @include border(1px,$dark,5px);
+            }
+            textarea{
+              width: 90%;
+              height: 5rem;
+              padding: .5rem;
               @include border(1px,$dark,10px);
             }
-            .select-content{
-              div{
-                padding: 0;
-                height: 0;
-                overflow: hidden;
-              }
+            select{
+              width: 90%;
             }
           }
-          .select-btn{
-            width: 100%;
-            border: 1px solid $dark;
-            border-bottom: none;
-            border-radius: 10px 10px 0 0;
-            @include flex(row,space-around,center);
-            .icon-content{
-              width: 1rem;
-              svg{
-                @include square(100%);
+          .select{
+            width: 55%;
+            cursor: pointer;
+            @include flex(column,none,none);
+            &.close{
+              .select-btn{
+                @include border(1px,$dark,10px);
+              }
+              .select-content{
+                div{
+                  padding: 0;
+                  height: 0;
+                  overflow: hidden;
+                }
               }
             }
-          }
-          .select-content{
-            position: relative;
-            div{
-              width: 94%;
-              height: 20rem;
-              position: absolute;
+            .select-btn{
+              width: 100%;
               border: 1px solid $dark;
-              border-top: none;
-              padding: .5rem;
-              background: $light;
-              overflow:auto;
-              transition: height ease .5s;
-              @include flex(column,none,center);
-              @include customScrollbar($light, $dark, .4rem);
-              label{
-                width: 100%;
-                padding: .5rem;
-                cursor: pointer;
+              border-bottom: none;
+              border-radius: 10px 10px 0 0;
+              @include flex(row,space-around,center);
+              .icon-content{
+                width: 1rem;
+                svg{
+                  @include square(100%);
+                }
               }
-              input[type="checkbox"] {
-                display: none;
-                &:checked + label {
-                  background-color: $accent;
-                  color: $light;
+            }
+            .select-content{
+              position: relative;
+              div{
+                width: 94%;
+                height: 20rem;
+                position: absolute;
+                border: 1px solid $dark;
+                border-top: none;
+                padding: .5rem;
+                background: $light;
+                overflow:auto;
+                transition: height ease .5s;
+                @include flex(column,none,center);
+                @include customScrollbar($light, $dark, .4rem);
+                label{
+                  width: 100%;
+                  padding: .5rem;
+                  cursor: pointer;
+                }
+                input[type="checkbox"] {
+                  display: none;
+                  &:checked + label {
+                    background-color: $accent;
+                    color: $light;
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-    .message-required{
-      @include flex(row,none,center);
-      gap : .2rem;
-      .red{
-        color: red;
+      .message-required{
+        @include flex(row,none,center);
+        gap : .2rem;
+        .red{
+          color: red;
+        }
       }
-    }
-    .button-content{
-      width: 100%;
-      @include flex(row,space-around,center);
+      .button-content{
+        width: 100%;
+        @include flex(row,space-around,center);
+      }
     }
   }
   &.close{

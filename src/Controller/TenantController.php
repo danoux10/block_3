@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class TenantController extends AbstractController
 {
-	#[Route('/tenant', name: 'app_tenant', methods: ['GET', 'POST'])]
+	#[Route('/tenant', name: 'app_tenant', methods: ['GET'])]
 	public function index(
 		TenantRepository        $TenantRepository,
 		EntityManagerInterface $entityManager,
@@ -49,7 +49,20 @@ class TenantController extends AbstractController
 			'form_tenant' => $formTenant,
 		]);
 	}
-	
+	#[Route('/tenant/add',name:'app_tenant_add_get',methods: ['GET'])]
+	public function getAdd(
+		Request $request,
+	):Response{
+		$tenant = new Tenant();
+		$tenant_form = $this->createForm(TenantType::class,$tenant,[
+			'action'=>'tenant/add',
+		]);
+		$tenant_form->handleRequest($request);
+		return $this->render('controller/form/_tenant.html.twig',[
+			'form_name'=>'ajouter',
+			'form_tenant'=>$tenant_form,
+		]);
+	}
 	#[Route('/tenant/{id}/edit', name: 'app_tenant_selected', methods: ['GET', 'POST'])]
 	public function view(
 		$id,

@@ -1,7 +1,7 @@
 <div class="row">
   <span class="info-element">
     <p class="name-data">code postal</p>
-    <p>{{ contract.apartment.code }}</p>
+    <p>{{ apartment.code }}</p>
   </span>
 
   <span class="info-element">
@@ -12,7 +12,7 @@
         </svg>
       </span>
     </p>
-    <p>{{ contract.apartment.city }}</p>
+    <p>{{ apartment.city }}</p>
   </span>
 
   <span class="info-element">
@@ -23,7 +23,7 @@
         </svg>
       </span>
     </p>
-    <p>{{ contract.apartment.address }}</p>
+    <p>{{ apartment.address }}</p>
   </span>
 </div>
 
@@ -31,19 +31,33 @@
   <div class="column">
     <span class="info-element">
       <p class="name-data">garantie</p>
-      <p class="euro">{{ contract.apartment.guarantee }}</p>
-    </span>
-    <span class="info-element">
-      <p class="name-data">charge</p>
-{#      <p class="euro">{{ contract.apartment.charge }}</p>#}
+      <p class="euro">{{ apartment.guarantee }}</p>
     </span>
     <span class="info-element">
       <p class="name-data">loyer</p>
-      <p class="euro">{{ contract.apartment.rent }}</p>
+      <p class="euro">{{ apartment.rent }}</p>
+    </span>
+  </div>
+  <div class="column">
+     <span class="info-element">
+      <p class="name-data">Eaux</p>
+      <p class="euro">{{ apartment.water }}</p>
+    </span>
+    <span class="info-element">
+      <p class="name-data">electrisité</p>
+      <p class="euro">{{ apartment.electricity }}</p>
+    </span>
+    <span class="info-element">
+      <p class="name-data">Gaz</p>
+      <p class="euro">{{ apartment.gas }}</p>
+    </span>
+    <span class="info-element">
+      <p class="name-data">Total charge</p>
+      <p class="euro">{{ apartment.charge }}</p>
     </span>
   </div>
   <span class="info-element">
     <p class="name-data">somme</p>
-{#    <p class="euro">{{ (contract.apartment.charge+contract.apartment.rent+0.08) |number_format(2,'.','') }}</p>#}
+    <p class="euro">{{ (apartment.charge+apartment.rent+0.08) |number_format(2,'.','') }}</p>
   </span>
 </div>

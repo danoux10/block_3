@@ -6,20 +6,18 @@
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
-      {% include 'controller/button-form/add/_apartment.html.twig' %}
+      <a href="{{ path('app_apartment_get_add') }}" class="open-canvas btn btn-add">
+        <span class="icon-content">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+           <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+         </svg>
+        </span>
+        Ajouter Propriétaire
+      </a>
     </header>
     <article class="table-content">
-      {% include 'Apartment/data_visualizer/_all.html.twig' %}
+      {% include 'controller/data-visualizer/apartment/_table.html.twig' %}
     </article>
-    <section class="canvas-form">
-      <button type="button" class="btn-close">
-			<span class="icon-content">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-					<path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
-				</svg>
-			</span>
-      </button>
-      {% include 'controller/form/_apartment.html.twig' %}
-    </section>
+   {% include 'controller/form/utility/_canvas.html.twig' %}
   </main>
 {% endblock %}

@@ -38,18 +38,30 @@ class ApartmentType extends AbstractType
 								'placeholder'=>'120.20',
 	            ],
             ],)
-            ->add('charge',TextType::class,[
-	            'label'=>'charge',
-	            'attr'=>[
-		            'placeholder'=>'1200.20',
-	            ],
-            ],)
             ->add('rent',TextType::class,[
 	            'label'=>'loyer',
 	            'attr'=>[
 		            'placeholder'=>'3000',
 	            ],
             ])
+	        ->add('water', TextType::class,[
+						'label'=>'Eaux',
+		        'attr'=>[
+							'placeholder'=>'1500',
+		        ]
+	        ])
+	        ->add('electricity',TextType::class,[
+						'label'=>'électricité',
+		        'attr'=>[
+			        'placeholder'=>'1500',
+		        ]
+	        ])
+	        ->add('gas',TextType::class,[
+		        'label'=>'gaz',
+		        'attr'=>[
+			        'placeholder'=>'1500',
+		        ]
+	        ])
         ;
     }
 

@@ -144,6 +144,11 @@ class Apartment
 		return $this;
 	}
 	
+	public function getCharge(): ?float
+	{
+		return $this->charge;
+	}
+	
 	public function setCharge(float $charge): static
 	{
 		$this->charge = $charge;
