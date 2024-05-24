@@ -1,15 +1,20 @@
 {% for payment in payments %}
   <section class="data-folder">
     <div>
-          <span class="data-content">
-            <p class="data-name">date de création</p>
-            <p>{{ payment.createdAt | date("d/m/Y") }}</p>
-          </span>
+      <span class="data-content">
+        <p class="data-name">date de création</p>
+        <p>{{ payment.createdAt | date("d/m/Y") }}</p>
+      </span>
 
       <span class="data-content">
-            <p class="data-name">somme</p>
-            <p class="inventory-remark">{{ payment.sum }}</p>
-          </span>
+        <p class="data-name">somme</p>
+        <p>{{ payment.sum }}</p>
+      </span>
+
+      <span class="data-content">
+        <p class="data-name">Type de payment</p>
+        <p>{{ payment.paymentType.name }}</p>
+      </span>
     </div>
   </section>
 

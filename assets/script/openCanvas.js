@@ -1,15 +1,22 @@
 const canvasForm = document.querySelector('.canvas-form');
 const closeBtn = document.querySelector('.btn-close')
 const formContainer = document.getElementById('form-container');
+const responseContainer = document.getElementById('response-container');
+const responseContent = document.getElementById('response-content');
+const linkCanvas = Array.from(document.getElementsByClassName('open-canvas'));
 
+function closeResponse(){
+  responseContainer.classList.add('hidden');
+  responseContainer.classList.remove('success');
+  responseContainer.classList.remove('error');
+  // responseContent.textContent = "";
+}
 function closeCanvas(){
   canvasForm.classList.add('close');
 }
 function openCanvas(){
   canvasForm.classList.remove('close');
 }
-
-const linkCanvas = Array.from(document.getElementsByClassName('open-canvas'));
 function showForm(event){
   event.preventDefault();
   openCanvas();
@@ -37,7 +44,21 @@ function formSubmit(event){
   ajax.onreadystatechange = function(){
     const elements = JSON.parse(this.responseText).elements;
     const status = JSON.parse(this.responseText).status;
+    const message = JSON.parse(this.responseText).message;
     console.log(status);
+    console.log(message);
+    responseContainer.classList.remove('hidden');
+    if(status === "success"){
+      responseContainer.classList.add('success');
+      responseContainer.classList.remove('error');
+      console.log("green");
+    }
+    if(status === 'error'){
+      responseContainer.classList.add('error');
+      responseContainer.classList.remove('success');
+      console.log("red");
+    }
+    responseContent.textContent = message;
     elements.forEach(element=>{
       const id = element.id;
       console.log(id)//delete
@@ -52,7 +73,7 @@ function formSubmit(event){
 
 linkCanvas.forEach(linkCanva=>{
   linkCanva.addEventListener('click',showForm);
-})
+});
 
-
-closeBtn.addEventListener('click',closeCanvas)
+closeBtn.addEventListener('click',closeCanvas);
+responseContainer.addEventListener('mouseover',closeResponse);

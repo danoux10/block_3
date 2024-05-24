@@ -23,45 +23,58 @@ class ContractRepository extends ServiceEntityRepository
 		parent::__construct($registry, Contract::class);
 	}
 	
-	public function findAllJoin(){
+	public function findAllJoin()
+	{
 		return $this->createQueryBuilder('c')
-			->addSelect('a','t')
-			->join('c.Apartment','a')
-			->join('c.Tenant','t')
+			->addSelect('a', 't')
+			->join('c.Apartment', 'a')
+			->join('c.Tenant', 't')
 			->getQuery()
 			->getResult();
 	}
 	
-	public function ContractDesc(){
+	public function ContractDesc()
+	{
 		return $this->createQueryBuilder('c')
 			->orderBy('c.id', 'DESC')
 			->getQuery()
 			->getResult();
 	}
-
-		public function ApartmentContract(int $id)
-		{
-			$data = $this->createQueryBuilder('c')
-				->addSelect('t')
-				->join('c.Tenant','t')
-				->where('c.Apartment = :id')
-				->setParameter(':id', $id)
-				->getQuery()
-				->getResult();
-			return $data;
-		}
 	
-	public function TenantContract(int $id){
+	public function ApartmentContract(int $id)
+	{
 		$data = $this->createQueryBuilder('c')
-			->addSelect('a')
-			->join('c.Apartment','a')
-			->where('c.Tenant = :id')
-			->setParameter(':id',$id)
+			->addSelect('t')
+			->join('c.Tenant', 't')
+			->where('c.Apartment = :id')
+			->setParameter(':id', $id)
 			->getQuery()
 			->getResult();
 		return $data;
 	}
 	
+	public function TenantContract(int $id)
+	{
+		$data = $this->createQueryBuilder('c')
+			->addSelect('a')
+			->join('c.Apartment', 'a')
+			->where('c.Tenant = :id')
+			->setParameter(':id', $id)
+			->getQuery()
+			->getResult();
+		return $data;
+	}
+	
+	public function contractPayment(int $id){
+		return $this->createQueryBuilder('c')
+			->addSelect('p','tp')
+			->join('c.payments','p')
+			->join('c.TypePayment','tp')
+			->where('c.id=:id')
+			->setParameter(':id',$id)
+			->getQuery()
+			->getResult();
+	}
 	//    /**
 	//     * @return Contract[] Returns an array of Contract objects
 	//     */

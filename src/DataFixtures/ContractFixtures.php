@@ -3,12 +3,18 @@
 namespace App\DataFixtures;
 
 use App\Entity\Contract;
+use App\Repository\PaymentTypeRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
 class ContractFixtures extends Fixture
 {
+//	public function __construct(
+//		private PaymentTypeRepository $paymentTypeRepository,
+//	)
+//	{}
+	
 	public function load(ObjectManager $manager): void
 	{
 		$faker = Factory::create('fr_FR');
@@ -22,4 +28,10 @@ class ContractFixtures extends Fixture
 		}
 		$manager->flush();
 	}
+	
+//	public function getDependencies(): array{
+//		return [
+//			TypeFixtures::class
+//		];
+//	}
 }

@@ -1,5 +1,5 @@
 {{ form_start(form_contract) }}
-<h3>Ajouter Contract</h3>
+<h3>{{ name_form }} Contract</h3>
 <div class="field-content">
     <span class="form-element">
       <span class="label required">
@@ -21,19 +21,28 @@
 
   <span class="form-element">
       <span class="label">
-        {{ (form_label(form_contract.Apartment)) }}
+        {{ (form_label(form_contract.apartment)) }}
       </span>
       <span class="input">
-        {{ form_widget(form_contract.Apartment) }}
+        {{ form_widget(form_contract.apartment) }}
       </span>
     </span>
 
   <span class="form-element">
       <span class="label">
-        {{ (form_label(form_contract.Tenant)) }}
+        {{ (form_label(form_contract.tenant)) }}
       </span>
       <span class="input">
-        {{ form_widget(form_contract.Tenant) }}
+        {{ form_widget(form_contract.tenant) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_contract.type)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_contract.type) }}
       </span>
     </span>
 </div>

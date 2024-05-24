@@ -6,11 +6,12 @@
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
-      {% include 'controller/button-form/add/_contract.html.twig' %}
+
     </header>
     <section class="table-content">
       {% include 'controller/data-visualizer/contract/_table.html.twig' %}
     </section>
-    {% include 'controller/form/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_response.html.twig' %}
   </main>
 {% endblock %}

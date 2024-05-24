@@ -21,7 +21,11 @@ class Payment
     private ?float $sum = null;
 
     #[ORM\ManyToOne(inversedBy: 'payments')]
-    private ?contract $contract = null;
+    private ?Contract $contract = null;
+
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PaymentType $paymentType = null;
 
     public function getId(): ?int
     {
@@ -52,14 +56,26 @@ class Payment
         return $this;
     }
 
-    public function getContract(): ?contract
+    public function getContract(): ?Contract
     {
         return $this->contract;
     }
 
-    public function setContract(?contract $contract): static
+    public function setContract(?Contract $contract): static
     {
         $this->contract = $contract;
+
+        return $this;
+    }
+
+    public function getPaymentType(): ?PaymentType
+    {
+        return $this->paymentType;
+    }
+
+    public function setPaymentType(?PaymentType $type): static
+    {
+        $this->paymentType = $type;
 
         return $this;
     }

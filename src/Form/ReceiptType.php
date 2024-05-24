@@ -2,16 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Apartment;
-use App\Entity\Contract;
-use App\Entity\PaymentType;
-use App\Entity\Tenant;
+use App\Entity\contract;
+use App\Entity\Receipt;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContractType extends AbstractType
+class ReceiptType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -22,17 +20,13 @@ class ContractType extends AbstractType
             ->add('end_at', null, [
                 'widget' => 'single_text',
             ])
-            ->add('apartment', EntityType::class, [
-                'class' => Apartment::class,
-                'choice_label' => 'adress',
-            ])
-            ->add('tenant', EntityType::class, [
-                'class' => Tenant::class,
-                'choice_label' => 'email',
-            ])
-            ->add('type', EntityType::class, [
-                'class' => PaymentType::class,
-                'choice_label' => 'name',
+//            ->add('charge')
+//            ->add('water')
+//            ->add('electricity')
+//            ->add('gas')
+            ->add('contract', EntityType::class, [
+                'class' => contract::class,
+                'choice_label' => 'id',
             ])
         ;
     }
@@ -40,7 +34,7 @@ class ContractType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Contract::class,
+            'data_class' => Receipt::class,
         ]);
     }
 }

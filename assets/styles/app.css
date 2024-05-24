@@ -57,6 +57,10 @@ input {
   border: 1px solid #393b44;
 }
 
+.hidden {
+  display: none;
+}
+
 .btn {
   cursor: pointer;
   padding: 0.5rem;
@@ -869,6 +873,34 @@ input {
 .view-data .dua-container .dual-content .container .dua-grid::-webkit-scrollbar-thumb {
   background: #393b44;
   border-radius: 10px;
+}
+
+#response-container {
+  width: 94%;
+  position: absolute;
+  bottom: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.5s;
+}
+#response-container.hidden {
+  overflow: hidden;
+  height: 0;
+  padding: 0;
+}
+#response-container.error {
+  background: #E87000;
+  color: #f1f3f8;
+}
+#response-container.success {
+  background: #2E8B57;
+  color: #f1f3f8;
+}
+#response-container #response-content {
+  text-align: center;
 }
 
 /*# sourceMappingURL=app.css.map */

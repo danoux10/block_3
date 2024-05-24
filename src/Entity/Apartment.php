@@ -269,4 +269,9 @@ class Apartment
 		$total = $this->getWater() + $this->getElectricity() + $this->getGas();
 		$this->setCharge($total);
 	}
+	
+	function getTotalAmount(){
+		$total = ($this->getCharge()+$this->getRent())+0.08;
+		return $total;
+	}
 }

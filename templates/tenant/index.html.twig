@@ -6,7 +6,7 @@
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
-      <a href="{{ path('app_tenant_add_get') }}" class="open-canvas btn btn-add">
+      <a href="{#{{ path('app_tenant_add_get') }}#}" class="open-canvas btn btn-add">
         <span class="icon-content">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
@@ -19,5 +19,6 @@
       {% include 'controller/data-visualizer/tenant/_table.html.twig'%}
     </article>
     {% include 'controller/form/utility/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_response.html.twig' %}
   </main>
 {% endblock %}

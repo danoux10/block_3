@@ -6,26 +6,66 @@
   <main>
     <header class="page-header">
       <h2>Gestion {{ page_name }}</h2>
+      <nav class="dropdown">
+        <div class="btn btn-dropdown">
+          <p>voir formulaire</p>
+          <span class="icon-content">
+					  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+						  <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+					  </svg>
+				  </span>
+        </div>
+        <div class="dropdown-menu close">
+          <a href="{{ path('app_contract_edit_get',{'id':contract.id}) }}" class="open-canvas btn btn-update">
+             <span class="icon-content">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/>
+              </svg>
+            </span>
+            Mettre a jour contract
+          </a>
+          <a href="{{ path('app_contract_payments',{'id':contract.id}) }}" class="btn btn-add">
+             <span class="icon-content">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/>
+              </svg>
+            </span>
+            Ajouter Payment
+          </a>
+          <a href="{{ path('app_contract_receipt_get',{'id':contract.id}) }}" class="open-canvas btn btn-update">
+             <span class="icon-content">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/>
+              </svg>
+            </span>
+            Généré quittance
+          </a>
+        </div>
+      </nav>
+
     </header>
 
     <article class="view-data">
       <article class="data-container">
-        <section class="flex-container">
+        <section class="flex-container" id="contract-selected">
           {% include 'controller/data-visualizer/contract/_selected.html.twig' %}
         </section>
-        <section class="flex-container">
-          <h4>Appartment</h4>
-          {% include'controller/data-visualizer/apartment/_selected.html.twig' %}
+        <section class="flex-container" id="apartment-selected">
+          <h4>Appartement</h4>
+          {% include'controller/data-visualizer/apartment/_selectedForOther.html.twig' %}
         </section>
-        <section class="flex-container">
+        <section class="flex-container" id="tenant-selected">
           <h4>Locataire</h4>
-          {% include'controller/data-visualizer/tenant/_selected.html.twig' %}
+          {% include'controller/data-visualizer/tenant/_selectedForOther.html.twig' %}
         </section>
       </article>
 
       <article class="data-container">
         <section class="flex-container">
           <h4>Paiements</h4>
+          <div id="view-payment">
+            {% include 'controller/data-visualizer/payment/_card.html.twig' %}
+          </div>
         </section>
         <section class="flex-container">
           <h4>Quittance</h4>
@@ -33,6 +73,7 @@
       </article>
     </article>
 
-    {% include 'controller/form/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_response.html.twig' %}
   </main>
 {% endblock %}

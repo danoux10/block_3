@@ -1,0 +1,33 @@
+{{ form_start(form_receipt) }}
+<h3>Génération Quittance</h3>
+
+<div class="field-content">
+  <span class="form-element">
+    <span class="label required">
+      {{ (form_label(form_receipt.startAt)) }}
+    </span>
+    <span class="input">
+      {{ form_widget(form_receipt.StartAt) }}
+    </span>
+  </span>
+
+  <span class="form-element">
+    <span class="label">
+      {{ (form_label(form_receipt.endAt)) }}
+    </span>
+    <span class="input">
+      {{ form_widget(form_receipt.endAt) }}
+    </span>
+  </span>
+
+  <span class="form-element">
+    <span class="label">
+      {{ (form_label(form_receipt.contract)) }}
+    </span>
+    <span class="input">
+      {{ form_widget(form_receipt.contract) }}
+    </span>
+  </span>
+</div>
+{% include'controller/form/utility/_form_submit_required.html.twig' %}
+{{ form_end(form_receipt) }}

@@ -38,6 +38,10 @@ class Contract
     #[ORM\OneToMany(targetEntity: Receipt::class, mappedBy: 'contract', orphanRemoval: true)]
     private Collection $receipts;
 
+    #[ORM\ManyToOne(inversedBy: 'contracts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PaymentType $TypePayment = null;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
@@ -153,6 +157,18 @@ class Contract
                 $receipt->setContract(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypePayment(): ?PaymentType
+    {
+        return $this->TypePayment;
+    }
+
+    public function setTypePayment(?PaymentType $TypePayment): static
+    {
+        $this->TypePayment = $TypePayment;
 
         return $this;
     }
