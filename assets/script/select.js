@@ -1,8 +1,8 @@
-const selects = document.querySelectorAll('.select');
+function toggleSelect(event){
+  if(event.target.classList.contains('close')){
+    event.target.classList.remove('close');
+  }else{
+    event.target.classList.add('close');
+  }
+}
 
-selects.forEach(select=>{
-  select.addEventListener('click',()=>{
-    console.log('hey');
-    select.classList.toggle('close');
-  })
-})

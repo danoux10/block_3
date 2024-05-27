@@ -26,7 +26,7 @@ class InventoryType extends AbstractType
 		
 			->add('Apartment', EntityType::class, [
 				'class' => Apartment::class,
-				'choice_label' => 'address',
+				'choice_label' => 'id',
 				'data'=>$options['apartment'],
 			]);
 	}

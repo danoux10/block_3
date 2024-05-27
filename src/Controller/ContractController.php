@@ -25,37 +25,15 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ContractController extends AbstractController
 {
-	#[Route('/contract', name: 'app_contract', methods: ['GET', 'POST'])]
+	#[Route('/contract', name: 'app_contract', methods: ['GET'])]
 	public function index(
 		ContractRepository     $contractRepository,
-		EntityManagerInterface $entityManager,
-		Request                $request,
 	): Response
 	{
-//		$data = $contractRepository->ContractDesc();
 		$data = $contractRepository->findAllJoin();
-		$tableHead = [
-			'début',
-			'fin',
-			'Appartement ville',
-			'Appartement Adresse',
-			'Locataire Email',
-			'select'
-		];
-//		$contract = new Contract();
-//		$formContract = $this->createForm(ContractType::class, $contract);
-//		$formContract->handleRequest($request);
-//		if ($formContract->isSubmitted() && $formContract->isValid()) {
-//			$entityManager->persist($contract);
-//			$entityManager->flush();
-//			return $this->redirectToRoute('app_contract', [], Response::HTTP_SEE_OTHER);
-//		}
-		
 		return $this->render('contract/index.html.twig', [
 			'page_name' => 'contract',
-			'heads' => $tableHead,
 			'data' => $data,
-//			'form_contract'=>$formContract,
 		]);
 	}
 	

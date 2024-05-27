@@ -19,27 +19,15 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class OwnerController extends AbstractController
 {
-	#[Route('/owner', name: 'app_owner', methods: ['GET', 'POST'])]
+	#[Route('/owner', name: 'app_owner', methods: ['GET'])]
 	public function index(
 		OwnerRepository        $OwnerRepository,
-		EntityManagerInterface $entityManager,
-		Request                $request
 	): Response
 	{
-		$data = $OwnerRepository->findAll();//delete
-//		$data = $OwnerRepository->OwnerDesc();
-		$tableHead = [
-			'nom',
-			'prénom',
-			'email',
-			'téléphone',
-			'adresse',
-			'select'
-		];
+		$data = $OwnerRepository->OwnerDesc();
 		return $this->render('owner/index.html.twig', [
 			'page_name' => 'propriétaire',
 			'type_form' => 'Ajouter',
-			'heads' => $tableHead,
 			'data' => $data,
 		]);
 	}
@@ -64,23 +52,25 @@ class OwnerController extends AbstractController
 	public function postAdd(
 		EntityManagerInterface $entityManager,
 		OwnerRepository        $OwnerRepository,
-	): JsonResponse
+		Request $request
+	)
 	{
 		$owner = new Owner();
 		$owner_form = $this->createForm(OwnerType::class, $owner, [
 			'action' => '/owner/add',
 		]);
-		$owners = $OwnerRepository->findAll();//delete
+		$owner_form->handleRequest($request);
 		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
 			$entityManager->persist($owner);
 			$entityManager->flush();
+			$owners = $OwnerRepository->OwnerDesc();
 			$data = $this->json([
 				'status' => 'success',
-				'message' => 'Ajout Effectuer',
+				'message' => 'Propriétaire ajouter avec success',
 				'elements' => [
 					[
 						'id' => 'owner-table',
-						'view' => $this->render('controller/data-visualizer/owner/_table.html.twig',['owners'=>$owners])->getContent(),
+						'view' => $this->render('controller/data-visualizer/owner/_table.html.twig',['data'=>$owners])->getContent(),
 					],
 				],
 			]);

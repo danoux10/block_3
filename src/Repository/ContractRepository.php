@@ -29,6 +29,7 @@ class ContractRepository extends ServiceEntityRepository
 			->addSelect('a', 't')
 			->join('c.Apartment', 'a')
 			->join('c.Tenant', 't')
+			->orderBy('c.id','DESC')
 			->getQuery()
 			->getResult();
 	}
@@ -65,16 +66,7 @@ class ContractRepository extends ServiceEntityRepository
 		return $data;
 	}
 	
-	public function contractPayment(int $id){
-		return $this->createQueryBuilder('c')
-			->addSelect('p','tp')
-			->join('c.payments','p')
-			->join('c.TypePayment','tp')
-			->where('c.id=:id')
-			->setParameter(':id',$id)
-			->getQuery()
-			->getResult();
-	}
+
 	//    /**
 	//     * @return Contract[] Returns an array of Contract objects
 	//     */

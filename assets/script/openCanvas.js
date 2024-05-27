@@ -9,7 +9,6 @@ function closeResponse(){
   responseContainer.classList.add('hidden');
   responseContainer.classList.remove('success');
   responseContainer.classList.remove('error');
-  // responseContent.textContent = "";
 }
 function closeCanvas(){
   canvasForm.classList.add('close');
@@ -21,12 +20,11 @@ function showForm(event){
   event.preventDefault();
   openCanvas();
   let href = event.srcElement.href;
-  // console.log(href);
   let ajax = new XMLHttpRequest();
   ajax.open('GET',href);
   ajax.send();
   ajax.onreadystatechange = function(){
-    console.log(ajax.response);
+    // console.log(ajax.response);
     formContainer.innerHTML = ajax.response;
     const forms = document.querySelectorAll('form');
     forms.forEach(form=>{

@@ -26,28 +26,20 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class ApartmentController extends AbstractController
 {
-	#[Route('/', name: 'app_apartment', methods: ['GET'])]
+	#[Route('/apartment', name: 'app_apartment', methods: ['GET'])]
 	public function index(
 		ApartmentRepository    $apartmentRepository,
 		EntityManagerInterface $entityManager,
 		Request                $request): Response
 	{
-//		$data = $apartmentRepository->findAll();//Delete
 		$data = $apartmentRepository->ApartmentDesc();
-//		if ($formApartment->isSubmitted() && $formApartment->isValid()) {
-//			$entityManager->persist($apartment);
-//			$apartment->calculateTotalCharge();
-//			$entityManager->flush();
-//			dd($apartment);
-//			return $this->redirectToRoute('app_apartment', [], Response::HTTP_SEE_OTHER);
-//		}
 		return $this->render('apartment/index.html.twig', [
 			'page_name' => 'Appartement',
 			'data' => $data,
 		]);
 	}
 	
-	#[Route('/add', name: 'app_apartment_get_add', methods: ['GET'])]
+	#[Route('/apartment/add', name: 'app_apartment_get_add', methods: ['GET'])]
 	public function getAdd(
 		Request $request,
 	): Response
@@ -63,7 +55,7 @@ class ApartmentController extends AbstractController
 		]);
 	}
 	
-	#[Route('/add', name: 'app_apartment_add_post', methods: ['POST'])]
+	#[Route('/apartment/add', name: 'app_apartment_add_post', methods: ['POST'])]
 	public function postAdd(
 		ApartmentRepository    $apartmentRepository,
 		EntityManagerInterface $entityManager,
@@ -94,48 +86,20 @@ class ApartmentController extends AbstractController
 		return $data;
 	}
 	
-	#[Route('apartment/{id}', name: 'app_apartment_selected', methods: ['GET'])]
+	#[Route('/apartment/{id}', name: 'app_apartment_selected', methods: ['GET'])]
 	public function view(
 		$id,
 		InventoryRepository $inventoryRepository,
 		OwnerRepository $ownerRepository,
 		ContractRepository $contractRepository,
 		Apartment $apartment,
-		Request $request,
-		EntityManagerInterface $entityManager,
 	): Response
 	{
-		//get data
 		$inventories = $inventoryRepository->ApartmentInventory($id);
 		$owners = $ownerRepository->ApartmentOwner($id);
 		$contracts = $contractRepository->ApartmentContract($id);
-		
-		//forms
-//		$inventory = new Inventory();
-//
-//		if ($inventory_form->isSubmitted() && $inventory_form->isValid()) {
-//			$entityManager->persist($inventory);
-//			$entityManager->flush();
-//			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
-//		}
-
-//		$contract = new Contract();
-//		$contract_form = $this->createForm(ContractType::class, $contract, ['apartment' => $apartment]);
-//		$contract_form->handleRequest($request);
-//		if ($contract_form->isSubmitted() && $contract_form->isValid()) {
-//			$entityManager->persist($contract);
-//			$entityManager->flush();
-//			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
-//		}
-
-//		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
-//			$entityManager->persist($apartment);
-//			$entityManager->flush();
-//			return $this->redirectToRoute('app_apartment_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
-//		}
 		return $this->render('apartment/selected.html.twig', [
 			'page_name' => 'Appartement',
-			
 			'apartment' => $apartment,
 			'inventories' => $inventories,
 			'owners' => $owners,
@@ -143,7 +107,7 @@ class ApartmentController extends AbstractController
 		]);
 	}
 	
-	#[Route('apartment/{id}/edit', name: 'app_apartment_edit_get', methods: ['GET'])]
+	#[Route('/apartment/{id}/edit', name: 'app_apartment_edit_get', methods: ['GET'])]
 	public function getEdit(
 		$id,
 		Apartment $apartment,
@@ -151,7 +115,7 @@ class ApartmentController extends AbstractController
 	): Response
 	{
 		$apartment_form = $this->createForm(ApartmentType::class, $apartment, [
-			'action' => "apartment/$id/edit",
+			'action' => "/apartment/$id/edit",
 		]);
 		$apartment_form->handleRequest($request);
 		return $this->render('controller/form/_apartment.html.twig', [
@@ -160,7 +124,7 @@ class ApartmentController extends AbstractController
 		]);
 	}
 	
-	#[Route('apartment/{id}/owner', name: 'app_apartment_edit_owner_get', methods: ['GET'])]
+	#[Route('/apartment/{id}/owner', name: 'app_apartment_edit_owner_get', methods: ['GET'])]
 	public function getOwner(
 		$id,
 		Apartment $apartment,
@@ -168,12 +132,41 @@ class ApartmentController extends AbstractController
 	): Response
 	{
 		$owner_form = $this->createForm(ApartOwnerType::class, $apartment, [
-			'action' => "/$id/owner",
+			'action' => "/apartment/$id/owner",
 		]);
 		$owner_form->handleRequest($request);
 		return $this->render('controller/form/_apartOwner.html.twig', [
 			'form_owner' => $owner_form,
 		]);
+	}
+	//Edit debug reload view
+	#[Route('apartment/{id}/owner', name: 'app_apartment_edit_owner_post', methods: ['POST'])]
+	public function postOwner(
+		$id,
+		Apartment $apartment,
+		OwnerRepository $ownerRepository,
+		EntityManagerInterface $entityManager,
+		Request $request,
+	)
+	{
+		$owner_form = $this->createForm(ApartOwnerType::class, $apartment, [
+			'action' => "/apartment/{id}/owner",
+		]);
+		$owner_form->handleRequest($request);
+		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
+			$entityManager->persist($apartment);
+			$entityManager->flush();
+			$owners = $ownerRepository->ApartmentOwner($id);
+			$data = $this->json([
+				'status' => 'success',
+				'message'=>'Propriétaire ajouter avec success',
+				'elements'=>[
+					'id'=>'owner-all',
+					'view'=>$this->render('controller/data-visualizer/owner/_card.html.twig',['owners'=>$owners])->getContent(),
+				],
+			]);
+		}
+		return $data;
 	}
 	
 	#[Route('apartment/{id}/inventory', name: 'app_apartment_add_inventory_get', methods: ['GET'])]
@@ -186,7 +179,7 @@ class ApartmentController extends AbstractController
 		$inventory = new Inventory();
 		$inventory_form = $this->createForm(InventoryType::class, $inventory, [
 			'apartment' => $apartment,
-			'action' => 'apartment/{id}/inventory',
+			'action' => "/apartment/$id/inventory",
 		]);
 		$inventory_form->handleRequest($request);
 		return $this->render('controller/form/_inventory.html.twig', [
@@ -194,7 +187,39 @@ class ApartmentController extends AbstractController
 		]);
 	}
 	
-	#[Route('apartment/{id}/contract', name: 'app_apartment_add_contract_get', methods: ['GET'])]
+	//Edit debug reload view
+	#[Route('/apartment/{id}/inventory', name: 'app_apartment_add_inventory_post', methods: ['POST'])]
+	public function postInventory(
+		$id,
+		Apartment              $apartment,
+		InventoryRepository    $inventoryRepository,
+		EntityManagerInterface $entityManager,
+		Request                $request,
+	)
+	{
+		$inventory = new Inventory();
+		$form_inventory = $this->createForm(InventoryType::class, $inventory, [
+			'apartment' => $apartment,
+			'action' => "/apartment/{id}/inventory",
+		]);
+		$form_inventory->handleRequest($request);
+		if ($form_inventory->isSubmitted() && $form_inventory->isValid()) {
+			$entityManager->persist($inventory);
+			$entityManager->flush();
+			$inventories = $inventoryRepository->ApartmentInventory($id);
+			$data = $this->json([
+				'status' => 'success',
+				'message' => 'etat des lieux ajouter avec success',
+				'elements' => [
+					'id' => 'inventory-all',
+					'view' => $this->render('controller/data-visualizer/inventory/_card.html.twig', ['inventories' => $inventories])->getContent()
+				]
+			]);
+		}
+		return $data;
+	}
+	
+	#[Route('/apartment/{id}/contract', name: 'app_apartment_add_contract_get', methods: ['GET'])]
 	public function getContract(
 		$id,
 		Apartment $apartment,
@@ -204,31 +229,45 @@ class ApartmentController extends AbstractController
 		$contract = new Contract();
 		$contract_form = $this->createForm(ContractType::class, $contract, [
 			'apartment' => $apartment,
-			'action' => '/{id}/contract',
+			'action' => "/apartment/$id/contract",
 		]);
 		$contract_form->handleRequest($request);
 		return $this->render('controller/form/_contrat.html.twig', [
-			'name_form'=>'add',
+			'name_form' => 'add',
 			'form_contract' => $contract_form,
 		]);
 	}
 	
-	//edit Post
-
-//	#[Route('/{id}/owner', name: 'app_apartment_owner_get', methods: ['GET'])]
-//	public function getOwner(
-//		$id,
-//		Apartment $apartment,
-//		Request $request
-//	)
-//	{
-//		$owner_form = $this->createForm(ApartOwnerType::class, $apartment);
-//		$owner_form->handleRequest($request);
-//
-//		return $this->render('controller/form/_apartOwner.html.twig', [
-//			'form_name' => 'mettre a jour',
-//			'form_apartment' => $owner_form,
-//		]);
-//	}
+	//Edit debug reload view
+	#[Route('/apartment/{id}/contract', name: 'app_apartment_add_contract_post', methods: ['POST'])]
+	public function postContract(
+		$id,
+		Apartment $apartment,
+		ContractRepository $contractRepository,
+		EntityManagerInterface $entityManager,
+		Request $request,
+	)
+	{
+		$contract = new Contract();
+		$contract_form = $this->createForm(ContractType::class, $contract, [
+			'apartment' => $apartment,
+			'action' => '/apartment/{id}/contract',
+		]);
+		$contract_form->handleRequest($request);
+		if ($contract_form->isSubmitted() && $contract_form->isValid()) {
+			$entityManager->persist($contract);
+			$entityManager->flush();
+			$contracts = $contractRepository->ApartmentContract($id);
+			$data = $this->json([
+				'status' => 'success',
+				'message' => 'Contract ajouter avec success',
+				'elements' => [
+					'id' => 'contract-all',
+					'view' => $this->render('controller/data-visualizer/contract/_card.html.twig', ['contracts' => $contracts])->getContent(),
+				]
+			]);
+		}
+		return $data;
+	}
 }
 

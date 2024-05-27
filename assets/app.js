@@ -12,6 +12,6 @@ import './script/navbar'
 import './script/openCanvas'
 import './script/dropdown'
 import './script/toggleMenu'
-import './script/select'
+// import './script/select'
 
 

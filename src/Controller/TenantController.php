@@ -25,18 +25,7 @@ class TenantController extends AbstractController
 		Request                $request
 	): Response
 	{
-		$data = $TenantRepository->findAll();//delete
-//		$data = $TenantRepository->TenantDesc();
-		$tableHead = [
-			'nom',
-			'prénom',
-			'email',
-			'téléphone',
-			'addresse',
-			'apl',
-			'valeur apl',
-			'select'
-		];
+		$data = $TenantRepository->TenantDesc();
 //		$Tenant = new Tenant();
 //		$formTenant = $this->createForm(TenantType::class, $Tenant);
 //		$formTenant->handleRequest($request);
@@ -47,7 +36,6 @@ class TenantController extends AbstractController
 //		}
 		return $this->render('tenant/index.html.twig', [
 			'page_name' => 'locataire',
-			'heads' => $tableHead,
 			'data' => $data,
 //			'form_tenant' => $formTenant,
 		]);
