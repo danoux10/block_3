@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Contract;
 use App\Entity\Tenant;
 
+use App\Form\ContractType;
 use App\Form\TenantType;
 
 use App\Repository\ContractRepository;
@@ -20,65 +22,73 @@ class TenantController extends AbstractController
 {
 	#[Route('/tenant', name: 'app_tenant', methods: ['GET'])]
 	public function index(
-		TenantRepository       $TenantRepository,
-		EntityManagerInterface $entityManager,
-		Request                $request
+		TenantRepository $TenantRepository,
 	): Response
 	{
 		$data = $TenantRepository->TenantDesc();
-//		$Tenant = new Tenant();
-//		$formTenant = $this->createForm(TenantType::class, $Tenant);
-//		$formTenant->handleRequest($request);
-//		if ($formTenant->isSubmitted() && $formTenant->isValid()) {
-//			$entityManager->persist($Tenant);
-//			$entityManager->flush();
-//			return $this->redirectToRoute('app_tenant', [], Response::HTTP_SEE_OTHER);
-//		}
 		return $this->render('tenant/index.html.twig', [
 			'page_name' => 'locataire',
 			'data' => $data,
-//			'form_tenant' => $formTenant,
 		]);
 	}
-
-//	#[Route('/tenant/add',name:'app_tenant_add_get',methods: ['GET'])]
-//	public function getAdd(
-//		Request $request,
-//	):Response{
-//		$tenant = new Tenant();
-//		$tenant_form = $this->createForm(TenantType::class,$tenant,[
-//			'action'=>'tenant/add',
-//		]);
-//		$tenant_form->handleRequest($request);
-//		return $this->render('controller/form/_tenant.html.twig',[
-//			'form_name'=>'ajouter',
-//			'form_tenant'=>$tenant_form,
-//		]);
-//	}
-	#[Route('/tenant/{id}', name: 'app_tenant_selected', methods: ['GET', 'POST'])]
+	
+	#[Route('/tenant/add', name: 'app_tenant_add_get', methods: ['GET'])]
+	public function getAdd(
+		Request $request,
+	): Response
+	{
+		$tenant = new Tenant();
+		$tenant_form = $this->createForm(TenantType::class, $tenant, [
+			'action' => '/tenant/add',
+		]);
+		$tenant_form->handleRequest($request);
+		return $this->render('controller/form/_tenant.html.twig', [
+			'form_name' => 'ajouter',
+			'form_tenant' => $tenant_form,
+		]);
+	}
+	
+	#[Route('/tenant/add', name: 'app_tenant_add_post', methods: ['POST'])]
+	public function postAdd(
+		TenantRepository       $tenantRepository,
+		EntityManagerInterface $entityManager,
+		Request                $request,
+	)
+	{
+		$tenant = new Tenant();
+		$tenant_form = $this->createForm(TenantType::class, $tenant, [
+			'action' => '/tenant/add',
+		]);
+		$tenant_form->handleRequest($request);
+		if ($tenant_form->isSubmitted() && $tenant_form->isValid()) {
+			$entityManager->persist($tenant);
+			$entityManager->flush();
+			$tenants = $tenantRepository->TenantDesc();
+			$data = $this->json([
+				'status' => 'success',
+				'message' => 'Ajouter',
+				'elements' => [
+					[
+						'id' => 'tenant-all',
+						'view' => $this->render('controller/data-visualizer/tenant/_table.html.twig', ['data' => $tenants])->getContent(),
+					],
+				]
+			]);
+		}
+		return $data;
+	}
+	
+	#[Route('/tenant/{id}', name: 'app_tenant_selected', methods: ['GET'])]
 	public function view(
 		$id,
 		Tenant $tenant,
-		TenantRepository $TenantRepository,
 		ContractRepository $contractRepository,
-		EntityManagerInterface $entityManager,
-		Request $request
 	): Response
 	{
-		//get data
 		$contracts = $contractRepository->TenantContract($id);
-		//form
-		$tenant_form = $this->createForm(TenantType::class, $tenant);
-		$tenant_form->handleRequest($request);
-		if ($tenant_form->isSubmitted() && $tenant_form->isValid()) {
-			$entityManager->flush();
-			return $this->redirectToRoute('app_tenant_selected', ['id' => $id], Response::HTTP_SEE_OTHER);
-		}
 		
 		return $this->render('tenant/selected.html.twig', [
 			'page_name' => 'propriétaire',
-			'type_form' => 'modifier',
-			'form_Tenant' => $tenant_form,
 			'tenant' => $tenant,
 			'contracts' => $contracts,
 		]);
@@ -123,6 +133,55 @@ class TenantController extends AbstractController
 						'view' => $this->render('controller/data-visualizer/tenant/_selected.html.twig', ['tenant' => $tenant])->getContent(),
 					],
 				],
+			]);
+		}
+		return $data;
+	}
+
+	#[Route('/tenant/{id}/contract', name: 'app_tenant_contract_get', methods: ['GET'])]
+	public function TenantContractGet(
+		$id,
+		Tenant $tenant,
+		Request $request,
+	){
+		$contract = new Contract();
+		$contract_form = $this->createForm(ContractType::class, $contract, [
+			'tenant' => $tenant,
+			'action' => "/tenant/$id/contract",
+		]);
+		$contract_form->handleRequest($request);
+		return $this->render('controller/form/_contrat.html.twig', [
+			'name_form' => 'add',
+			'form_contract' => $contract_form,
+		]);
+	}
+	
+	#[Route('/tenant/{id}/contract', name: 'app_tenant_contract_post', methods: ['POST'])]
+	public function TenantContractPost(
+		$id,
+		Tenant $tenant,
+		ContractRepository $contractRepository,
+		EntityManagerInterface $entityManager,
+		Request $request,
+	)
+	{
+		$contract = new Contract();
+		$contract_form = $this->createForm(ContractType::class, $contract, [
+			'tenant' => $tenant,
+			'action' => '/apartment/{id}/contract',
+		]);
+		$contracts = $contractRepository->TenantContract($id);
+		$contract_form->handleRequest($request);
+		if ($contract_form->isSubmitted() && $contract_form->isValid()) {
+			$entityManager->persist($contract);
+			$entityManager->flush();
+			$data = $this->json([
+				'status' => 'success',
+				'message' => 'Contract ajouter avec success',
+				'elements' => [
+					['id' => 'contract-tenant',
+					'view' => $this->render('controller/data-visualizer/contract/_card.html.twig', ['contracts' => $contracts])->getContent(),]
+				]
 			]);
 		}
 		return $data;

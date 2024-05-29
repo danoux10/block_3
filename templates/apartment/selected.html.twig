@@ -64,9 +64,9 @@
             {% include '/controller/data-visualizer/apartment/_selected.html.twig' %}
           </section>
         </div>
-        <div class="container owners-container" id="owner-all">
+        <div class="container owners-container" >
           <h4>Propriétaires</h4>
-          <section class="dua-grid">
+          <section class="dua-grid" id="owner-apartment">
             {% include 'controller/data-visualizer/owner/_card.html.twig' %}
           </section>
         </div>
@@ -80,14 +80,14 @@
         <section class="dual-content">
           <div class="container inventory-container dual">
             <h4>état des lieux</h4>
-            <div class="dua-grid" id="inventory-all">
+            <div class="dua-grid" id="inventory-apartment">
               {% include 'controller/data-visualizer/inventory/_card.html.twig' %}
             </div>
           </div>
 
           <div class="container contract-container dual close">
             <h4>contract</h4>
-            <div class="dua-grid" id="contract-all">
+            <div class="dua-grid" id="contract-apartment">
               {% include 'controller/data-visualizer/contract/_card.html.twig' %}
             </div>
           </div>

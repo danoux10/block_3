@@ -1,6 +1,6 @@
 {% for payment in payments %}
   <section class="data-folder">
-    <div>
+    <div class="card">
       <span class="data-content">
         <p class="data-name">date de création</p>
         <p>{{ payment.createdAt | date("d/m/Y") }}</p>

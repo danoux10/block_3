@@ -126,7 +126,8 @@ class Owner
 
     public function removeApartment(Apartment $Apartment): static
     {
-        if ($this->Apartments->removeElement($Apartment)) {
+        if ($this->Apartments->contains($Apartment)) {
+	          $this->Apartments->removeElement($Apartment);
             $Apartment->removeOwner($this);
         }
 

@@ -36,7 +36,7 @@ class Apartment
 	/**
 	 * @var Collection<int, Owner>
 	 */
-	#[ORM\ManyToMany(targetEntity: Owner::class, inversedBy: 'Apartments', orphanRemoval: true)]
+	#[ORM\ManyToMany(targetEntity: Owner::class, inversedBy: 'Apartments')]
 	private Collection $Owner;
 	
 	/**
@@ -192,6 +192,7 @@ class Apartment
 	{
 		if (!$this->Owner->contains($Owner)) {
 			$this->Owner->add($Owner);
+			$Owner->addApartment($this);
 		}
 		
 		return $this;
@@ -199,7 +200,12 @@ class Apartment
 	
 	public function removeOwner(Owner $Owner): static
 	{
+		if(!$this->Owner->contains($Owner)) {
+			return $this;
+		}
+		
 		$this->Owner->removeElement($Owner);
+		$Owner->removeApartment($this);
 		
 		return $this;
 	}

@@ -5,63 +5,60 @@ const responseContainer = document.getElementById('response-container');
 const responseContent = document.getElementById('response-content');
 const linkCanvas = Array.from(document.getElementsByClassName('open-canvas'));
 
-function closeResponse(){
+function closeResponse() {
   responseContainer.classList.add('hidden');
   responseContainer.classList.remove('success');
   responseContainer.classList.remove('error');
 }
-function closeCanvas(){
+
+function closeCanvas() {
   canvasForm.classList.add('close');
 }
-function openCanvas(){
+
+function openCanvas() {
   canvasForm.classList.remove('close');
 }
-function showForm(event){
+
+function showForm(event) {
   event.preventDefault();
   openCanvas();
   let href = event.srcElement.href;
   let ajax = new XMLHttpRequest();
-  ajax.open('GET',href);
+  ajax.open('GET', href);
   ajax.send();
-  ajax.onreadystatechange = function(){
-    // console.log(ajax.response);
+  ajax.onreadystatechange = function () {
     formContainer.innerHTML = ajax.response;
     const forms = document.querySelectorAll('form');
-    forms.forEach(form=>{
-      form.addEventListener('submit',formSubmit);
+    forms.forEach(form => {
+      form.addEventListener('submit', formSubmit);
     })
   }
 }
-function formSubmit(event){
+
+function formSubmit(event) {
   event.preventDefault();
   let action = event.target.getAttribute('action');
   let ajax = new XMLHttpRequest();
   let data = new FormData(this);
-  ajax.open('POST',action);
+  ajax.open('POST', action);
   ajax.send(data);
-  ajax.onreadystatechange = function(){
-    const elements = JSON.parse(this.responseText).elements;
+  ajax.onreadystatechange = function () {
     const status = JSON.parse(this.responseText).status;
     const message = JSON.parse(this.responseText).message;
-    console.log(status);
-    console.log(message);
-    responseContainer.classList.remove('hidden');
-    if(status === "success"){
+    if (status === "success") {
       responseContainer.classList.add('success');
       responseContainer.classList.remove('error');
-      console.log("green");
     }
-    if(status === 'error'){
+    if (status === 'error') {
       responseContainer.classList.add('error');
       responseContainer.classList.remove('success');
-      console.log("red");
     }
+    responseContainer.classList.remove('hidden');
     responseContent.textContent = message;
-    elements.forEach(element=>{
-      const id = element.id;
-      console.log(id)//delete
-      const view = element.view;
-      console.log(view)//delete
+    const elements = JSON.parse(this.responseText).elements;
+    Object.keys(elements).forEach(element => {
+      const id = elements[element]['id'];
+      const view = elements[element]['view'];
       const container = document.getElementById(id);
       container.innerHTML = view;
       closeCanvas();
@@ -69,9 +66,9 @@ function formSubmit(event){
   }
 }
 
-linkCanvas.forEach(linkCanva=>{
-  linkCanva.addEventListener('click',showForm);
+linkCanvas.forEach(linkCanva => {
+  linkCanva.addEventListener('click', showForm);
 });
 
-closeBtn.addEventListener('click',closeCanvas);
-responseContainer.addEventListener('mouseover',closeResponse);
+closeBtn.addEventListener('click', closeCanvas);
+responseContainer.addEventListener('mouseover', closeResponse);

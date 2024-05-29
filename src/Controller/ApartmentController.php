@@ -46,7 +46,7 @@ class ApartmentController extends AbstractController
 	{
 		$apartment = new Apartment();
 		$form_apartment = $this->createForm(ApartmentType::class, $apartment, [
-			'action' => "/add",
+			'action' => "/apartment/add",
 		]);
 		$form_apartment->handleRequest($request);
 		return $this->render('controller/form/_apartment.html.twig', [
@@ -64,7 +64,7 @@ class ApartmentController extends AbstractController
 	{
 		$apartment = new Apartment();
 		$form_apartment = $this->createForm(ApartmentType::class, $apartment, [
-			'action' => "/add",
+			'action' => "/apartment/add",
 		]);
 		$form_apartment->handleRequest($request);
 		if ($form_apartment->isSubmitted() && $form_apartment->isValid()) {
@@ -139,7 +139,6 @@ class ApartmentController extends AbstractController
 			'form_owner' => $owner_form,
 		]);
 	}
-	//Edit debug reload view
 	#[Route('apartment/{id}/owner', name: 'app_apartment_edit_owner_post', methods: ['POST'])]
 	public function postOwner(
 		$id,
@@ -154,15 +153,14 @@ class ApartmentController extends AbstractController
 		]);
 		$owner_form->handleRequest($request);
 		if ($owner_form->isSubmitted() && $owner_form->isValid()) {
-			$entityManager->persist($apartment);
+			$entityManager->persist($apartment,$ownerRepository);
 			$entityManager->flush();
 			$owners = $ownerRepository->ApartmentOwner($id);
 			$data = $this->json([
 				'status' => 'success',
 				'message'=>'Propriétaire ajouter avec success',
 				'elements'=>[
-					'id'=>'owner-all',
-					'view'=>$this->render('controller/data-visualizer/owner/_card.html.twig',['owners'=>$owners])->getContent(),
+					['id'=>'owner-apartment','view'=>$this->render('controller/data-visualizer/owner/_card.html.twig',['owners'=>$owners])->getContent()],
 				],
 			]);
 		}
@@ -187,7 +185,6 @@ class ApartmentController extends AbstractController
 		]);
 	}
 	
-	//Edit debug reload view
 	#[Route('/apartment/{id}/inventory', name: 'app_apartment_add_inventory_post', methods: ['POST'])]
 	public function postInventory(
 		$id,
@@ -211,12 +208,24 @@ class ApartmentController extends AbstractController
 				'status' => 'success',
 				'message' => 'etat des lieux ajouter avec success',
 				'elements' => [
-					'id' => 'inventory-all',
-					'view' => $this->render('controller/data-visualizer/inventory/_card.html.twig', ['inventories' => $inventories])->getContent()
+					['id' => 'inventory-apartment', 'view' => $this->render('controller/data-visualizer/inventory/_card.html.twig', ['inventories' => $inventories])->getContent(),]
 				]
 			]);
 		}
 		return $data;
+	}
+
+	#[Route('/inventory/{id}/delete', name:'app_inventory_delete', methods:['POST'])]
+	public Function inventoryDelete(
+		Request $request,
+		Inventory $inventory,
+		EntityManagerInterface $entityManager,
+	):Response{
+		if($this->isCsrfTokenValid('deleteInventory',$inventory->getId(),$request->request->get('_token'))){
+			$entityManager->remove($inventory);
+			$entityManager->flush();
+		}
+		return  $this->redirectToRoute('app_apartment',[],Response::HTTP_SEE_OTHER);
 	}
 	
 	#[Route('/apartment/{id}/contract', name: 'app_apartment_add_contract_get', methods: ['GET'])]
@@ -238,7 +247,6 @@ class ApartmentController extends AbstractController
 		]);
 	}
 	
-	//Edit debug reload view
 	#[Route('/apartment/{id}/contract', name: 'app_apartment_add_contract_post', methods: ['POST'])]
 	public function postContract(
 		$id,
@@ -262,12 +270,14 @@ class ApartmentController extends AbstractController
 				'status' => 'success',
 				'message' => 'Contract ajouter avec success',
 				'elements' => [
-					'id' => 'contract-all',
-					'view' => $this->render('controller/data-visualizer/contract/_card.html.twig', ['contracts' => $contracts])->getContent(),
+					['id' => 'contract-apartment',
+					'view' => $this->render('controller/data-visualizer/contract/_card.html.twig', ['contracts' => $contracts])->getContent(),]
 				]
 			]);
 		}
 		return $data;
 	}
+	
+	
 }
 

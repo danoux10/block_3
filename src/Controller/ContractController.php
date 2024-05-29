@@ -27,7 +27,7 @@ class ContractController extends AbstractController
 {
 	#[Route('/contract', name: 'app_contract', methods: ['GET'])]
 	public function index(
-		ContractRepository     $contractRepository,
+		ContractRepository $contractRepository,
 	): Response
 	{
 		$data = $contractRepository->findAllJoin();
@@ -41,26 +41,15 @@ class ContractController extends AbstractController
 	public function view(
 		$id,
 		Contract $contract,
-		ContractRepository $contractRepository,
 		PaymentRepository $paymentRepository,
 		ApartmentRepository $ApartmentRepository,
 		TenantRepository $TenantRepository,
-//		ReceiptRepository $receiptRepository,
-		EntityManagerInterface $entityManager,
-		Request $request,
 	): Response
 	{
 		$apartment = $ApartmentRepository->ContractApartment($id);
 		$tenant = $TenantRepository->ContractTenant($id);
 		$payments = $paymentRepository->contractPayment($id);
-//		$receipts = $receiptRepository->ContractReceipt($id);
-
-//		$formContract = $this->createForm(ContractType::class, $contract);
-//		$formContract->handleRequest($request);
-//		if ($formContract->isSubmitted() && $formContract->isValid()) {
-//			$entityManager->flush();
-//			return $this->redirectToRoute('app_contract', [], Response::HTTP_SEE_OTHER);
-//		}
+		
 		return $this->render('contract/selected.html.twig', [
 			'page_name' => 'contract',
 			'contract' => $contract,
@@ -76,7 +65,7 @@ class ContractController extends AbstractController
 		Contract $contract,
 		EntityManagerInterface $entityManager,
 		PaymentRepository $paymentRepository,
-	): JsonResponse
+	)
 	{
 		date_default_timezone_set('Europe/Paris');
 		
@@ -86,19 +75,20 @@ class ContractController extends AbstractController
 		
 		$paymentType = $contract->getTypePayment();
 		
-		$payment = $paymentType->newPayment($total,$contract);
+		$payment = $paymentType->newPayment($total, $contract);
 		
 		$entityManager->persist($payment);
 		$entityManager->flush();
-
-		return $this->json([
+		$payments = $paymentRepository->contractPayment($id);
+		
+		$data =  $this->json([
 			'status' => 'success',
-			'message' => 'Payment Ajouter',
+			'message' => 'Payment Effectuer',
 			'elements' => [
-				'id' => 'view-contract',
-//				'view' => $this->render('controller/data-visualizer/payment/_card.html.twig'/*,['payments' => $payments]*/)->getContent(),
+				['id' => 'view-payment','view' => $this->render('controller/data-visualizer/payment/_card.html.twig', ['payments' => $payments])->getContent(),]
 			]
 		]);
+		return $data;
 	}
 	
 	#[Route('/contract/{id}/edit', name: 'app_contract_edit_get', methods: ['GET'])]
