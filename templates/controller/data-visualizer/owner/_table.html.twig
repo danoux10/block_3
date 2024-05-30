@@ -1,0 +1,28 @@
+<div class="table" id="owner-table">
+  <div class="table-head">
+        <span class="ligne-content">
+              <p class="th">nom</p>
+              <p class="th">prénom</p>
+              <p class="th">email</p>
+              <p class="th">adresse</p>
+              <p class="th">téléphone</p>
+              <p class="th">select</p>
+        </span>
+  </div>
+  <div class="table-body">
+    {% for owner in data %}
+      <span class="ligne-content">
+                <p class="td">{{ owner.name }}</p>
+                <p class="td">{{ owner.lastname }}</p>
+                <p class="td">{{ owner.email }}</p>
+                <p class="td">{{ owner.address }}</p>
+                <p class="td">{{ owner.phone }}</p>
+                <a class="td" href="{{ path('app_owner_selected',{'id':owner.id}) }}">
+                    <span class="btn">
+                        sélect
+                    </span>
+                </a>
+            </span>
+    {% endfor %}
+  </div>
+</div>

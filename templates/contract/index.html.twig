@@ -3,15 +3,15 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <header class="page-header all">
-    <h2>Gestion {{ page_name }}</h2>
-  </header>
   <main>
-    <section class="section-table" id="contract-table">
-      {% include 'contract/data_visualizer/all.html.twig' %}
+    <header class="page-header">
+      <h2>Gestion {{ page_name }}</h2>
+
+    </header>
+    <section class="table-content">
+      {% include 'controller/data-visualizer/contract/_table.html.twig' %}
     </section>
-    <section class="section-form" id="contract-add">
-      {% include 'controller/form/contrat.html.twig' %}
-    </section>
+    {% include 'controller/form/utility/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_response.html.twig' %}
   </main>
 {% endblock %}

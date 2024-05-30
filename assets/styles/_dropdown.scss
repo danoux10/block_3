@@ -1,0 +1,43 @@
+.dropdown {
+  position: relative;
+
+  .btn-dropdown {
+    background: rgba($accent, .5);
+    width: 100%;
+    @include flex(row, space-around, center);
+
+    &:hover {
+      box-shadow: 2px 2px 4px $accent;
+    }
+
+    &.active {
+      background: $accent;
+
+      .icon-content {
+        transform: rotate(180deg);
+      }
+    }
+
+    p {
+      font-size: large;
+    }
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    height: 16rem;
+    padding: .5rem;
+    position: absolute;
+    background: $light;
+    border-radius: 10px;
+    transition: height ease .5s;
+    @include flex(column, none, center);
+    gap: .5rem;
+
+    &.close {
+      overflow: hidden;
+      height: 0;
+      padding: 0;
+    }
+  }
+}

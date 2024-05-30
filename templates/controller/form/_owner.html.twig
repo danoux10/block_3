@@ -1,0 +1,51 @@
+{{ form_start(form_owner) }}
+<h3>{{form_name}} Propriétaire</h3>
+<div class="field-content">
+    <span class="form-element">
+      <span class="label required">
+        {{ (form_label(form_owner.name)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.name) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.lastname)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.lastname) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.email)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.email) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.phone)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.phone) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_owner.address)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_owner.address) }}
+      </span>
+    </span>
+</div>
+
+{% include'controller/form/utility/_form_submit_required.html.twig' %}
+{{ form_end(form_owner) }}

@@ -1,0 +1,59 @@
+html{
+  font-size:16px;
+}
+
+*{
+  font-family: sans-serif;
+  margin: 0;
+  padding:0;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+
+body {
+  background: $light;
+  color: $dark;
+}
+
+main{
+  width: 95.5%;
+  height:99vh;
+  margin-left: 4.5rem;
+  padding-top: .5rem;
+}
+
+button{
+  border: none;
+  background: none;
+}
+
+ul{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+h1 {
+  font-family: "Dancing Script", cursive;
+}
+
+h2 {
+  font-family: "Dancing Script", cursive;
+  font-size: x-large;
+}
+
+h4{
+  text-transform: capitalize;
+  text-align: center;
+}
+
+input{
+  border: 1px solid $dark;
+}
+
+.hidden{
+  display: none;
+}

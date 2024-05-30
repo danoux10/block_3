@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PaymentRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PaymentRepository::class)]
@@ -13,53 +14,68 @@ class Payment
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $created_at = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $sum = null;
+    #[ORM\Column]
+    private ?float $sum = null;
+
+    #[ORM\ManyToOne(inversedBy: 'payments')]
+    private ?Contract $contract = null;
 
     #[ORM\ManyToOne(inversedBy: 'payments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?contract $contract = null;
+    private ?PaymentType $paymentType = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): static
+    public function setCreatedAt(\DateTimeInterface $created_at): static
     {
         $this->created_at = $created_at;
 
         return $this;
     }
 
-    public function getSum(): ?string
+    public function getSum(): ?float
     {
         return $this->sum;
     }
 
-    public function setSum(string $sum): static
+    public function setSum(float $sum): static
     {
         $this->sum = $sum;
 
         return $this;
     }
 
-    public function getContract(): ?contract
+    public function getContract(): ?Contract
     {
         return $this->contract;
     }
 
-    public function setContract(?contract $contract): static
+    public function setContract(?Contract $contract): static
     {
         $this->contract = $contract;
+
+        return $this;
+    }
+
+    public function getPaymentType(): ?PaymentType
+    {
+        return $this->paymentType;
+    }
+
+    public function setPaymentType(?PaymentType $type): static
+    {
+        $this->paymentType = $type;
 
         return $this;
     }

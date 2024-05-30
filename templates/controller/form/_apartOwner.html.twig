@@ -1,0 +1,14 @@
+{{ form_start(form_owner) }}
+<h3>Gestion des Propriétaires</h3>
+<div class="field-content">
+  <span class="form-element">
+    <span class="label">
+      {{ form_label(form_owner.Owner) }}
+    </span>
+    <span class="select-content">
+      {{ form_widget(form_owner.Owner) }}
+    </span>
+  </span>
+</div>
+{% include'controller/form/utility/_form_submit_required.html.twig' %}
+{{ form_end(form_owner) }}

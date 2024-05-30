@@ -21,33 +21,33 @@ class Contract
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_at = null;
+		
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?apartment $apartment = null;
+    private ?Apartment $Apartment = null;
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?tenant $tenant = null;
+    private ?Tenant $Tenant = null;
 
     /**
      * @var Collection<int, Payment>
      */
-    #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract')]
+    #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'contract', orphanRemoval: true)]
     private Collection $payments;
 
-    /**
-     * @var Collection<int, Receipt>
-     */
-    #[ORM\OneToMany(targetEntity: Receipt::class, mappedBy: 'contract')]
+    #[ORM\OneToMany(targetEntity: Receipt::class, mappedBy: 'contract', orphanRemoval: true)]
     private Collection $receipts;
+
+    #[ORM\ManyToOne(inversedBy: 'contracts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PaymentType $TypePayment = null;
 
     public function __construct()
     {
         $this->payments = new ArrayCollection();
         $this->receipts = new ArrayCollection();
     }
-
+		
     public function getId(): ?int
     {
         return $this->id;
@@ -76,27 +76,27 @@ class Contract
 
         return $this;
     }
-
-    public function getApartment(): ?apartment
+		
+    public function getApartment(): ?Apartment
     {
-        return $this->apartment;
+        return $this->Apartment;
     }
 
-    public function setApartment(?apartment $apartment): static
+    public function setApartment(?Apartment $Apartment): static
     {
-        $this->apartment = $apartment;
+        $this->Apartment = $Apartment;
 
         return $this;
     }
 
-    public function getTenant(): ?tenant
+    public function getTenant(): ?Tenant
     {
-        return $this->tenant;
+        return $this->Tenant;
     }
 
-    public function setTenant(?tenant $tenant): static
+    public function setTenant(?Tenant $Tenant): static
     {
-        $this->tenant = $tenant;
+        $this->Tenant = $Tenant;
 
         return $this;
     }
@@ -157,6 +157,18 @@ class Contract
                 $receipt->setContract(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTypePayment(): ?PaymentType
+    {
+        return $this->TypePayment;
+    }
+
+    public function setTypePayment(?PaymentType $TypePayment): static
+    {
+        $this->TypePayment = $TypePayment;
 
         return $this;
     }

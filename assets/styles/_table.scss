@@ -1,0 +1,145 @@
+.table-content {
+  padding: .5rem;
+  @include flex(row, center, center);
+
+  .table {
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid $dark;
+    border-radius: 10px 0 0 0;
+    box-shadow: 7px 7px 10px $medium;
+
+    .ligne-content {
+      width: 100%;
+      @include flex(row, none, none);
+      gap: .2rem;
+
+      .th, .td {
+        padding: .5rem;
+        @include flex(row, center, center);
+        @include border(1px, $dark, 5px);
+      }
+    }
+
+    .table-head {
+      padding-right: .5rem;
+      margin-bottom: .3rem;
+
+      .th {
+        font-weight: bold;
+        background: $accent;
+        color: $light;
+      }
+    }
+
+    .table-body {
+      height: 49.5rem;
+      overflow: scroll;
+      @include flex(column, none, none);
+      @include customScrollbar($light, $dark, .5rem);
+
+      a {
+        .btn {
+          padding: .5rem;
+          border-radius: 10px;
+          background: $accent;
+          color: $light;
+          transition: all ease .5s;
+        }
+
+        &:hover {
+          .btn {
+            background: rgba($accent, .5);
+            color: $dark;
+            box-shadow: 2px 2px 2px $accent;
+            border: 1px solid $accent;
+          }
+        }
+      }
+    }
+  }
+}
+
+#apartment-table {
+  .ligne-content {
+    .th, .td {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          @if $i ==2 or $i==3 {
+            width: 20%;
+          } @else {
+            width: 10%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#owner-table {
+  .ligne-content {
+    .th, .td {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          @if ($i ==3) {
+            width: 20%;
+          } @else if ($i == 4) {
+            width: 25%;
+          } @else if ($i == 5) {
+            width: 15%;
+          } @else {
+            width: 10%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#tenant-table {
+  .ligne-content {
+    .th, .td {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          @if ($i<=2 or $i==7) {
+            width: 10%;
+          } @else if ($i==3 or $i==4) {
+            width: 20%;
+          } @else if ($i==6 or $i==8) {
+            width: 5%;
+          } @else {
+            width: 15%;
+          }
+        }
+      }
+    }
+  }
+}
+
+#contract-table{
+  .ligne-content {
+    .th,.td{
+      &:nth-child(1){
+        width: 10%;
+      }
+      &:nth-child(2){
+        width: 10%;
+      }
+      &:nth-child(3){
+        width: 25%;
+      }
+      &:nth-child(4){
+        width: 30%;
+      }
+      &:nth-child(5){
+        width: 40%;
+      }
+      &:nth-child(6){
+        width: 15%;
+      }
+      &:nth-child(7){
+        width: 15%;
+      }
+    }
+  }
+}

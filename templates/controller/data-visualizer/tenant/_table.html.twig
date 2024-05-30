@@ -1,0 +1,32 @@
+<div class="table" id="tenant-table">
+  <div class="table-head">
+        <span class="ligne-content">
+          <p class="th">nom</p>
+          <p class="th">prénom</p>
+          <p class="th">email</p>
+          <p class="th">adresse</p>
+          <p class="th">téléphone</p>
+          <p class="th">apl</p>
+          <p class="th">valuer des apl</p>
+          <p class="th">select</p>
+        </span>
+  </div>
+  <div class="table-body">
+    {% for tenant in data %}
+      <span class="ligne-content">
+                <p class="td">{{ tenant.name }}</p>
+                <p class="td">{{ tenant.lastname }}</p>
+                <p class="td">{{ tenant.email }}</p>
+                <p class="td">{{ tenant.address }}</p>
+                <p class="td">{{ tenant.phone }}</p>
+                <p class="td">{{ tenant.apl ? 'oui': 'non' }}</p>
+                <p class="td">{{ tenant.aplValue }}</p>
+                <a class="td" href="{{ path('app_tenant_selected',{'id':tenant.id}) }}">
+                    <span class="btn">
+                        sélect
+                    </span>
+                </a>
+            </span>
+    {% endfor %}
+  </div>
+</div>

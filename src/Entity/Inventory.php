@@ -21,8 +21,7 @@ class Inventory
     private ?string $remark = null;
 
     #[ORM\ManyToOne(inversedBy: 'inventories')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Apartment $apartment = null;
+    private ?Apartment $Apartment = null;
 
     public function getId(): ?int
     {
@@ -55,12 +54,12 @@ class Inventory
 
     public function getApartment(): ?Apartment
     {
-        return $this->apartment;
+        return $this->Apartment;
     }
 
-    public function setApartment(?Apartment $apartment): static
+    public function setApartment(?Apartment $Apartment): static
     {
-        $this->apartment = $apartment;
+        $this->Apartment = $Apartment;
 
         return $this;
     }

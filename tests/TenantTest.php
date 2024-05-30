@@ -8,52 +8,52 @@ use PHPUnit\Framework\TestCase;
 class TenantTest extends TestCase
 {
 	public function testIsTrue(){
-		$tenant = new Tenant();
-		$tenant
+		$Tenant = new Tenant();
+		$Tenant
 			->setName('doe')
 			->setLastName('john')
-			->setAdress('7 rue des paquerette')
+			->setAddress('7 rue des paquerette')
 			->setEmail('john.doe@example.com')
 			->setPhone('0615244425')
 			->setAplValue('bc-44')
 			->setApl('true');
 		
-		$this->assertTrue($tenant->getName()=='doe');
-		$this->assertTrue($tenant->getLastname()=='john');
-		$this->assertTrue($tenant->getAdress()=='7 rue des paquerette');
-		$this->assertTrue($tenant->getEmail()=='john.doe@example.com');
-		$this->assertTrue($tenant->getPhone()=='0615244425');
-		$this->assertTrue($tenant->getAplValue()=='bc-44');
-		$this->assertTrue($tenant->isApl()=='true');
+		$this->assertTrue($Tenant->getName()=='doe');
+		$this->assertTrue($Tenant->getLastname()=='john');
+		$this->assertTrue($Tenant->getAddress()=='7 rue des paquerette');
+		$this->assertTrue($Tenant->getEmail()=='john.doe@example.com');
+		$this->assertTrue($Tenant->getPhone()=='0615244425');
+		$this->assertTrue($Tenant->getAplValue()=='bc-44');
+		$this->assertTrue($Tenant->isApl()=='true');
 	}
 	public function testIsFalse(){
-		$tenant = new Tenant();
-		$tenant
+		$Tenant = new Tenant();
+		$Tenant
 			->setName('doe')
 			->setLastName('john')
-			->setAdress('7 rue des paquerette')
+			->setAddress('7 rue des paquerette')
 			->setEmail('john.doe@example.com')
 			->setPhone('0615244425')
 			->setAplValue('bc-44')
 			->setApl('true');
 		
-		$this->assertFalse($tenant->getName()==='barbe');
-		$this->assertFalse($tenant->getLastname()==='didier');
-		$this->assertFalse($tenant->getAdress()==='7 rue des fleurs');
-		$this->assertFalse($tenant->getEmail()==='didier.barbe@example.com');
-		$this->assertFalse($tenant->getPhone()==='0620153541');
-		$this->assertFalse($tenant->getAplValue()==='bd-55');
-		$this->assertFalse($tenant->isApl()==='false');
+		$this->assertFalse($Tenant->getName()==='barbe');
+		$this->assertFalse($Tenant->getLastname()==='didier');
+		$this->assertFalse($Tenant->getAddress()==='7 rue des fleurs');
+		$this->assertFalse($Tenant->getEmail()==='didier.barbe@example.com');
+		$this->assertFalse($Tenant->getPhone()==='0620153541');
+		$this->assertFalse($Tenant->getAplValue()==='bd-55');
+		$this->assertFalse($Tenant->isApl()==='false');
 	}
 	public function testIsEmpty(){
-		$tenant = new Tenant();
-		$this->assertEmpty($tenant->getName());
-		$this->assertEmpty($tenant->getLastname());
-		$this->assertEmpty($tenant->getAdress());
-		$this->assertEmpty($tenant->getEmail());
-		$this->assertEmpty($tenant->getPhone());
-		$this->assertEmpty($tenant->getAplValue());
-		$this->assertEmpty($tenant->isApl());
+		$Tenant = new Tenant();
+		$this->assertEmpty($Tenant->getName());
+		$this->assertEmpty($Tenant->getLastname());
+		$this->assertEmpty($Tenant->getAddress());
+		$this->assertEmpty($Tenant->getEmail());
+		$this->assertEmpty($Tenant->getPhone());
+		$this->assertEmpty($Tenant->getAplValue());
+		$this->assertEmpty($Tenant->isApl());
 	}
 	
 }

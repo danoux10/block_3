@@ -3,18 +3,98 @@
 {% block title %}{{ page_name }}{% endblock %}
 
 {% block body %}
-  <h2>Gestion {{ page_name }}</h2>
   <main>
-    <article class="article-selected">
-      <section class="apartment-container">
-        {% include 'apartment/data_visualizer/selected.html.twig' %}
-        {% include 'apartment/data_visualizer/inventory.html.twig' %}
-      </section>
-      <section class="apartment-container">
-        {% include 'apartment/data_visualizer/owner.html.twig' %}
-{#        {% include 'apartment/data_visualizer/contract.html.twig' %}#}
-      </section>
+    <header class="page-header">
+      <h2>Gestion {{ page_name }}</h2>
+
+      <nav class="dropdown">
+        <div class="btn btn-dropdown">
+          <p>voir formulaire</p>
+          <span class="icon-content">
+					  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+						  <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
+					  </svg>
+				  </span>
+        </div>
+        <div class="dropdown-menu close">
+          <a href="{{ path('app_apartment_edit_get',{'id':apartment.id}) }}" class="open-canvas btn btn-update">
+             <span class="icon-content">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path d="M368.4 18.3L312.7 74.1 437.9 199.3l55.7-55.7c21.9-21.9 21.9-57.3 0-79.2L447.6 18.3c-21.9-21.9-57.3-21.9-79.2 0zM288 94.6l-9.2 2.8L134.7 140.6c-19.9 6-35.7 21.2-42.3 41L3.8 445.8c-3.8 11.3-1 23.9 7.3 32.4L164.7 324.7c-3-6.3-4.7-13.3-4.7-20.7c0-26.5 21.5-48 48-48s48 21.5 48 48s-21.5 48-48 48c-7.4 0-14.4-1.7-20.7-4.7L33.7 500.9c8.6 8.3 21.1 11.2 32.4 7.3l264.3-88.6c19.7-6.6 35-22.4 41-42.3l43.2-144.1 2.8-9.2L288 94.6z"/>
+              </svg>
+            </span>
+            Mettre a jour propriétaire
+          </a>
+
+          <a href="{{ path('app_apartment_edit_owner_get',{'id':apartment.id}) }}" class="open-canvas btn btn-add">
+             <span class="icon-content">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+              </svg>
+            </span>
+            Propriétaire
+          </a>
+
+          <a href="{{ path('app_apartment_add_inventory_get',{'id':apartment.id}) }}" class="open-canvas btn btn-add">
+             <span class="icon-content">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+               </svg>
+            </span>
+            état des lieux
+          </a>
+
+          <a href="{{ path('app_apartment_add_contract_get',{'id':apartment.id}) }}" class="open-canvas btn btn-add">
+             <span class="icon-content">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                 <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+               </svg>
+            </span>
+            contract
+          </a>
+
+        </div>
+      </nav>
+    </header>
+
+    <article class="view-data">
+      <article class="data-container">
+        <div class="container apartment-container">
+          <section class="flex-container">
+            {% include '/controller/data-visualizer/apartment/_selected.html.twig' %}
+          </section>
+        </div>
+        <div class="container owners-container" >
+          <h4>Propriétaires</h4>
+          <section class="dua-grid" id="owner-apartment">
+            {% include 'controller/data-visualizer/owner/_card.html.twig' %}
+          </section>
+        </div>
+      </article>
+
+      <article class="data-container dua-container">
+        <nav class="dual-nav">
+          <button type="button" class="btn-dual active">état des lieux</button>
+          <button type="button" class="btn-dual">contract</button>
+        </nav>
+        <section class="dual-content">
+          <div class="container inventory-container dual">
+            <h4>état des lieux</h4>
+            <div class="dua-grid" id="inventory-apartment">
+              {% include 'controller/data-visualizer/inventory/_card.html.twig' %}
+            </div>
+          </div>
+
+          <div class="container contract-container dual close">
+            <h4>contract</h4>
+            <div class="dua-grid" id="contract-apartment">
+              {% include 'controller/data-visualizer/contract/_card.html.twig' %}
+            </div>
+          </div>
+        </section>
+      </article>
     </article>
-    {%include 'controller/form/payment.html.twig'%}
+    {% include 'controller/form/utility/_canvas.html.twig' %}
+    {% include 'controller/form/utility/_response.html.twig' %}
   </main>
 {% endblock %}

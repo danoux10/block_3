@@ -2,10 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Apartment;
-use App\Entity\Contract;
 use App\Entity\Tenant;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -19,9 +16,9 @@ class TenantType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,[
-							'label'=>'Nom',
+	            'label'=>'Nom',
 	            'attr'=>[
-								'placeholder' =>'Doe'
+		            'placeholder' =>'Doe'
 	            ],
             ])
             ->add('lastname',TextType::class,[
@@ -36,8 +33,8 @@ class TenantType extends AbstractType
 		            'placeholder' =>'johnDoe@example.com'
 	            ],
             ])
-            ->add('adress',TextType::class,[
-	            'label'=>'Adresse',
+            ->add('address',TextType::class,[
+	            'label'=>'Address',
 	            'attr'=>[
 		            'placeholder' =>'8 rue des fleurs'
 	            ],
@@ -54,7 +51,8 @@ class TenantType extends AbstractType
 		            'placeholder' =>''
 	            ],
             ])
-            ->add('apl', CheckboxType::class);
+            ->add('apl', CheckboxType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

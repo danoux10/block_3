@@ -33,12 +33,12 @@ class Owner
     /**
      * @var Collection<int, Apartment>
      */
-    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'owner')]
-    private Collection $apartments;
+    #[ORM\ManyToMany(targetEntity: Apartment::class, mappedBy: 'Owner')]
+    private Collection $Apartments;
 
     public function __construct()
     {
-        $this->apartments = new ArrayCollection();
+        $this->Apartments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -111,23 +111,24 @@ class Owner
      */
     public function getApartments(): Collection
     {
-        return $this->apartments;
+        return $this->Apartments;
     }
 
-    public function addApartment(Apartment $apartment): static
+    public function addApartment(Apartment $Apartment): static
     {
-        if (!$this->apartments->contains($apartment)) {
-            $this->apartments->add($apartment);
-            $apartment->addOwner($this);
+        if (!$this->Apartments->contains($Apartment)) {
+            $this->Apartments->add($Apartment);
+            $Apartment->addOwner($this);
         }
 
         return $this;
     }
 
-    public function removeApartment(Apartment $apartment): static
+    public function removeApartment(Apartment $Apartment): static
     {
-        if ($this->apartments->removeElement($apartment)) {
-            $apartment->removeOwner($this);
+        if ($this->Apartments->contains($Apartment)) {
+	          $this->Apartments->removeElement($Apartment);
+            $Apartment->removeOwner($this);
         }
 
         return $this;

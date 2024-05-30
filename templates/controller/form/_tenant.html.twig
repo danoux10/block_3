@@ -1,0 +1,69 @@
+{{ form_start(form_tenant) }}
+  <h3>{{ form_name }} Locataire</h3>
+  <div class="field-content">
+    <span class="form-element">
+      <span class="label required">
+        {{ (form_label(form_tenant.name)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.name) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_tenant.lastname)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.lastname) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_tenant.email)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.email) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_tenant.phone)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.phone) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_tenant.address)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.address) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_tenant.apl)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.apl) }}
+      </span>
+    </span>
+
+    <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_tenant.apl_value)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_tenant.apl_value) }}
+      </span>
+    </span>
+</div>
+
+  {% include'controller/form/utility/_form_submit_required.html.twig' %}
+{{ form_end(form_tenant) }}

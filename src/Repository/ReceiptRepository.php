@@ -20,17 +20,7 @@ class ReceiptRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Receipt::class);
     }
-		
-		
-		public function ContractReceipt(int $id)
-		{
-			$data = $this->createQueryBuilder('r')
-				->where('r.contract=:id')
-				->setParameter('id',$id)
-				->getQuery()
-				->getResult();
-			return $data;
-		}
+
     //    /**
     //     * @return Receipt[] Returns an array of Receipt objects
     //     */

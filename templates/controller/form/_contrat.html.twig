@@ -1,0 +1,51 @@
+{{ form_start(form_contract) }}
+<h3>{{ name_form }} Contract</h3>
+<div class="field-content">
+    <span class="form-element">
+      <span class="label required">
+        {{ (form_label(form_contract.start_at)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_contract.start_at) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_contract.end_at)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_contract.end_at) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_contract.apartment)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_contract.apartment) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_contract.tenant)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_contract.tenant) }}
+      </span>
+    </span>
+
+  <span class="form-element">
+      <span class="label">
+        {{ (form_label(form_contract.typePayment)) }}
+      </span>
+      <span class="input">
+        {{ form_widget(form_contract.typePayment) }}
+      </span>
+    </span>
+</div>
+
+{% include'controller/form/utility/_form_submit_required.html.twig' %}
+{{ form_end(form_contract) }}

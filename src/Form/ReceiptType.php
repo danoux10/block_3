@@ -14,13 +14,16 @@ class ReceiptType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('start', null, [
+            ->add('start_at', null, [
                 'widget' => 'single_text',
             ])
-            ->add('end', null, [
+            ->add('end_at', null, [
                 'widget' => 'single_text',
             ])
-            ->add('sum')
+//            ->add('charge')
+//            ->add('water')
+//            ->add('electricity')
+//            ->add('gas')
             ->add('contract', EntityType::class, [
                 'class' => contract::class,
                 'choice_label' => 'id',

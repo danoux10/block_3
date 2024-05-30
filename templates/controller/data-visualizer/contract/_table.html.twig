@@ -1,0 +1,30 @@
+<div class="table" id="contract-table">
+  <div class="table-head">
+        <span class="ligne-content">
+          <p class="th">début</p>
+          <p class="th">fin</p>
+          <p class="th">appartement ville</p>
+          <p class="th">appartement adresse</p>
+          <p class="th">locataire email</p>
+          <p class="th">Type paiement</p>
+          <p class="th">select</p>
+        </span>
+  </div>
+  <div class="table-body">
+    {% for contract in data %}
+      <span class="ligne-content">
+        <p class="td">{{ contract.startAt | date('d/m/y') }}</p>
+        <p class="td">{{ contract.endAt | date('d/m/y') }}</p>
+        <p class="td">{{ contract.Apartment.city }}</p>
+        <p class="td">{{ contract.Apartment.address }}</p>
+        <p class="td">{{ contract.Tenant.email }}</p>
+        <p class="td">{{ contract.TypePayment.name }}</p>
+        <a class="td" href="{{ path('app_contract_selected',{'id':contract.id}) }}">
+          <span class="btn">
+            sélect
+          </span>
+        </a>
+      </span>
+    {% endfor %}
+  </div>
+</div>

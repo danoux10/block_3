@@ -20,6 +20,18 @@ class Receipt
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_at = null;
 
+    #[ORM\Column]
+    private ?float $charge = null;
+
+    #[ORM\Column]
+    private ?float $water = null;
+
+    #[ORM\Column]
+    private ?float $electricity = null;
+
+    #[ORM\Column]
+    private ?float $gas = null;
+
     #[ORM\ManyToOne(inversedBy: 'receipts')]
     #[ORM\JoinColumn(nullable: false)]
     private ?contract $contract = null;
@@ -49,6 +61,54 @@ class Receipt
     public function setEndAt(\DateTimeInterface $end_at): static
     {
         $this->end_at = $end_at;
+
+        return $this;
+    }
+
+    public function getCharge(): ?float
+    {
+        return $this->charge;
+    }
+
+    public function setCharge(float $charge): static
+    {
+        $this->charge = $charge;
+
+        return $this;
+    }
+
+    public function getWater(): ?float
+    {
+        return $this->water;
+    }
+
+    public function setWater(float $water): static
+    {
+        $this->water = $water;
+
+        return $this;
+    }
+
+    public function getElectricity(): ?float
+    {
+        return $this->electricity;
+    }
+
+    public function setElectricity(float $electricity): static
+    {
+        $this->electricity = $electricity;
+
+        return $this;
+    }
+
+    public function getGas(): ?float
+    {
+        return $this->gas;
+    }
+
+    public function setGas(float $gas): static
+    {
+        $this->gas = $gas;
 
         return $this;
     }
