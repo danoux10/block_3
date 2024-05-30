@@ -158,7 +158,7 @@ class ApartmentController extends AbstractController
 			$owners = $ownerRepository->ApartmentOwner($id);
 			$data = $this->json([
 				'status' => 'success',
-				'message'=>'Propriétaire ajouter avec success',
+				'message'=>'Propriétaire Mis a jour',
 				'elements'=>[
 					['id'=>'owner-apartment','view'=>$this->render('controller/data-visualizer/owner/_card.html.twig',['owners'=>$owners])->getContent()],
 				],
@@ -206,7 +206,7 @@ class ApartmentController extends AbstractController
 			$inventories = $inventoryRepository->ApartmentInventory($id);
 			$data = $this->json([
 				'status' => 'success',
-				'message' => 'etat des lieux ajouter avec success',
+				'message' => 'etat des lieux ajouté avec success',
 				'elements' => [
 					['id' => 'inventory-apartment', 'view' => $this->render('controller/data-visualizer/inventory/_card.html.twig', ['inventories' => $inventories])->getContent(),]
 				]
@@ -268,7 +268,7 @@ class ApartmentController extends AbstractController
 			$contracts = $contractRepository->ApartmentContract($id);
 			$data = $this->json([
 				'status' => 'success',
-				'message' => 'Contract ajouter avec success',
+				'message' => 'Contract ajouté avec success',
 				'elements' => [
 					['id' => 'contract-apartment',
 					'view' => $this->render('controller/data-visualizer/contract/_card.html.twig', ['contracts' => $contracts])->getContent(),]

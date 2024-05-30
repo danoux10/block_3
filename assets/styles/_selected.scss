@@ -82,7 +82,20 @@
     }
     .contract-container{
       .card{
-        .column{
+        width: 25rem;
+        .card-info{
+          width:80%;
+          .column{
+            @include flex(column,none,center);
+          }
+        }
+      }
+    }
+    .payment-container{
+      .card{
+        @include flex(column,none,center);
+        gap:.5rem;
+        .data-content{
           @include flex(column,none,center);
         }
       }

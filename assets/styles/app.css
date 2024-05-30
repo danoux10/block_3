@@ -457,16 +457,12 @@ input {
 .canvas-form #form-container form .field-content .form-element .input select {
   width: 90%;
 }
-.canvas-form #form-container form .field-content .form-element .select {
-  width: 55%;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
+.canvas-form #form-container form .field-content .form-element .select-content {
+  width: 90%;
 }
-.canvas-form #form-container form .field-content .form-element .select .select-content div {
+.canvas-form #form-container form .field-content .form-element .select-content div {
   width: 94%;
   height: 20rem;
-  position: absolute;
   border: 1px solid #393b44;
   padding: 0.5rem;
   background: #f1f3f8;
@@ -476,24 +472,24 @@ input {
   flex-direction: column;
   align-items: center;
 }
-.canvas-form #form-container form .field-content .form-element .select .select-content div::-webkit-scrollbar {
+.canvas-form #form-container form .field-content .form-element .select-content div::-webkit-scrollbar {
   width: 0.4rem;
   height: 0;
   background: #f1f3f8;
 }
-.canvas-form #form-container form .field-content .form-element .select .select-content div::-webkit-scrollbar-thumb {
+.canvas-form #form-container form .field-content .form-element .select-content div::-webkit-scrollbar-thumb {
   background: #393b44;
   border-radius: 10px;
 }
-.canvas-form #form-container form .field-content .form-element .select .select-content div label {
+.canvas-form #form-container form .field-content .form-element .select-content div label {
   width: 100%;
   padding: 0.5rem;
   cursor: pointer;
 }
-.canvas-form #form-container form .field-content .form-element .select .select-content div input[type=checkbox] {
+.canvas-form #form-container form .field-content .form-element .select-content div input[type=checkbox] {
   display: none;
 }
-.canvas-form #form-container form .field-content .form-element .select .select-content div input[type=checkbox]:checked + label {
+.canvas-form #form-container form .field-content .form-element .select-content div input[type=checkbox]:checked + label {
   background-color: #2185D5;
   color: #f1f3f8;
 }
@@ -787,7 +783,24 @@ input {
   background: #393b44;
   border-radius: 10px;
 }
-.view-data .data-container .contract-container .card .column {
+.view-data .data-container .contract-container .card {
+  width: 25rem;
+}
+.view-data .data-container .contract-container .card .card-info {
+  width: 80%;
+}
+.view-data .data-container .contract-container .card .card-info .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.view-data .data-container .payment-container .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.view-data .data-container .payment-container .card .data-content {
   display: flex;
   flex-direction: column;
   align-items: center;
