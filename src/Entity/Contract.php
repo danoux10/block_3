@@ -39,7 +39,6 @@ class Contract
     private Collection $receipts;
 
     #[ORM\ManyToOne(inversedBy: 'contracts')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?PaymentType $TypePayment = null;
 
     public function __construct()

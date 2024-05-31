@@ -22,7 +22,7 @@ class PaymentTypeRepository extends ServiceEntityRepository
     }
 
     //    /**
-    //     * @return PaymentType[] Returns an array of PaymentType objects
+    //     * @return PaymentTypeFixtures[] Returns an array of PaymentTypeFixtures objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -37,7 +37,7 @@ class PaymentTypeRepository extends ServiceEntityRepository
     //    }
 	
 	//		}
-    //    public function findOneBySomeField($value): ?PaymentType
+    //    public function findOneBySomeField($value): ?PaymentTypeFixtures
     //    {
     //        return $this->createQueryBuilder('p')
     //            ->andWhere('p.exampleField = :val')
